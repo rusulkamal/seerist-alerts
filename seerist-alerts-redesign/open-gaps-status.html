@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alerts Redesign — Open Gaps &amp; Status</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Arial, Helvetica, sans-serif; background:#f2f2f2; color:#334155; }
+  .topbar { background:#111827; color:#fff; padding:18px 20px; }
+  .topbar h1 { font-size:16px; margin:0; font-weight:bold; }
+  .topbar .sub { font-size:12px; color:#9CA3AF; margin-top:4px; }
+  .wrap { max-width:760px; margin:24px auto; padding:0 20px 48px 20px; background:#fff; border-radius:10px; }
+  .wrap-inner { padding:24px 8px; }
+  h2 { font-size:16px; color:#0F172A; margin:28px 0 10px 0; }
+  p { font-size:13px; line-height:1.6; color:#475569; margin:0 0 12px 0; }
+  ul { margin:0 0 16px 0; padding-left:20px; font-size:13px; color:#475569; line-height:1.7; }
+  table { width:100%; border-collapse:collapse; font-size:12.5px; margin:8px 0 20px 0; }
+  th { background:#0F172A; color:#fff; text-align:left; padding:8px 10px; }
+  td { padding:8px 10px; border-top:1px solid #E5E7EB; color:#334155; vertical-align:top; }
+  .status { display:inline-block; font-size:11px; font-weight:bold; padding:3px 9px; border-radius:10px; white-space:nowrap; }
+  .st-solved { background:#D9F2E1; color:#00702B; }
+  .st-open { background:#FFF0D6; color:#7A3300; }
+  .st-missing { background:#FFEAEB; color:#BA1A1F; }
+  .st-outofscope { background:#E5E5E5; color:#4D4D4D; }
+  .formula { background:#0F172A; color:#fff; font-family:'Courier New',monospace; font-size:13px; font-weight:bold; padding:10px 14px; border-radius:6px; margin:6px 0; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Alerts Redesign — Open Gaps &amp; Status</h1>
+  <div class="sub">Tracking what's solved, open, or out of scope against the Problem statement, Inbox audit, and Proposed Solution.</div>
+</div>
+
+<div class="wrap"><div class="wrap-inner">
+
+  <h2>Status table</h2>
+  <table>
+    <tr><th style="width:32%;">Item</th><th style="width:16%;">Status</th><th>Note</th></tr>
+    <tr><td>Subject line treatment</td><td><span class="status st-solved">Solved</span></td><td>Added to 24-mixed-content-digest.html: "All Alerts — Combined Digest: 14 new updates". Formula spelled out below.</td></tr>
+    <tr><td>Event Time field on Breaking Events</td><td><span class="status st-solved">Solved</span></td><td>Added to both real Breaking Event cards in 24-mixed-content-digest.html, using the real value ("Jul 20, 2026") pulled from the source data.</td></tr>
+    <tr><td>Custom supplier field</td><td><span class="status st-outofscope">Not fixable here</span></td><td>Explicitly asked for in the Problem statement. Confirmed via direct search of the real source data — no structured Supplier field exists in this account's data. Needs a data-model conversation with engineering, not a template change.</td></tr>
+    <tr><td>"Here's how to act" guidance</td><td><span class="status st-open">Not addressed</span></td><td>Problem statement asks for action guidance instead of a plain advisory label. Would require writing recommendations not present in the real data — a content-strategy decision, flagged but not attempted.</td></tr>
+    <tr><td>Distance-to-incident in subject line</td><td><span class="status st-outofscope">Out of scope for digests</span></td><td>Morgan Stanley specifically asked for this (like competitor AlertMedia). Makes sense for a single-story alert tied to one asset; doesn't map cleanly onto a multi-item, multi-country digest subject.</td></tr>
+    <tr><td>Consistent subject lines across alert types</td><td><span class="status st-solved">Decided</span></td><td>One rule, branching on item count: 1 item &rarr; Location + Headline; 2+ items &rarr; Alert name + count. Decided the digest branch stays "alert name + count" with no location added — see subject-line-formula.html for the full reasoning.</td></tr>
+    <tr><td>Plain-text fallback</td><td><span class="status st-open">Not built</span></td><td>"Should have" in the Proposed Solution. No plain-text version exists for any of the templates yet.</td></tr>
+    <tr><td>Visually distinguish Analysis Briefings</td><td><span class="status st-solved">Solved</span></td><td>24-mixed-content-digest.html gives Analysis Briefings a distinct badge, structure (paragraphs + Sources + Risk), and location treatment from Breaking Events and News/Social, in the same email.</td></tr>
+    <tr><td>Location shown in two places, per item</td><td><span class="status st-solved">Solved</span></td><td>Country section header (top-level cue) plus a per-item location line now appear consistently across Breaking Event, Analysis Briefing, and News/Social cards.</td></tr>
+    <tr><td>Source linked directly</td><td><span class="status st-solved">Solved</span></td><td>Source now renders as a real styled link on every card type, not plain text.</td></tr>
+    <tr><td>Headline preview in country jump list</td><td><span class="status st-outofscope">Accepted trade-off</span></td><td>Country chips show name + count only, no headline preview. This was a deliberate choice — confirmed liked as-is, not a gap.</td></tr>
+    <tr><td>Deduplication within a digest</td><td><span class="status st-solved">Solved (large digest)</span></td><td>5 duplicate real headlines removed when merging the two source digests for 23-large-digest-50-items.html.</td></tr>
+    <tr><td>Sub-grouping within large country sections</td><td><span class="status st-solved">Solved (large digest)</span></td><td>US section grouped by real category (Official Actions, Geopolitical, Health, etc.) instead of one flat 31-item list.</td></tr>
+  </table>
+
+  <h2>Subject line formulas</h2>
+  <p>Two different formulas, by alert shape — confirmed consistent as a rule, not as one literal format (see the "Consistent subject lines across alert types" open question above). Full detail: <a href="subject-line-formula.html" style="color:#00AB41;font-weight:bold;text-decoration:none;">subject-line-formula.html &rarr;</a></p>
+  <p><strong>Single-story alert:</strong></p>
+  <div class="formula">{Location} &middot; {Headline}</div>
+  <p><strong>Digest:</strong></p>
+  <div class="formula">{Alert's own configured name}: {count} new updates</div>
+
+  <h2>Notes</h2>
+  <p>This list is cumulative across both large-digest and mixed-content-digest reviews. "Solved" items were checked against the actual built files, not assumed from design intent.</p>
+  <p><strong>Both items below, raised in the last review of 24-mixed-content-digest.html, are now fixed:</strong></p>
+  <ul>
+    <li>Subject line treatment — added (see formula above).</li>
+    <li>Event Time field on Breaking Events — added, using the real value pulled from the source data.</li>
+  </ul>
+
+</div></div>
+
+</body>
+</html>

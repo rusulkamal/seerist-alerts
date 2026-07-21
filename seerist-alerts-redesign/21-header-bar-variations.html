@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<!--
+  HEADER/BAR VARIATIONS — same base template, 6 zones, same real content
+  (the Philadelphia heat alert), only the header/bar treatment changes.
+  All confirmed SendGrid-safe: table layout, inline CSS, Archivo/Inter with
+  Arial fallback, no JS inside any of the actual email markup (the tabs on
+  this page are just for browsing, not part of the email itself).
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seerist — Header/Bar Variations</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet" type="text/css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Arial, Helvetica, sans-serif; background:#f2f2f2; }
+  .topbar { background:#111827; color:#fff; padding:14px 20px; }
+  .topbar h1 { font-size:15px; margin:0; font-weight:bold; }
+  .topbar .sub { font-size:12px; color:#9CA3AF; margin-top:2px; }
+  .tabs { display:flex; overflow-x:auto; background:#fff; border-bottom:1px solid #E5E7EB; position:sticky; top:0; z-index:5; }
+  .tab { padding:12px 16px; font-size:13px; color:#4D4D4D; cursor:pointer; white-space:nowrap; border-bottom:3px solid transparent; background:none; border-top:none; border-left:none; border-right:none; font-family:Arial,Helvetica,sans-serif; }
+  .tab.active { color:#00AB41; border-bottom-color:#00AB41; font-weight:bold; }
+  .tab:hover { background:#FAFAFA; }
+  .case-label { padding:14px 20px; background:#fff; border-bottom:1px solid #E5E7EB; font-size:13px; color:#4D4D4D; }
+  .case-label b { color:#0F172A; }
+  .flag { margin-top:8px; padding:8px 12px; background:#FFF0D6; border:1px solid #FFA733; border-radius:6px; font-size:12px; color:#7A3300; }
+  .panel { padding:24px 12px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Seerist — Look &amp; Feel Explorations</h1>
+  <div class="sub">Same real content (Philadelphia heat alert) throughout. Tabs 1-4 vary just the header/bar; tabs 5-8 vary the whole email's visual system, each inspired by a different modern reference point, all confirmed buildable in SendGrid</div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div class="case-label" id="caseLabel"></div>
+<div id="panels"></div>
+
+<script>
+  const variants = [
+    { tab: "1. Dark bar", desc: "<b>Dark navy header bar.</b> SEERIST wordmark and alert name in white text on a solid dark background. Strong, confident contrast right under the external-email banner." },
+    { tab: "2. Green top bar", desc: "<b>Thick green top border, white background.</b> Closest to the current production look, cleaned up. Seerist wordmark in dark text, no dark banner block at all — the green stripe alone signals brand." },
+    { tab: "3. Card, colored edge", desc: "<b>White card with a colored left accent bar.</b> The accent color matches the content-type badge (red for Breaking, blue for Verified, green for Analysis, etc.), so the sidebar itself becomes a second signal of what type of alert this is." },
+    { tab: "4. No bar, text only", desc: "<b>No bar or banner at all.</b> Just the wordmark, a thin hairline rule, and typography doing all the work. Quietest option, closest to the earlier 'Clean Minimal' style direction." },
+    { tab: "5. Incident console", desc: "<b>Inspired by PagerDuty/Opsgenie-style incident alerts.</b> A bold status pill instead of a badge, monospace timestamp, and a real button (not just a text link) as the primary action — this genre is built entirely around 'something happened, here's what to do,' which maps directly onto Breaking/Verified events.", flag: "Buttons in email are just a styled &lt;a&gt; tag with padding and a background color, fully SendGrid-safe — there's no real HTML &lt;button&gt; element used in email." },
+    { tab: "6. Smart Brief", desc: "<b>Inspired by Axios-style newsletter briefs</b> (\"1 big thing\"). A numbered, oversized lead-in, a short conversational one-liner setting context, and a bold colored underline instead of a badge. Reads more like a briefing a person wrote than a system notification — closest fit to the 'wants curated content' research theme.", flag: "Large custom numerals and the underline effect use only font-size/border, no images required, so this degrades safely everywhere." },
+    { tab: "7. Minimal transactional", desc: "<b>Inspired by Stripe/Linear-style transactional emails.</b> Extremely spacious, a small circular icon badge instead of a text badge, extra line-height, and one real button as the only strong visual element. This is the calmest, most 'engineered' feeling option of the set.", flag: "The circular icon badge is just a table cell with border-radius:50% — renders as a circle in iOS Mail/Gmail, renders as a square in Outlook desktop, acceptable degradation." },
+    { tab: "8. Notification-style", desc: "<b>Inspired by mobile push notifications</b> (weather alerts, breaking-news pushes) translated to email. Icon-led, almost no body copy, one oversized headline, everything else secondary — built for someone who will only glance at it for two seconds.", flag: "Deliberately the least information-dense option — best fit for Breaking Events specifically, weakest fit for Analysis Briefings, which need room for real text." }
+  ];
+
+  const html = [];
+
+  // VARIANT 1 — Dark bar (matches the current base template)
+  html[0] = `
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;border-radius:8px;overflow:hidden;">
+    <tr><td style="background:#fff3f3;border-bottom:1px solid #d32f2f;padding:10px 20px;font-family:'Segoe UI',Arial,sans-serif;font-size:12px;color:#7f1d1d;"><strong>⚠ External Email</strong></td></tr>
+    <tr><td style="background:#0F172A;padding:16px 24px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+        <td style="font-family:'Archivo',Arial,sans-serif;font-size:14px;font-weight:bold;color:#ffffff;">SEERIST</td>
+        <td align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#9CA3AF;">FIFA World Cup 2026: Security Threats &amp; Disruptions</td>
+      </tr></table>
+    </td></tr>
+    <tr><td style="padding:16px 24px 0 24px;"><span style="display:inline-block;background:#FFEAEB;color:#BA1A1F;font-size:11px;font-weight:bold;letter-spacing:0.5px;padding:4px 10px;border-radius:12px;text-transform:uppercase;">Breaking Event</span></td></tr>
+    <tr><td style="padding:10px 24px 0 24px;"><span style="color:#5B6472;font-size:14px;font-weight:bold;font-family:Arial,Helvetica,sans-serif;">&#128205; Philadelphia, United States</span></td></tr>
+    <tr><td style="padding:14px 24px 0 24px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#64748B;">Philadelphia, United States &nbsp;•&nbsp; Jul 15, 2026 16:50 UTC</td></tr>
+    <tr><td style="padding:6px 24px 12px 24px;"><a href="#" style="font-family:'Archivo',Arial,sans-serif;font-size:20px;line-height:1.3;font-weight:bold;color:#0F172A;text-decoration:none;">Extreme heat in store for Philadelphia area on Wednesday</a></td></tr>
+    <tr><td style="padding:0 24px 16px 24px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.55;color:#334155;">An Extreme Heat Warning has been issued for the core of the Philadelphia area, with heat index values climbing to the triple digits.</td></tr>
+    <tr><td style="padding:14px 24px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#64748B;"><strong style="color:#334155;">Source:</strong> <a href="#" style="color:#00AB41;text-decoration:none;font-weight:bold;">6abc.com</a> &nbsp;&middot;&nbsp; <strong style="color:#334155;">Published:</strong> Jul 15, 2026 16:50 UTC</td></tr>
+    <tr><td style="padding:0 24px 20px 24px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F8FAFC;border-radius:6px;"><tr><td style="padding:14px 16px;">
+      <div style="font-size:12px;font-weight:bold;color:#0F172A;margin-bottom:8px;font-family:Arial,Helvetica,sans-serif;">Impacted Assets (6 total, nearest first)</div>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">Philadelphia Office</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">0.1 km</td></tr>
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">WDS-Office-Philly-11</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">0.3 km</td></tr>
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">USCIS Field Office</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">0.8 km</td></tr>
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">Philadelphia Regional Office</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">1.2 km</td></tr>
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">30th Street Station Hub</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">1.6 km</td></tr>
+        <tr><td style="padding:5px 0;">University City Field Office</td><td align="right" style="padding:5px 0;color:#94A3B8;">2.4 km</td></tr>
+      </table>
+    </td></tr></table></td></tr>
+    <tr><td style="padding:0 24px 20px 24px;"><span style="display:inline-block;background:#00AB41;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:10.5px;font-weight:bold;padding:5px 11px;border-radius:5px;">View full details &rarr;</span></td></tr>
+    <tr><td style="background:#F8FAFC;padding:20px 24px;text-align:center;border-top:1px solid #E2E8F0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#94A3B8;">&copy;2026 Seerist, Inc. &nbsp;|&nbsp; <a href="#" style="color:#00AB41;text-decoration:none;">Manage Alerts</a> &nbsp;|&nbsp; <a href="#" style="color:#00AB41;text-decoration:none;">Unsubscribe</a></td></tr>
+  </table>
+  </td></tr></table>`;
+
+  // VARIANT 2 — Green top bar (closest to real production, cleaned up)
+  html[1] = `
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;border-radius:8px;overflow:hidden;border:1px solid #E2E8F0;">
+    <tr><td style="background:#fff3f3;border-bottom:1px solid #d32f2f;padding:10px 20px;font-family:'Segoe UI',Arial,sans-serif;font-size:12px;color:#7f1d1d;"><strong>⚠ External Email</strong></td></tr>
+    <tr><td style="border-top:6px solid #00AB41;padding:16px 24px 0 24px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+        <td style="font-family:'Archivo',Arial,sans-serif;font-size:14px;font-weight:bold;color:#0F172A;">SEERIST</td>
+        <td align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#94A3B8;">FIFA World Cup 2026: Security Threats &amp; Disruptions</td>
+      </tr></table>
+    </td></tr>
+    <tr><td style="padding:16px 24px 0 24px;"><span style="display:inline-block;background:#FFEAEB;color:#BA1A1F;font-size:11px;font-weight:bold;letter-spacing:0.5px;padding:4px 10px;border-radius:12px;text-transform:uppercase;">Breaking Event</span></td></tr>
+    <tr><td style="padding:10px 24px 0 24px;"><span style="color:#5B6472;font-size:14px;font-weight:bold;font-family:Arial,Helvetica,sans-serif;">&#128205; Philadelphia, United States</span></td></tr>
+    <tr><td style="padding:14px 24px 0 24px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#64748B;">Philadelphia, United States &nbsp;•&nbsp; Jul 15, 2026 16:50 UTC</td></tr>
+    <tr><td style="padding:6px 24px 12px 24px;"><a href="#" style="font-family:'Archivo',Arial,sans-serif;font-size:20px;line-height:1.3;font-weight:bold;color:#0F172A;text-decoration:none;">Extreme heat in store for Philadelphia area on Wednesday</a></td></tr>
+    <tr><td style="padding:0 24px 16px 24px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.55;color:#334155;">An Extreme Heat Warning has been issued for the core of the Philadelphia area, with heat index values climbing to the triple digits.</td></tr>
+    <tr><td style="padding:14px 24px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#64748B;"><strong style="color:#334155;">Source:</strong> <a href="#" style="color:#00AB41;text-decoration:none;font-weight:bold;">6abc.com</a> &nbsp;&middot;&nbsp; <strong style="color:#334155;">Published:</strong> Jul 15, 2026 16:50 UTC</td></tr>
+    <tr><td style="padding:0 24px 20px 24px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F8FAFC;border-radius:6px;"><tr><td style="padding:14px 16px;">
+      <div style="font-size:12px;font-weight:bold;color:#0F172A;margin-bottom:8px;font-family:Arial,Helvetica,sans-serif;">Impacted Assets (6 total, nearest first)</div>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">Philadelphia Office</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">0.1 km</td></tr>
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">WDS-Office-Philly-11</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">0.3 km</td></tr>
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">USCIS Field Office</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">0.8 km</td></tr>
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">Philadelphia Regional Office</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">1.2 km</td></tr>
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">30th Street Station Hub</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">1.6 km</td></tr>
+        <tr><td style="padding:5px 0;">University City Field Office</td><td align="right" style="padding:5px 0;color:#94A3B8;">2.4 km</td></tr>
+      </table>
+    </td></tr></table></td></tr>
+    <tr><td style="padding:0 24px 20px 24px;"><span style="display:inline-block;background:#00AB41;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:10.5px;font-weight:bold;padding:5px 11px;border-radius:5px;">View full details &rarr;</span></td></tr>
+    <tr><td style="background:#F8FAFC;padding:20px 24px;text-align:center;border-top:1px solid #E2E8F0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#94A3B8;">&copy;2026 Seerist, Inc. &nbsp;|&nbsp; <a href="#" style="color:#00AB41;text-decoration:none;">Manage Alerts</a> &nbsp;|&nbsp; <a href="#" style="color:#00AB41;text-decoration:none;">Unsubscribe</a></td></tr>
+  </table>
+  </td></tr></table>`;
+
+  // VARIANT 3 — Card with colored left accent bar
+  html[2] = `
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;">
+    <tr><td style="background:#fff3f3;border:1px solid #d32f2f;border-radius:6px 6px 0 0;padding:10px 20px;font-family:'Segoe UI',Arial,sans-serif;font-size:12px;color:#7f1d1d;"><strong>⚠ External Email</strong></td></tr>
+    <tr><td style="padding:10px 0;font-family:'Archivo',Arial,sans-serif;font-size:13px;font-weight:bold;color:#0F172A;">SEERIST &nbsp;<span style="font-weight:normal;color:#94A3B8;font-size:12px;">— FIFA World Cup 2026: Security Threats &amp; Disruptions</span></td></tr>
+    <tr><td>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #E2E8F0;border-radius:12px;">
+        <tr>
+          <td width="6" style="background:#BA1A1F;border-radius:12px 0 0 12px;">&nbsp;</td>
+          <td style="padding:18px 20px;">
+            <span style="background:#FFEAEB;color:#BA1A1F;font-size:11px;font-weight:bold;letter-spacing:0.5px;padding:4px 10px;border-radius:12px;text-transform:uppercase;">Breaking Event</span>
+            <span style="margin-left:6px;color:#5B6472;font-size:12px;font-weight:bold;">&#128205; Philadelphia, United States</span>
+            <div style="margin-top:12px;"><a href="#" style="font-family:'Archivo',Arial,sans-serif;font-size:19px;font-weight:bold;color:#0F172A;text-decoration:none;">Extreme heat in store for Philadelphia area on Wednesday</a></div>
+            <div style="margin-top:8px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;color:#475569;">An Extreme Heat Warning has been issued for the core of the Philadelphia area, with heat index values climbing to the triple digits.</div>
+            <div style="margin-top:12px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#64748B;">Source: <a href="#" style="color:#00AB41;text-decoration:none;font-weight:bold;">6abc.com</a> &nbsp;&middot;&nbsp; Published: Jul 15, 2026 16:50 UTC</div>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:14px;background:#F8FAFC;border-radius:8px;"><tr><td style="padding:12px 14px;">
+              <div style="font-size:12px;font-weight:bold;color:#0F172A;margin-bottom:6px;font-family:Arial,Helvetica,sans-serif;">Impacted Assets</div>
+              <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#475569;">Philadelphia Office <span style="color:#94A3B8;">0.1 km</span> &nbsp;&middot;&nbsp; WDS-Office-Philly-11 <span style="color:#94A3B8;">0.3 km</span> &nbsp;&middot;&nbsp; <a href="#" style="color:#00AB41;text-decoration:none;font-weight:bold;">+4 more</a></div>
+            </td></tr></table>
+            <div style="margin-top:14px;"><span style="display:inline-block;background:#00AB41;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:10.5px;font-weight:bold;padding:5px 11px;border-radius:5px;">View full details &rarr;</span></div>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+    <tr><td style="padding:16px 10px;text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#94A3B8;">Seerist &nbsp;&middot;&nbsp; <a href="#" style="color:#00AB41;text-decoration:none;">Manage Alerts</a> &nbsp;&middot;&nbsp; <a href="#" style="color:#00AB41;text-decoration:none;">Unsubscribe</a></td></tr>
+  </table>
+  </td></tr></table>
+  <div style="max-width:600px;margin:0 auto;padding:0 12px;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#94A3B8;">Left accent bar shown red here, matching the Breaking Event badge color — would be blue for Verified, green for Analysis, matching the badge colors in the full type catalog.</div>`;
+
+  // VARIANT 4 — No bar, text only
+  html[3] = `
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;">
+    <tr><td style="background:#fff3f3;border-bottom:1px solid #d32f2f;padding:10px 20px;font-family:'Segoe UI',Arial,sans-serif;font-size:12px;color:#7f1d1d;"><strong>⚠ External Email</strong></td></tr>
+    <tr><td style="padding:20px 32px 0 32px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+        <td style="font-family:'Archivo',Arial,sans-serif;font-size:14px;font-weight:bold;color:#0F172A;letter-spacing:1px;">SEERIST</td>
+        <td align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#94A3B8;">FIFA World Cup 2026: Security Threats &amp; Disruptions</td>
+      </tr></table>
+      <div style="border-top:1px solid #E5E5E5;margin-top:12px;"></div>
+    </td></tr>
+    <tr><td style="padding:16px 32px 0 32px;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;color:#6B7280;text-transform:uppercase;letter-spacing:1px;">Breaking Event &nbsp;·&nbsp; &#128205; Philadelphia, United States</td></tr>
+    <tr><td style="padding:8px 32px 12px 32px;"><a href="#" style="font-family:'Archivo',Arial,sans-serif;font-size:22px;line-height:1.3;font-weight:bold;color:#0F172A;text-decoration:none;">Extreme heat in store for Philadelphia area on Wednesday</a></td></tr>
+    <tr><td style="padding:0 32px 20px 32px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#334155;">An Extreme Heat Warning has been issued for the core of the Philadelphia area, with heat index values climbing to the triple digits.</td></tr>
+    <tr><td style="padding:0 32px;"><div style="border-top:1px solid #F1F5F9;"></div></td></tr>
+    <tr><td style="padding:14px 32px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#94A3B8;">Source <a href="#" style="color:#00AB41;text-decoration:none;font-weight:bold;">6abc.com</a> &nbsp;&nbsp;&nbsp; Published Jul 15, 2026 16:50 UTC</td></tr>
+    <tr><td style="padding:0 32px 20px 32px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#64748B;line-height:1.9;"><span style="font-weight:bold;color:#334155;">Impacted assets</span><br>Philadelphia Office 0.1km &nbsp;·&nbsp; WDS-Office-Philly-11 0.3km &nbsp;·&nbsp; <a href="#" style="color:#00AB41;text-decoration:none;">+4 more</a></td></tr>
+    <tr><td style="padding:0 32px 20px 32px;"><span style="display:inline-block;background:#00AB41;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:10.5px;font-weight:bold;padding:5px 11px;border-radius:5px;">View full details &rarr;</span></td></tr>
+    <tr><td style="padding:20px 32px;text-align:center;border-top:1px solid #E5E5E5;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#94A3B8;">Seerist &nbsp;&middot;&nbsp; <a href="#" style="color:#0F172A;text-decoration:underline;">Manage Alerts</a> &nbsp;&middot;&nbsp; <a href="#" style="color:#0F172A;text-decoration:underline;">Unsubscribe</a></td></tr>
+  </table>
+  </td></tr></table>`;
+
+  // VARIANT 5 — Incident console (PagerDuty/Opsgenie-inspired)
+  html[4] = `
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;border-radius:8px;overflow:hidden;border:1px solid #E2E8F0;">
+    <tr><td style="background:#fff3f3;border-bottom:1px solid #d32f2f;padding:10px 20px;font-family:'Segoe UI',Arial,sans-serif;font-size:12px;color:#7f1d1d;"><strong>⚠ External Email</strong></td></tr>
+    <tr><td style="padding:18px 24px 0 24px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+        <td style="font-family:'Archivo',Arial,sans-serif;font-size:13px;font-weight:bold;color:#0F172A;">SEERIST</td>
+        <td align="right" style="font-family:'Courier New',Courier,monospace;font-size:11px;color:#94A3B8;">2026-07-15 16:50 UTC</td>
+      </tr></table>
+    </td></tr>
+    <tr><td style="padding:14px 24px 0 24px;">
+      <span style="display:inline-block;background:#DC2626;color:#ffffff;font-size:12px;font-weight:bold;letter-spacing:0.5px;padding:6px 14px;border-radius:4px;text-transform:uppercase;">● Active — Breaking Event</span>
+    </td></tr>
+    <tr><td style="padding:14px 24px 6px 24px;font-family:'Courier New',Courier,monospace;font-size:11px;color:#64748B;">LOCATION: Philadelphia, United States</td></tr>
+    <tr><td style="padding:0 24px 12px 24px;"><a href="#" style="font-family:'Archivo',Arial,sans-serif;font-size:19px;font-weight:bold;color:#0F172A;text-decoration:none;">Extreme heat in store for Philadelphia area on Wednesday</a></td></tr>
+    <tr><td style="padding:0 24px 18px 24px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;color:#334155;">An Extreme Heat Warning has been issued for the core of the Philadelphia area, with heat index values climbing to the triple digits.</td></tr>
+    <tr><td style="padding:0 24px 20px 24px;">
+      <a href="#" style="display:inline-block;background:#0F172A;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;padding:11px 22px;border-radius:6px;text-decoration:none;">View in Seerist &rarr;</a>
+    </td></tr>
+    <tr><td style="padding:0 24px 20px 24px;border-top:1px solid #F1F5F9;">
+      <div style="padding-top:14px;font-family:'Courier New',Courier,monospace;font-size:11px;color:#94A3B8;">SOURCE: <a href="#" style="color:#00AB41;text-decoration:none;">6abc.com</a> &nbsp;|&nbsp; IMPACTED_ASSETS: 6 (nearest 0.1km)</div>
+    </td></tr>
+    <tr><td style="background:#F8FAFC;padding:18px 24px;text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#94A3B8;">Seerist &nbsp;&middot;&nbsp; <a href="#" style="color:#00AB41;text-decoration:none;">Manage Alerts</a> &nbsp;&middot;&nbsp; <a href="#" style="color:#00AB41;text-decoration:none;">Unsubscribe</a></td></tr>
+  </table>
+  </td></tr></table>`;
+
+  // VARIANT 6 — Smart Brief (Axios-inspired editorial)
+  html[5] = `
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;">
+    <tr><td style="background:#fff3f3;border-bottom:1px solid #d32f2f;padding:10px 20px;font-family:'Segoe UI',Arial,sans-serif;font-size:12px;color:#7f1d1d;"><strong>⚠ External Email</strong></td></tr>
+    <tr><td style="padding:24px 32px 0 32px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+        <td style="font-family:'Archivo',Arial,sans-serif;font-size:14px;font-weight:bold;color:#0F172A;letter-spacing:1px;">SEERIST</td>
+        <td align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#94A3B8;">FIFA World Cup 2026 Monitor</td>
+      </tr></table>
+    </td></tr>
+    <tr><td style="padding:18px 32px 0 32px;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#475569;font-style:italic;">Here's what's new from Philadelphia in the last hour.</td></tr>
+    <tr><td style="padding:18px 32px 0 32px;">
+      <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+        <td valign="top" style="font-family:'Archivo',Arial,sans-serif;font-size:34px;font-weight:bold;color:#00AB41;padding-right:14px;">1</td>
+        <td valign="top">
+          <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;color:#94A3B8;text-transform:uppercase;letter-spacing:1px;">Breaking Event &nbsp;·&nbsp; Philadelphia, United States</div>
+          <a href="#" style="font-family:'Archivo',Arial,sans-serif;font-size:19px;line-height:1.3;font-weight:bold;color:#0F172A;text-decoration:none;display:block;margin-top:4px;border-bottom:3px solid #00AB41;padding-bottom:6px;">Extreme heat in store for Philadelphia area on Wednesday</a>
+        </td>
+      </tr></table>
+    </td></tr>
+    <tr><td style="padding:14px 32px 0 76px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#334155;">An Extreme Heat Warning has been issued for the core of the Philadelphia area, with heat index values climbing to the triple digits.</td></tr>
+    <tr><td style="padding:12px 32px 20px 76px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#94A3B8;">Source <a href="#" style="color:#00AB41;text-decoration:none;font-weight:bold;">6abc.com</a> &nbsp;&nbsp;&nbsp; 6 impacted assets, nearest 0.1km</td></tr>
+    <tr><td style="padding:20px 32px;text-align:center;border-top:1px solid #E5E5E5;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#94A3B8;">Seerist &nbsp;&middot;&nbsp; <a href="#" style="color:#0F172A;text-decoration:underline;">Manage Alerts</a> &nbsp;&middot;&nbsp; <a href="#" style="color:#0F172A;text-decoration:underline;">Unsubscribe</a></td></tr>
+  </table>
+  </td></tr></table>`;
+
+  // VARIANT 7 — Minimal transactional (Stripe/Linear-inspired)
+  html[6] = `
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #EEF1F5;">
+    <tr><td style="background:#fff3f3;border-bottom:1px solid #d32f2f;padding:10px 24px;font-family:'Segoe UI',Arial,sans-serif;font-size:12px;color:#7f1d1d;"><strong>⚠ External Email</strong></td></tr>
+    <tr><td style="padding:36px 40px 0 40px;text-align:center;">
+      <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto;"><tr><td style="width:40px;height:40px;background:#F1F5F9;border-radius:50%;text-align:center;vertical-align:middle;font-size:18px;">📰</td></tr></table>
+    </td></tr>
+    <tr><td style="padding:18px 40px 0 40px;text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;color:#94A3B8;text-transform:uppercase;letter-spacing:1px;">Breaking Event &nbsp;·&nbsp; Philadelphia, United States</td></tr>
+    <tr><td style="padding:10px 40px 0 40px;text-align:center;"><a href="#" style="font-family:'Archivo',Arial,sans-serif;font-size:21px;line-height:1.35;font-weight:bold;color:#0F172A;text-decoration:none;">Extreme heat in store for Philadelphia area on Wednesday</a></td></tr>
+    <tr><td style="padding:14px 40px 0 40px;text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#64748B;">An Extreme Heat Warning has been issued for the core of the Philadelphia area, with heat index values climbing to the triple digits.</td></tr>
+    <tr><td style="padding:28px 40px 0 40px;text-align:center;">
+      <a href="#" style="display:inline-block;background:#00AB41;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;padding:13px 32px;border-radius:8px;text-decoration:none;">View this alert</a>
+    </td></tr>
+    <tr><td style="padding:24px 40px 36px 40px;text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#94A3B8;"><a href="#" style="color:#00AB41;text-decoration:none;font-weight:bold;">6abc.com</a> &nbsp;&middot;&nbsp; 6 impacted assets</td></tr>
+    <tr><td style="padding:18px 40px;text-align:center;border-top:1px solid #F1F5F9;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#B0B8C4;">Seerist &nbsp;&middot;&nbsp; <a href="#" style="color:#94A3B8;text-decoration:underline;">Manage Alerts</a> &nbsp;&middot;&nbsp; <a href="#" style="color:#94A3B8;text-decoration:underline;">Unsubscribe</a></td></tr>
+  </table>
+  </td></tr></table>`;
+
+  // VARIANT 8 — Notification-style (mobile push, inspired)
+  html[7] = `
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+    <tr><td style="background:#fff3f3;border-bottom:1px solid #d32f2f;padding:10px 20px;font-family:'Segoe UI',Arial,sans-serif;font-size:12px;color:#7f1d1d;"><strong>⚠ External Email</strong></td></tr>
+    <tr><td style="padding:20px 24px 0 24px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+        <td width="46" style="vertical-align:top;"><span style="display:inline-block;width:40px;height:40px;background:#FFF0D6;border-radius:10px;text-align:center;line-height:40px;font-size:20px;">🌡️</span></td>
+        <td valign="top" style="padding-left:12px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+            <td style="font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;color:#0F172A;">Seerist</td>
+            <td align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#94A3B8;">now</td>
+          </tr></table>
+          <div style="font-family:'Archivo',Arial,sans-serif;font-size:17px;font-weight:bold;color:#0F172A;margin-top:4px;line-height:1.3;">Extreme heat in store for Philadelphia area on Wednesday</div>
+          <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#94A3B8;margin-top:4px;">Philadelphia, United States</div>
+        </td>
+      </tr></table>
+    </td></tr>
+    <tr><td style="padding:16px 24px 20px 24px;">
+      <a href="#" style="display:inline-block;background:#0F172A;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;padding:10px 20px;border-radius:20px;text-decoration:none;">Open alert</a>
+    </td></tr>
+    <tr><td style="padding:16px 24px;text-align:center;border-top:1px solid #F1F5F9;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#94A3B8;">Seerist &nbsp;&middot;&nbsp; <a href="#" style="color:#00AB41;text-decoration:none;">Manage Alerts</a> &nbsp;&middot;&nbsp; <a href="#" style="color:#00AB41;text-decoration:none;">Unsubscribe</a></td></tr>
+  </table>
+  </td></tr></table>`;
+
+  let current = 0;
+
+  function render() {
+    document.getElementById('panels').innerHTML = '<div class="panel">' + html[current] + '</div>';
+    let labelHtml = variants[current].desc;
+    if (variants[current].flag) {
+      labelHtml += '<div class="flag"><strong>SendGrid note:</strong> ' + variants[current].flag + '</div>';
+    }
+    document.getElementById('caseLabel').innerHTML = labelHtml;
+    document.querySelectorAll('.tab').forEach((el, i) => {
+      el.classList.toggle('active', i === current);
+    });
+  }
+
+  function jump(i) {
+    current = i;
+    render();
+  }
+
+  const tabsEl = document.getElementById('tabs');
+  variants.forEach((c, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab';
+    btn.textContent = c.tab;
+    btn.onclick = () => jump(i);
+    tabsEl.appendChild(btn);
+  });
+
+  render();
+</script>
+
+</body>
+</html>

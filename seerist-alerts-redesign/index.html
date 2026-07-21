@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seerist Alerts Redesign — Tracker</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Arial, Helvetica, sans-serif; background:#f2f2f2; color:#334155; }
+  .topbar { background:#111827; color:#fff; padding:18px 20px; }
+  .topbar h1 { font-size:16px; margin:0; font-weight:bold; }
+  .wrap { max-width:640px; margin:24px auto; padding:0 16px 40px 16px; }
+  .step { background:#fff; border:1px solid #E5E7EB; border-radius:10px; padding:16px 20px; margin-bottom:12px; display:flex; align-items:center; gap:12px; }
+  .step.pending { opacity:0.65; border-style:dashed; }
+  .step-num { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:bold; flex-shrink:0; }
+  .step-num.done { background:#00AB41; color:#fff; }
+  .step-num.progress { background:#FFA733; color:#fff; }
+  .step-num.pending { background:#E5E5E5; color:#4D4D4D; }
+  .step h2 { font-size:14px; margin:0; color:#0F172A; flex-grow:1; }
+  .links a { display:inline-block; margin-left:8px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:6px 12px; font-size:12px; color:#00AB41; text-decoration:none; font-weight:bold; white-space:nowrap; }
+  .open-questions { background:#fff; border:1px dashed #FFA733; border-radius:10px; padding:16px 20px; margin-top:20px; }
+  .open-questions h3 { font-size:13px; margin:0 0 10px 0; color:#7A3300; }
+  .open-questions ul { margin:0; padding-left:18px; font-size:13px; color:#475569; line-height:1.7; }
+</style>
+</head>
+<body>
+
+<div class="topbar"><h1>Seerist Alerts Redesign — Tracker</h1></div>
+
+<div class="wrap">
+
+  <div class="step">
+    <div class="step-num done">1</div>
+    <h2>Problem &amp; research</h2>
+    <div class="links"><a href="https://seerist.atlassian.net/wiki/spaces/AAAS/pages/4807557124/Alerts+Redesign+July+2026" target="_blank" rel="noopener">Confluence &rarr;</a></div>
+  </div>
+
+  <div class="step">
+    <div class="step-num done">2</div>
+    <h2>Look &amp; feel — dark bar picked</h2>
+    <div class="links">
+      <a href="20-base-template.html" target="_blank" rel="noopener">Base template &rarr;</a>
+      <a href="21-header-bar-variations.html" target="_blank" rel="noopener">All options &rarr;</a>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num done">3</div>
+    <h2>Per-type templates</h2>
+    <div class="links"><a href="22-per-type-templates.html" target="_blank" rel="noopener">All 13 types &rarr;</a></div>
+  </div>
+
+  <div class="step">
+    <div class="step-num done">4</div>
+    <h2>Large digests (~50 items)</h2>
+    <div class="links"><a href="23-large-digest-50-items.html" target="_blank" rel="noopener">50-item mockup &rarr;</a></div>
+  </div>
+
+  <div class="step">
+    <div class="step-num progress">5</div>
+    <h2>Variations — mixed content</h2>
+    <div class="links"><a href="24-mixed-content-digest.html" target="_blank" rel="noopener">Mixed digest &rarr;</a></div>
+  </div>
+
+  <div class="step" style="border-color:#00AB41;">
+    <div class="step-num done" style="background:#0F172A;">&#128196;</div>
+    <h2>Reference docs</h2>
+    <div class="links">
+      <a href="subject-line-formula.html" target="_blank" rel="noopener">Subject line formula &rarr;</a>
+      <a href="open-gaps-status.html" target="_blank" rel="noopener">Open gaps &amp; status &rarr;</a>
+    </div>
+  </div>
+
+
+</div>
+
+</body>
+</html>

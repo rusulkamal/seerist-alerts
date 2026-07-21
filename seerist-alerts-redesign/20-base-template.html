@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--
+  BASE TEMPLATE — bare-bones skeleton, step 1 of the sequence
+  (base template -> per-type templates -> variations)
+
+  This is the shared shell every alert type will sit inside. Built from the
+  updated Problem statement, the new Inbox Audit findings, and the real
+  metadata spec (Template Metadata page), not the earlier exploration round.
+
+  DECISIONS BAKED IN, FLAGGED FOR YOUR CONFIRMATION BEFORE WE GO FURTHER:
+
+  1. The "External Email" banner stays as-is at the very top — confirmed
+     that's injected by mail security (Outlook/Exchange external-sender
+     warning), not our template, so we can't remove or restyle it. Seerist's
+     own branding needs to read clearly and immediately below it instead.
+
+  2. Header shows the ALERT'S OWN NAME (the saved search / tripwire name the
+     user configured), not a generic "alert type" label — per the Problem
+     statement's explicit ask to drop alert-type-from-header since that
+     concept barely exists anymore except Pulse.
+
+  3. A separate, small CONTENT-TYPE badge (Breaking / Verified / Analysis /
+     Digest) sits just below that. This is NOT the same thing as #2 — it's
+     not the alert's configured type, it's what kind of content THIS
+     specific item is, and it directly answers Inbox Audit finding #6 (no
+     visual signal distinguishes an Analysis brief from a single-story or
+     digest alert) and recommendation #5.
+
+  4. One consistent "this is the headline" treatment everywhere — the audit
+     found the H2 is a country name in single-story and digest formats, and
+     a region name in Analysis briefs, with the actual headline styled
+     differently (or arriving later) in each. This skeleton makes the
+     headline the same size/weight/position no matter which type fills it.
+
+  5. Location shown twice (badge for fast triage + inline for confirmation),
+     per the "want both" finding — unchanged from before, still holds.
+
+  6. NOT attempted here: fixing the location/country-tag mismatch bug (the
+     "tagged United States, story about Argentina" issue), or digest
+     de-duplication. Both are data-pipeline/backend bugs, not something a
+     template redesign can fix — flagging them again so they don't get lost.
+
+  SendGrid-safe: table layout, inline styles, Archivo/Inter with Arial
+  fallback, 600px fixed width.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seerist Alert — Base Template</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet" type="text/css">
+</head>
+<body style="margin:0;padding:0;background-color:#f2f2f2;font-family:Arial,Helvetica,sans-serif;">
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#111827;">
+  <tr><td style="padding:16px 20px;color:#9CA3AF;font-size:12px;font-family:Arial,Helvetica,sans-serif;">
+    <strong style="color:#fff;font-size:14px;">Base template — step 1 (bare-bones skeleton)</strong><br>
+    Filled in here with the simplest case (single-story) so the skeleton is visible in a real state. Six decisions are called out in the file comments above — confirm those before we build per-type templates on top of this.<br><br>
+    <strong style="color:#fff;">Updated:</strong> location badge no longer a chip (plain text now, matching later conventions), and the content-type badge now correctly says "Breaking Event" instead of "News" — it was mislabeled relative to its own example content.<br><br>
+    <strong style="color:#fff;">Updated again, to match everything decided since:</strong> Source is now a real link, Impacted Assets shows up to 6 nearest (was capped at 3), and the "View full details" button — missing from this file entirely — is now here, sized to match the final digest files.
+  </td></tr>
+</table>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+<tr><td align="center" style="padding:24px 12px;">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;border-radius:8px;overflow:hidden;">
+
+  <!-- ZONE 0: EXTERNAL-EMAIL BANNER — not ours, stays, unchanged -->
+  <tr><td style="background:#fff3f3;border-bottom:1px solid #d32f2f;padding:10px 20px;font-family:'Segoe UI',Arial,sans-serif;font-size:12px;color:#7f1d1d;">
+    <strong>⚠ External Email</strong> <span style="color:#9B4A4A;">(injected by mail security — not part of this template)</span>
+  </td></tr>
+
+  <!-- ZONE 1: SHELL HEADER — Seerist branding + the alert's OWN name, not "alert type" -->
+  <tr><td style="background:#0F172A;padding:16px 24px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+      <td style="font-family:'Archivo',Arial,sans-serif;font-size:14px;font-weight:bold;color:#ffffff;">SEERIST</td>
+      <td align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#9CA3AF;">
+        <!-- {{alert_name}} — the user's own saved search / tripwire name, e.g. "West Africa Security Monitor" -->
+        FIFA World Cup 2026: Security Threats &amp; Disruptions
+      </td>
+    </tr></table>
+  </td></tr>
+
+  <!-- ZONE 2: CONTENT-TYPE BADGE — distinct from Zone 1, answers audit finding #6
+       Fixed: was showing "News" (grey) even though this example's content is the
+       Breaking Event case (Philadelphia heat warning, matches the same example
+       used in 22-per-type-templates.html) — badge now matches the actual content
+       type and uses that file's established color for Breaking Event (red). -->
+  <tr><td style="padding:16px 24px 0 24px;">
+    <span style="display:inline-block;background:#FFEAEB;color:#BA1A1F;font-size:11px;font-weight:bold;letter-spacing:0.5px;padding:4px 10px;border-radius:12px;text-transform:uppercase;">
+      <!-- {{content_type_label}} — News / Breaking Event / Verified Event / Analysis Briefing / Digest, etc. -->
+      Breaking Event
+    </span>
+  </td></tr>
+
+  <!-- ZONE 3: LOCATION — badge (triage)
+       Fixed: was a rounded chip (light-blue background) — that styling was
+       explicitly rejected later in the project ("i dont like the chip for
+       country"). Now plain bold text with a location marker, matching the
+       convention used in 23-large-digest-50-items.html and
+       24-mixed-content-digest.html. Still its own zone, separate from Zone 4,
+       so location keeps showing in two places (fast triage + inline
+       confirmation) per the "want both" finding — only the styling changed. -->
+  <tr><td style="padding:10px 24px 0 24px;">
+    <span style="color:#5B6472;font-size:14px;font-weight:bold;font-family:Arial,Helvetica,sans-serif;">
+      <!-- {{location_name}} -->
+      &#128205; Philadelphia, United States
+    </span>
+  </td></tr>
+
+  <!-- ZONE 4: INLINE LOCATION + TIMESTAMP CAPTION (confirmation-while-reading) -->
+  <tr><td style="padding:14px 24px 0 24px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#64748B;">
+    <!-- {{location_name}} &bull; {{published_date}} -->
+    Philadelphia, United States &nbsp;•&nbsp; Jul 15, 2026 16:50 UTC
+  </td></tr>
+
+  <!-- ZONE 5: HEADLINE — same size/weight/position no matter which type fills this template -->
+  <tr><td style="padding:6px 24px 12px 24px;">
+    <a href="#" style="font-family:'Archivo',Arial,sans-serif;font-size:20px;line-height:1.3;font-weight:bold;color:#0F172A;text-decoration:none;">
+      <!-- {{headline}} -->
+      Extreme heat in store for Philadelphia area on Wednesday
+    </a>
+  </td></tr>
+
+  <!-- ZONE 6: BODY -->
+  <tr><td style="padding:0 24px 16px 24px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.55;color:#334155;">
+    <!-- {{body_summary}} -->
+    An Extreme Heat Warning has been issued for the core of the Philadelphia area, with heat index values climbing to the triple digits.
+  </td></tr>
+
+  <!-- ZONE 7: METADATA ROW — conditional, fields hidden if empty rather than printing a dangling label
+       Fixed: Source was plain text — now a real link, matching the fix made
+       in 22-per-type-templates.html and both digest files ("original news
+       source embedded or linked directly" per the Problem statement). -->
+  <tr><td style="padding:14px 24px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#64748B;">
+    <!-- {{#if source}}<strong>Source:</strong> {{source}}{{/if}} {{#if published}} &middot; <strong>Published:</strong> {{published}}{{/if}} -->
+    <strong style="color:#334155;">Source:</strong> <a href="#" style="color:#00AB41;text-decoration:none;font-weight:bold;">6abc.com</a> &nbsp;&middot;&nbsp; <strong style="color:#334155;">Published:</strong> Jul 15, 2026 16:50 UTC
+  </td></tr>
+
+  <!-- ZONE 8: EXPANDABLE CONTENT AREA — Impacted Assets here for single-story; this same zone
+       becomes the grouped/sub-grouped list for digests, or the bulleted key-points + sections
+       for Analysis briefs, in the per-type templates
+       Fixed: shows up to 6 nearest now (was capped at 3 with a "+ 3 more"
+       link) — matching the cap used in both digest files. This example's
+       total is exactly 6, so all 6 show directly with no "+N more" link;
+       that link only appears when the real total exceeds 6. -->
+  <tr><td style="padding:0 24px 20px 24px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F8FAFC;border-radius:6px;"><tr><td style="padding:14px 16px;">
+      <div style="font-size:12px;font-weight:bold;color:#0F172A;margin-bottom:8px;font-family:Arial,Helvetica,sans-serif;">Impacted Assets (6 total, nearest first)</div>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">Philadelphia Office</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">0.1 km</td></tr>
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">WDS-Office-Philly-11</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">0.3 km</td></tr>
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">USCIS Field Office</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">0.8 km</td></tr>
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">Philadelphia Regional Office</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">1.2 km</td></tr>
+        <tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">30th Street Station Hub</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#94A3B8;">1.6 km</td></tr>
+        <tr><td style="padding:5px 0;">University City Field Office</td><td align="right" style="padding:5px 0;color:#94A3B8;">2.4 km</td></tr>
+      </table>
+    </td></tr></table>
+  </td></tr>
+
+  <!-- ZONE 8.5: CTA BUTTON — was missing entirely from this file even though
+       every per-type and digest card has one; added to match, same size as
+       the final version (was originally larger, sized down in the digest
+       files per feedback). -->
+  <tr><td style="padding:0 24px 20px 24px;">
+    <span style="display:inline-block;background:#00AB41;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:10.5px;font-weight:bold;padding:5px 11px;border-radius:5px;">View full details &rarr;</span>
+  </td></tr>
+
+  <!-- ZONE 9: FOOTER — Manage Alerts + login-gated unsubscribe, unchanged constraint -->
+  <tr><td style="background:#F8FAFC;padding:20px 24px;text-align:center;border-top:1px solid #E2E8F0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#94A3B8;">
+    &copy;2026 Seerist, Inc. &nbsp;|&nbsp; <a href="#" style="color:#00AB41;text-decoration:none;">Manage Alerts</a> &nbsp;|&nbsp; <a href="#" style="color:#00AB41;text-decoration:none;">Unsubscribe</a>
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
+
+</body>
+</html>
