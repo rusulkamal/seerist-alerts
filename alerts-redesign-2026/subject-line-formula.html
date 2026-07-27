@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subject Line Formula — Reference</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Arial, Helvetica, sans-serif; background:#f2f2f2; color:#334155; }
+  .topbar { background:#111827; color:#fff; padding:18px 20px; }
+  .topbar h1 { font-size:16px; margin:0; font-weight:bold; }
+  .topbar .sub { font-size:12px; color:#9CA3AF; margin-top:4px; }
+  .wrap { max-width:680px; margin:24px auto; padding:0 20px 48px 20px; background:#fff; border-radius:10px; }
+  .wrap-inner { padding:24px 8px; }
+  h2 { font-size:16px; color:#0F172A; margin:28px 0 8px 0; }
+  p { font-size:13px; line-height:1.6; color:#475569; margin:0 0 12px 0; }
+  .formula { background:#0F172A; color:#fff; font-family:'Courier New',monospace; font-size:15px; font-weight:bold; padding:16px 18px; border-radius:8px; margin:12px 0 16px 0; }
+  ul { margin:0 0 16px 0; padding-left:20px; font-size:13px; color:#475569; line-height:1.7; }
+  table { width:100%; border-collapse:collapse; font-size:12.5px; margin:8px 0 16px 0; }
+  th { background:#E5E7EB; text-align:left; padding:8px 10px; color:#0F172A; }
+  td { padding:8px 10px; border-top:1px solid #E5E7EB; color:#334155; vertical-align:top; }
+  .file { font-family:'Courier New',monospace; font-size:12px; color:#00702B; }
+  .example-real { font-style:italic; color:#7A3300; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Subject Line Formula — Reference</h1>
+  <div class="sub">The exact, confirmed rule for every alert subject line in this redesign. One page, nothing else.</div>
+</div>
+
+<div class="wrap"><div class="wrap-inner">
+
+  <h2>The one rule (both cases branch from this)</h2>
+  <p>Single-story and digest subjects aren't two unrelated formats — they're one rule branching on item count. Put the most specific real thing this particular email actually has into the subject; nothing generic, nothing invented.</p>
+  <div class="formula">IF item_count == 1: {Location} &middot; {Headline}<br>ELSE: {Alert's own name}: {item_count} new updates</div>
+  <p><strong>Decided:</strong> the digest branch stays "alert name + count," with no location added in. The single-story branch adds location because that was the audit's specific complaint (subject wasn't informative); digests don't get the same treatment because cramming multiple countries into one subject line risks the exact clutter this whole redesign is fighting. Alert name already implies location often enough (e.g. "usa: 25+ new updates") that this is an acceptable trade rather than a gap.</p>
+
+  <h2>Rule 1 — Single-story alert</h2>
+  <p>Used when the email covers exactly one story, one location.</p>
+  <div class="formula">{Location} &middot; {Headline}</div>
+  <ul>
+    <li>No content-type label in the subject — ever. Not "Breaking Event &middot;", not "News &middot;", nothing. Confirmed earlier in this project.</li>
+    <li>Location is the smallest available unit (city over state over country), matching the internal rule in the Problem statement.</li>
+    <li>Example: Philadelphia, United States &middot; Extreme heat in store for Philadelphia area on Wednesday</li>
+  </ul>
+
+  <h2>Rule 2 — Digest (multiple items or countries)</h2>
+  <p>Used when the email is a batch — a country-level digest, a mixed-content digest, anything with more than one story.</p>
+  <div class="formula">{Alert's own configured name}: {count} new updates</div>
+  <ul>
+    <li>The alert's own name is whatever the user named their saved search / subscription — not a generic type label, same rule as the email header.</li>
+    <li>This matches the real pattern already in production — the actual subject line "usa: 25+ new updates" was pulled directly from the inbox, not invented.</li>
+    <li>Real production uses "25+" — an estimate, because the batch isn't fully resolved when the subject line is generated.</li>
+    <li>These mockups use an exact count instead, because the item list is fully resolved (deduplicated, final) before the subject is written. If this ships as-is, expect an exact count; if it ships closer to how production works today, expect an estimate with a "+".</li>
+  </ul>
+
+  <h2>Worked examples</h2>
+  <table>
+    <tr><th style="width:30%;">File</th><th style="width:18%;">Type</th><th>Subject line used</th></tr>
+    <tr><td class="file">20-base-template.html</td><td>Single-story</td><td>Philadelphia, United States &middot; Extreme heat in store for Philadelphia area on Wednesday</td></tr>
+    <tr><td>Real production email (Outlook inbox)</td><td>Digest</td><td class="example-real">usa: 25+ new updates</td></tr>
+    <tr><td class="file">23-large-digest-50-items.html</td><td>Digest</td><td>Global Security &amp; Political Risk Monitor: 45 new updates</td></tr>
+    <tr><td class="file">24-mixed-content-digest.html</td><td>Digest</td><td>All Alerts — Combined Digest: 14 new updates</td></tr>
+  </table>
+
+  <h2>Why two formulas, not one</h2>
+  <p>A single-story alert has exactly one location and one headline to put in the subject. A digest, by definition, doesn't — there's no one location or headline that represents 45 items across 14 countries. Using the same formula for both would mean either cramming an arbitrary single headline into a digest subject (misleading) or dropping location/headline from single-story subjects (losing the clarity that was the whole point). The two formulas are the same rule applied consistently: put the most specific real information the email actually contains into the subject, nothing invented, nothing generic.</p>
+
+</div></div>
+
+</body>
+</html>

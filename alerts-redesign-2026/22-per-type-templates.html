@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seerist — Per-Type Templates</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet" type="text/css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Arial, Helvetica, sans-serif; background:#f2f2f2; }
+  .topbar { background:#111827; color:#fff; padding:14px 20px; }
+  .topbar h1 { font-size:15px; margin:0; font-weight:bold; }
+  .topbar .sub { font-size:12px; color:#9CA3AF; margin-top:2px; }
+  .tabs { display:flex; overflow-x:auto; background:#fff; border-bottom:1px solid #E5E7EB; position:sticky; top:0; z-index:5; }
+  .tab { padding:11px 14px; font-size:12px; color:#4D4D4D; cursor:pointer; white-space:nowrap; border-bottom:3px solid transparent; background:none; border-top:none; border-left:none; border-right:none; font-family:Arial,Helvetica,sans-serif; }
+  .tab.active { color:#00702B; border-bottom-color:#00702B; font-weight:bold; }
+  .tab:hover { background:#FAFAFA; }
+  .case-label { padding:14px 20px; background:#fff; border-bottom:1px solid #E5E7EB; font-size:13px; color:#4D4D4D; }
+  .case-label b { color:#0F172A; }
+  .case-label .files { font-family:'Courier New',monospace; font-size:11px; color:#6B7280; margin-top:4px; }
+  .flag { margin-top:8px; padding:8px 12px; background:#FFF0D6; border:1px solid #FFA733; border-radius:6px; font-size:12px; color:#7A3300; }
+  .subject-row { margin-top:8px; padding:8px 12px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; font-size:12px; color:#334155; }
+  .subject-row .label { display:inline-block; font-size:10px; font-weight:bold; color:#6B7280; text-transform:uppercase; letter-spacing:0.5px; margin-right:8px; }
+  .real-tag { display:inline-block; background:#E5FFEF; color:#00702B; font-size:10px; font-weight:bold; padding:2px 8px; border-radius:8px; margin-left:6px; }
+  .illus-tag { display:inline-block; background:#FFF0D6; color:#7A3300; font-size:10px; font-weight:bold; padding:2px 8px; border-radius:8px; margin-left:6px; }
+  .panel { padding:24px 12px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Seerist — Per-Type Templates</h1>
+  <div class="sub">Every type rendered by the exact same code, only the content changes — that's what guarantees consistency here, not 15 hand-tweaked copies. Country chips removed in favor of a plain location line. Every type gets the same "View full details" action.<br><br><strong>Updated to match 24-mixed-content-digest.html:</strong> Source is now a real link, the location line has a marker matching the digest cards, and the "View full details" button is sized down to match.<br><br><strong>Updated against Template Metadata Reference (Confluence):</strong> added the "Published" field everywhere the spec calls for it (was missing from every type); Breaking Event no longer shows an invented "Categories" field; Verified Event (Political) now shows Asset Types; Verified Event (Maritime) now shows Category + Subcategory and uses the spec's exact field labels (Vessel Name / Water Name / Intervention Types, not shortened); Planned Event's Category + Severity are now one combined field, not two, matching the spec's inline format; Evacuation Change's Country now renders as a large heading, distinct from the standard location line, matching the spec.<br><br><strong>Updated per the confirmed card eyebrow (25-card-eyebrow-brainstorm.html):</strong> date now sits next to the badge on one line, location moved to its own line directly below.<br><br><strong>Re-audited now that the Confluence connector is back:</strong> Social was missing Veracity + Severity Score against the spec's "identical to News" note — added. Pulse Score Change's Score/24 Hour Change/60 Day Range were crammed into body text — given their own sublabeled 3-stat block instead, matching the spec's structure. Confirmed (not gaps): Planned Event genuinely has no Published field per spec; Hotspot genuinely has no Published field per spec; Risk Rating Change's sparseness (no Published, no Risk categories shown) is exactly as documented. Not built: <strong>Election (Standalone)</strong> — the spec itself flags this as an orphaned type with no active doc_type constant in the codebase, "likely a deprecation candidate," so it's intentionally left out rather than built against a type that may not be live.</div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div class="case-label" id="caseLabel"></div>
+<div id="panels"></div>
+
+<script>
+  // ============================================================
+  // ONE render function, used by every tab — this IS the consistency guarantee.
+  // "alertName" = the alert's own configured name, shown top-right next to
+  // the SEERIST wordmark (e.g. a tripwire or saved-search name a user typed
+  // in when creating the alert) — NOT a generic "alert type" label, per the
+  // Problem statement's explicit ask to drop that.
+  // ============================================================
+  function renderAlert(d) {
+    // Source now renders as a real link, matching the fix made in
+    // 24-mixed-content-digest.html ("original news source embedded or
+    // linked directly" per the Problem statement) — every other field
+    // still renders as plain label/value text.
+    let metaRows = d.metadata.map(m => m.label === 'Source'
+      ? `<strong style="color:#334155;">Source:</strong> <a href="#" style="color:#00702B;text-decoration:none;font-weight:bold;">${m.value}</a>`
+      : `<strong style="color:#334155;">${m.label}:</strong> ${m.value}`
+    ).join(' &nbsp;&middot;&nbsp; ');
+
+    // Pulse Score Change's three sublabeled numbers (Score/24h Change/60
+    // Day Range per Template Metadata Reference) were previously crammed
+    // into the plain body paragraph as inline text. Spec describes them as
+    // distinct sublabeled stats, so give them the same 3-column treatment
+    // used for stability scores elsewhere in this project.
+    let statsBlock = '';
+    if (d.stats) {
+      let cells = d.stats.map(s =>
+        `<td style="padding:0 16px 0 0;"><div style="font-size:18px;font-weight:bold;color:#0F172A;font-family:Arial,Helvetica,sans-serif;">${s.value}</div><div style="font-size:11px;color:#6B7280;font-family:Arial,Helvetica,sans-serif;">${s.label}</div></td>`
+      ).join('');
+      statsBlock = `
+      <tr><td style="padding:0 24px 16px 24px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" style="background:#F8FAFC;border-radius:6px;"><tr><td style="padding:14px 16px;">
+          <table role="presentation" cellpadding="0" cellspacing="0"><tr>${cells}</tr></table>
+        </td></tr></table>
+      </td></tr>`;
+    }
+
+    let assetsBlock = '';
+    if (d.assets) {
+      let rows = d.assets.items.map(a =>
+        `<tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">${a.name}</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#6B7280;">${a.distance}</td></tr>`
+      ).join('');
+      assetsBlock = `
+      <tr><td style="padding:0 24px 16px 24px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F8FAFC;border-radius:6px;"><tr><td style="padding:14px 16px;">
+          <div style="font-size:12px;font-weight:bold;color:#0F172A;margin-bottom:8px;font-family:Arial,Helvetica,sans-serif;">Impacted Assets (${d.assets.total} total, nearest first)</div>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">${rows}</table>
+          ${d.assets.total > d.assets.items.length ? `<div style="margin-top:6px;"><a href="#" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ ${d.assets.total - d.assets.items.length} more assets &rarr;</a></div>` : ''}
+        </td></tr></table>
+      </td></tr>`;
+    }
+
+    // first metadata row that names a category, in label priority order
+    const catRow = (d.metadata || []).find(m => m.label === 'Categories')
+      || (d.metadata || []).find(m => m.label === 'Category');
+    const eyebrowCategory = catRow ? catRow.value : '';
+    return `
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;border-radius:8px;overflow:hidden;">
+      <tr><td style="background:#fff3f3;border-bottom:1px solid #d32f2f;padding:10px 20px;font-family:'Segoe UI',Arial,sans-serif;font-size:12px;color:#7f1d1d;"><strong>⚠ External Email</strong></td></tr>
+      <tr><td style="background:#0F172A;padding:16px 24px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td style="font-family:'Archivo',Arial,sans-serif;font-size:14px;font-weight:bold;color:#ffffff;">SEERIST</td>
+          <td align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#9CA3AF;max-width:360px;">${d.alertName}</td>
+        </tr></table>
+      </td></tr>
+      <!-- EYEBROW — date, category, then the badge, matching the real templates
+           (26/27). Category is read off whichever metadata row carries it, so the
+           per-type data blocks below need no changes. -->
+      <tr><td style="padding:16px 24px 0 24px;">
+        <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6B7280;vertical-align:middle;margin-right:8px;">${d.timestamp}</span>
+        ${eyebrowCategory ? `<span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#CBD5E1;vertical-align:middle;margin-right:8px;">&middot;</span><span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;color:#5B6472;vertical-align:middle;margin-right:8px;">${eyebrowCategory}</span>` : ``}
+        <span style="display:inline-block;background:${d.badgeBg};color:${d.badgeColor};font-size:11px;font-weight:bold;letter-spacing:0.5px;padding:4px 10px;border-radius:12px;text-transform:uppercase;vertical-align:middle;">${d.badgeLabel}</span>
+      </td></tr>
+      ${d.largeHeadingCountry ? `<tr><td style="padding:12px 24px 0 24px;"><span style="font-family:'Archivo',Arial,sans-serif;font-size:17px;font-weight:bold;color:#0F172A;">${d.largeHeadingCountry}</span></td></tr>` : `<tr><td style="padding:10px 24px 0 24px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#64748B;">&#128205; ${d.location}</td></tr>`}
+      <tr><td style="padding:6px 24px 12px 24px;"><a href="#" style="font-family:'Archivo',Arial,sans-serif;font-size:15px;line-height:1.45;font-weight:bold;color:#0F172A;text-decoration:none;">${d.headline}</a></td></tr>
+      <tr><td style="padding:0 24px 16px 24px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.55;color:#334155;">${d.body}</td></tr>
+      ${statsBlock}
+      <tr><td style="padding:0 24px 16px 24px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#64748B;">${metaRows}</td></tr>
+      ${assetsBlock}
+      <tr><td style="padding:0 24px 20px 24px;">
+        <a href="#" style="display:inline-block;background:#00702B;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:10.5px;font-weight:bold;padding:5px 11px;border-radius:5px;text-decoration:none;">View full details &rarr;</a>
+      </td></tr>
+      <tr><td style="background:#F8FAFC;padding:18px 24px;text-align:center;border-top:1px solid #E2E8F0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6B7280;">&copy;2026 Seerist &nbsp;|&nbsp; <a href="#" style="color:#00702B;text-decoration:none;">Manage Alerts</a> &nbsp;|&nbsp; <a href="#" style="color:#00702B;text-decoration:none;">Unsubscribe</a></td></tr>
+    </table>
+    </td></tr></table>`;
+  }
+
+  const types = [
+    {
+      tab: "Breaking Event", files: "breaking-events.html, asset-breaking-events.html", real: true, note: "",
+      subject: "Philadelphia, United States · Extreme heat in store for Philadelphia area on Wednesday",
+      data: { alertName: "FIFA World Cup 2026: Security Threats &amp; Disruptions", badgeLabel: "Breaking Event", badgeBg: "#FFEAEB", badgeColor: "#BA1A1F",
+        location: "Philadelphia, United States", timestamp: "Jul 15, 2026 16:50 UTC",
+        headline: "Extreme heat in store for Philadelphia area on Wednesday",
+        body: "An Extreme Heat Warning has been issued for the core of the Philadelphia area, with heat index values climbing to the triple digits.",
+        metadata: [{label:"Status", value:"Breaking"}, {label:"Published", value:"Jul 15, 2026 16:50 UTC"}],
+        assets: { total: 6, items: [{name:"Asset C", distance:"0.1 km"}, {name:"Asset A", distance:"0.3 km"}, {name:"Asset B", distance:"0.8 km"}] } }
+    },
+    {
+      tab: "Verified Event (Political)", files: "asset-verified-event.html, saved-search.html", real: false, note: "No Impacted Assets field for this type per spec — not shown.",
+      subject: "Nigeria · Security forces establish checkpoint after ambush near Kaduna-Abuja road",
+      data: { alertName: "West Africa Security Monitor", badgeLabel: "Verified Event", badgeBg: "#E9F5FF", badgeColor: "#1F569F",
+        location: "Nigeria", timestamp: "Jul 15, 2026",
+        headline: "Security forces establish checkpoint after ambush near Kaduna-Abuja road",
+        body: "Description-field summary of the verified incident.",
+        metadata: [{label:"Categories", value:"Unrest, Crime"}, {label:"Attack Types", value:"Armed Assault"}, {label:"Asset Types", value:"Office"}, {label:"Severity Score", value:"7/10"}, {label:"Published", value:"Jul 15, 2026"}],
+        assets: null }
+    },
+    {
+      tab: "Verified Event (Maritime)", files: "asset-verified-event.html, saved-search.html", real: false, note: "No Impacted Assets field for this type per spec — not shown.",
+      subject: "Gulf of Aden · Bulk carrier reports suspicious approach off the Yemeni coast",
+      data: { alertName: "Gulf of Aden Maritime Watch", badgeLabel: "Verified Event · Maritime", badgeBg: "#E9F5FF", badgeColor: "#1F569F",
+        location: "Gulf of Aden", timestamp: "Jul 15, 2026",
+        headline: "Bulk carrier reports suspicious approach off the Yemeni coast",
+        body: "Crew activated evasive maneuvers after a small craft approached at speed; no boarding reported.",
+        metadata: [{label:"Category", value:"Maritime Incident"}, {label:"Subcategory", value:"Suspicious Approach"}, {label:"Vessel Name", value:"MV Ocean Falcon"}, {label:"Water Name", value:"Gulf of Aden"}, {label:"Intervention Types", value:"Evasive Maneuver"}, {label:"Published", value:"Jul 15, 2026"}],
+        assets: null }
+    },
+    {
+      tab: "Planned Event / Calendar", files: "calendar-planned-events.html, planned-events-grouped.html", real: false, note: "",
+      subject: "Kenya · National labor strike planned in Nairobi, Jul 22-23",
+      data: { alertName: "Kenya Events Calendar", badgeLabel: "Planned Event", badgeBg: "#E9F5FF", badgeColor: "#1F569F",
+        location: "Kenya", timestamp: "Jul 22 – Jul 23, 2026",
+        headline: "National labor strike planned in Nairobi over fuel subsidy cuts",
+        body: "Union leaders have called for a two-day general strike; transport disruptions are expected citywide.",
+        metadata: [{label:"Category", value:"Strike - Moderate Potential Severity"}],
+        assets: { total: 2, items: [{name:"Asset D", distance:"1.2 km"}, {name:"Asset E", distance:"3.4 km"}] } }
+    },
+    {
+      tab: "Evacuation Change", files: "evacuation-change.html", real: false, note: "Country renders as a large heading for this type, distinct from the standard location line every other type uses — per spec.",
+      subject: "Cuba · Evacuation level raised to STANDBY amid nationwide power outages",
+      data: { alertName: "Cuba Evacuation Watch", badgeLabel: "Evacuation Change", badgeBg: "#FFEAEB", badgeColor: "#BA1A1F",
+        location: "Cuba", timestamp: "Jul 15, 2026", largeHeadingCountry: "Cuba",
+        headline: "Evacuation level raised to STANDBY amid nationwide power outages",
+        body: "Rolling blackouts have affected critical infrastructure across multiple provinces; personnel should prepare for possible movement restrictions.",
+        metadata: [{label:"Published", value:"Jul 15, 2026"}],
+        assets: null }
+    },
+    {
+      tab: "Hotspot", files: "hotspot.html", real: false, note: "",
+      subject: "Karachi, Pakistan · Elevated unrest activity detected downtown",
+      data: { alertName: "Pakistan Hotspot Monitor", badgeLabel: "Hotspot", badgeBg: "#FFF0D6", badgeColor: "#7A3300",
+        location: "Karachi, Pakistan", timestamp: "Jul 15, 2026",
+        headline: "Elevated unrest activity detected downtown",
+        body: "Multiple reports of crowd gatherings and road closures near the central business district over the past 3 hours.",
+        metadata: [],
+        assets: { total: 2, items: [{name:"Karachi Office", distance:"0.4 km"}, {name:"Regional Distribution Hub", distance:"2.1 km"}] } }
+    },
+    {
+      tab: "Pulse Score Change", files: "pulse.html", real: false, note: "Unique structure per the spec: repeats as separate sections for country, county, and city granularity — one shown here for simplicity. Corrected against Template Metadata Reference: Score/24 Hour Change/60 Day Range are documented as distinct sublabeled values, not inline body text — given their own 3-stat block, same treatment as the stability score elsewhere in this project, with the body field now holding the actual driving-events description the spec calls for instead.",
+      subject: "Lagos, Nigeria · Pulse score dropped 8 points in 24 hours",
+      data: { alertName: "Lagos Pulse Watch", badgeLabel: "Pulse Score Change", badgeBg: "#FFF0D6", badgeColor: "#7A3300",
+        location: "Lagos, Nigeria", timestamp: "Updated Jul 15, 2026 14:00 UTC",
+        headline: "Pulse drop for Lagos, Nigeria",
+        body: "Driven by a spike in reported unrest activity and road closures across the metro area over the past 24 hours.",
+        stats: [{label:"Today", value:"62"}, {label:"24 Hour Change", value:"&minus;8"}, {label:"60 Day Range", value:"48&ndash;74"}],
+        metadata: [],
+        assets: null }
+    },
+    {
+      tab: "Risk Rating Change", files: "risk-rating.html", real: false, note: "Notably sparse per the spec — no Published date, no Risk categories shown, even though categories exist in the data. Shown exactly as documented, not fixed here.",
+      subject: "Veracruz Port, Mexico · Risk rating upgraded from Medium to High",
+      data: { alertName: "Veracruz Port Risk Watch", badgeLabel: "Risk Rating Change", badgeBg: "#FFF0D6", badgeColor: "#7A3300",
+        location: "Mexico · Veracruz Port", timestamp: "Jul 15, 2026",
+        headline: "Operational risk rating upgraded from Medium to High",
+        body: "Increased cartel-related extortion activity has been reported affecting port logistics operators.",
+        metadata: [],
+        assets: null }
+    },
+    {
+      tab: "Analysis Briefing", files: "analysis-briefing.html", real: true, note: "",
+      subject: "Haiti · Gang control, political uncertainty to persist despite ongoing international support",
+      data: { alertName: "Expert Analysis &amp; Outlooks 1", badgeLabel: "Analysis Briefing", badgeBg: "#E5FFEF", badgeColor: "#00702B",
+        location: "Haiti", timestamp: "Jul 15, 2026 16:20 UTC",
+        headline: "Gang control, political uncertainty to persist despite ongoing international support",
+        body: "US Ambassador to the UN Michael Waltz on 9 July stated that the offensive mandate of the Gang Suppression Force represents \"progress toward improving Haiti's security situation.\"",
+        metadata: [{label:"Risk", value:"Political, Operational, Security"}, {label:"Published", value:"Jul 15, 2026 16:20 UTC"}],
+        assets: null }
+    },
+    {
+      tab: "Cyber Report", files: "cyber.html", real: false, note: "",
+      subject: "Global · New ransomware campaign targeting logistics providers",
+      data: { alertName: "Global Cyber Weekly", badgeLabel: "Cyber Report", badgeBg: "#E9F5FF", badgeColor: "#1F569F",
+        location: "Global", timestamp: "Jul 15, 2026",
+        headline: "New ransomware campaign targeting logistics providers",
+        body: "A known threat actor group has escalated activity against freight and port operators in the past week.",
+        metadata: [{label:"Risk", value:"Cyber"}, {label:"Published", value:"Jul 15, 2026"}, {label:"Source", value:"International SOS"}],
+        assets: null }
+    },
+    {
+      tab: "Regional Outlook", files: "regional-outlook.html", real: false, note: "Per the spec, countries render twice (header + Location: line) — a known duplication, kept here as documented rather than silently fixed.",
+      subject: "Middle East &amp; North Africa · Regional tensions likely to persist through Q3",
+      data: { alertName: "MENA Regional Outlook", badgeLabel: "Regional Outlook", badgeBg: "#E5FFEF", badgeColor: "#00702B",
+        location: "Egypt, Jordan, Lebanon", timestamp: "Jul 15, 2026",
+        headline: "Regional tensions likely to persist through Q3",
+        body: "Cross-border tensions and economic pressure are expected to sustain elevated operational risk across the region.",
+        metadata: [{label:"Region", value:"Middle East &amp; North Africa"}, {label:"Risk", value:"Political, Security"}, {label:"Published", value:"Jul 15, 2026"}, {label:"Source", value:"International SOS"}],
+        assets: null }
+    },
+    {
+      tab: "News (Saved Search)", files: "saved-search.html", real: true, note: "",
+      subject: "Maine, United States · Man fleeing immigration officers is struck and killed by tractor trailer",
+      data: { alertName: "usa: saved search", badgeLabel: "News", badgeBg: "#E5E5E5", badgeColor: "#4D4D4D",
+        location: "Maine, United States", timestamp: "Jul 15, 2026",
+        headline: "Man fleeing immigration officers is struck and killed by tractor trailer, police say",
+        body: "Wire report summary of the incident and immediate aftermath.",
+        metadata: [{label:"Source", value:"Associated Press"}, {label:"Veracity", value:"Verified"}, {label:"Severity Score", value:"6/10"}, {label:"Published", value:"Jul 15, 2026"}],
+        assets: null }
+    },
+    {
+      tab: "Social (incl. Twitter/X)", files: "saved-search.html", real: false, note: "Corrected against Template Metadata Reference: generic Social is documented as \"Identical to News\" — same Source/Veracity/Severity Score/Published fields, previously missing Veracity + Severity Score here. Twitter specifically is its own, narrower spec entry (Screen Name as title fallback, Tweet Text, Location, Published, Source — no Veracity or Severity Score at all), folded into this same tab for space rather than given its own, since it shares the underlying template.",
+      subject: "United States · Gold and oil prices rise amid ongoing tensions at Strait of Hormuz",
+      data: { alertName: "USA Social Monitor", badgeLabel: "Social", badgeBg: "#E5E5E5", badgeColor: "#4D4D4D",
+        location: "United States", timestamp: "Jul 15, 2026",
+        headline: "\"Gold and Oil Prices Rise Amid Ongoing Tensions at Strait of Hormuz\" — social post",
+        body: "Post text and any attached media summary.",
+        metadata: [{label:"Source", value:"X (Twitter)"}, {label:"Veracity", value:"Verified"}, {label:"Severity Score", value:"4/10"}, {label:"Published", value:"Jul 15, 2026"}],
+        assets: null }
+    },
+  ];
+
+  let current = 0;
+
+  function render() {
+    const t = types[current];
+    const panelHtml = renderAlert(t.data);
+    document.getElementById('panels').innerHTML = '<div class="panel">' + panelHtml + '</div>';
+    let labelHtml = '<b>' + t.tab + '</b>' + (t.real ? '<span class="real-tag">REAL EXAMPLE</span>' : '<span class="illus-tag">ILLUSTRATIVE</span>');
+    labelHtml += '<div class="files">' + t.files + '</div>';
+    if (t.subject) {
+      labelHtml += '<div class="subject-row"><span class="label">Subject line</span>' + t.subject + '</div>';
+    }
+    if (t.note) {
+      labelHtml += '<div class="flag">' + t.note + '</div>';
+    }
+    document.getElementById('caseLabel').innerHTML = labelHtml;
+    document.querySelectorAll('.tab').forEach((el, i) => {
+      el.classList.toggle('active', i === current);
+    });
+  }
+
+  function jump(i) {
+    current = i;
+    render();
+  }
+
+  const tabsEl = document.getElementById('tabs');
+  types.forEach((c, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab';
+    btn.textContent = c.tab;
+    btn.onclick = () => jump(i);
+    tabsEl.appendChild(btn);
+  });
+
+  render();
+</script>
+
+</body>
+</html>

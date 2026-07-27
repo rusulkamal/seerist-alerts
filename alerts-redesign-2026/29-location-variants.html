@@ -1,0 +1,76 @@
+<body style="margin:0;background:#F6F8F7;font-family:system-ui,-apple-system,sans-serif;padding:26px">
+<div style="max-width:760px;margin:0 auto">
+<h1 style="font-size:20px;margin:0 0 4px;letter-spacing:-0.01em">Location line, every shape</h1>
+<p style="font-size:13.5px;color:#6B7A75;margin:0 0 22px;max-width:62ch">Each row below is the real
+<code>26-real-template-single-item.html</code> rendered with only the location fields changed. Full hierarchy
+is kept in every case; the smallest unit present reads dark, wider ones stay muted.</p>
+<div style="background:#fff;border:1px solid #DDE4E1;border-radius:10px;padding:14px 16px;margin-bottom:10px">
+  <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#6B7A75;margin-bottom:2px">City and country</div>
+  <div style="font-size:12.5px;color:#8A9B95;margin-bottom:9px">the common single-location case</div>
+  <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:8px;">
+        <span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:10.5px;">&#128205;</span>&nbsp;
+        <span style="color:#334155;font-weight:bold;">Philadelphia</span><span style="color:#6B7280;">, United States</span>
+      </div>
+</div>
+<div style="background:#fff;border:1px solid #DDE4E1;border-radius:10px;padding:14px 16px;margin-bottom:10px">
+  <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#6B7A75;margin-bottom:2px">Several cities, one country</div>
+  <div style="font-size:12.5px;color:#8A9B95;margin-bottom:9px">real, from the source data</div>
+  <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:8px;">
+        <span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:10.5px;">&#128205;</span>&nbsp;
+        <span style="color:#334155;font-weight:bold;">New Taipei, Taipei, Keelung</span><span style="color:#6B7280;">, Taiwan (China)</span>
+      </div>
+</div>
+<div style="background:#fff;border:1px solid #DDE4E1;border-radius:10px;padding:14px 16px;margin-bottom:10px">
+  <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#6B7A75;margin-bottom:2px">Several countries</div>
+  <div style="font-size:12.5px;color:#8A9B95;margin-bottom:9px">a multi-country event, fits as-is</div>
+  <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:8px;">
+        <span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:10.5px;">&#128205;</span>&nbsp;
+        <span style="color:#334155;font-weight:bold;">United Kingdom, Canada, Vietnam, Cuba</span><span style="color:#6B7280;"></span>
+      </div>
+</div>
+<div style="background:#fff;border:1px solid #DDE4E1;border-radius:10px;padding:14px 16px;margin-bottom:10px">
+  <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#6B7A75;margin-bottom:2px">Many countries, capped</div>
+  <div style="font-size:12.5px;color:#8A9B95;margin-bottom:9px">9 countries: backend sends 3 and reports the rest</div>
+  <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:8px;">
+        <span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:10.5px;">&#128205;</span>&nbsp;
+        <span style="color:#334155;font-weight:bold;">United Kingdom, Canada, Vietnam</span><span style="color:#6B7280;"></span><span style="color:#6B7280;">&nbsp;+6 more</span>
+      </div>
+</div>
+<div style="background:#fff;border:1px solid #DDE4E1;border-radius:10px;padding:14px 16px;margin-bottom:10px">
+  <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#6B7A75;margin-bottom:2px">Full hierarchy, capped</div>
+  <div style="font-size:12.5px;color:#8A9B95;margin-bottom:9px">overflow works at any level</div>
+  <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:8px;">
+        <span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:10.5px;">&#128205;</span>&nbsp;
+        <span style="color:#334155;font-weight:bold;">Brooklyn</span><span style="color:#6B7280;">, Kings County, United States</span><span style="color:#6B7280;">&nbsp;+2 more</span>
+      </div>
+</div>
+<div style="background:#fff;border:1px solid #DDE4E1;border-radius:10px;padding:14px 16px;margin-bottom:10px">
+  <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#6B7A75;margin-bottom:2px">City, county, country, region</div>
+  <div style="font-size:12.5px;color:#8A9B95;margin-bottom:9px">the full hierarchy, all four levels</div>
+  <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:8px;">
+        <span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:10.5px;">&#128205;</span>&nbsp;
+        <span style="color:#334155;font-weight:bold;">Brooklyn</span><span style="color:#6B7280;">, Kings County, United States, North America</span>
+      </div>
+</div>
+<div style="background:#fff;border:1px solid #DDE4E1;border-radius:10px;padding:14px 16px;margin-bottom:10px">
+  <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#6B7A75;margin-bottom:2px">County and country</div>
+  <div style="font-size:12.5px;color:#8A9B95;margin-bottom:9px">no city resolved</div>
+  <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:8px;">
+        <span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:10.5px;">&#128205;</span>&nbsp;
+        <span style="color:#334155;font-weight:bold;">Maricopa County</span><span style="color:#6B7280;">, United States</span>
+      </div>
+</div>
+<div style="background:#fff;border:1px solid #DDE4E1;border-radius:10px;padding:14px 16px;margin-bottom:10px">
+  <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#6B7A75;margin-bottom:2px">Region only</div>
+  <div style="font-size:12.5px;color:#8A9B95;margin-bottom:9px">broadest level only</div>
+  <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:8px;">
+        <span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:10.5px;">&#128205;</span>&nbsp;
+        <span style="color:#334155;font-weight:bold;">Sahel</span><span style="color:#6B7280;"></span>
+      </div>
+</div>
+<div style="background:#fff;border:1px solid #DDE4E1;border-radius:10px;padding:14px 16px;margin-bottom:10px">
+  <div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#6B7A75;margin-bottom:2px">Nothing resolved</div>
+  <div style="font-size:12.5px;color:#8A9B95;margin-bottom:9px">the fallback</div>
+  <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:8px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:10.5px;">&#128205;</span>&nbsp;<span style="color:#6B7280;">No Location Detected</span></div>
+</div>
+</div></body>
