@@ -14,22 +14,23 @@
     --ground:#F6F8F7; --panel:#FFFFFF; --panel-2:#F0F4F2;
     --ink:#0F172A; --ink-2:#33443E; --muted:#6B7A75;
     --line:#DDE4E1; --line-strong:#C3CFCA; --accent:#00702B;
+    --warn:#B45309; --warn-soft:#FBEEDC;
     --quote:#B3261E;
   }
   @media (prefers-color-scheme:dark){:root{
     --ground:#0A1210; --panel:#101A17; --panel-2:#16211E;
     --ink:#E9F0ED; --ink-2:#C2D0CB; --muted:#8A9B95;
-    --line:#22302C; --line-strong:#31423D; --accent:#3CD177; --quote:#F1707A;
+    --line:#22302C; --line-strong:#31423D; --accent:#3CD177; --warn:#E9A23B; --warn-soft:#2A2013; --quote:#F1707A;
   }}
   :root[data-theme="dark"]{
     --ground:#0A1210; --panel:#101A17; --panel-2:#16211E;
     --ink:#E9F0ED; --ink-2:#C2D0CB; --muted:#8A9B95;
-    --line:#22302C; --line-strong:#31423D; --accent:#3CD177; --quote:#F1707A;
+    --line:#22302C; --line-strong:#31423D; --accent:#3CD177; --warn:#E9A23B; --warn-soft:#2A2013; --quote:#F1707A;
   }
   :root[data-theme="light"]{
     --ground:#F6F8F7; --panel:#FFFFFF; --panel-2:#F0F4F2;
     --ink:#0F172A; --ink-2:#33443E; --muted:#6B7A75;
-    --line:#DDE4E1; --line-strong:#C3CFCA; --accent:#00702B; --quote:#B3261E;
+    --line:#DDE4E1; --line-strong:#C3CFCA; --accent:#00702B; --warn:#B45309; --warn-soft:#FBEEDC; --quote:#B3261E;
   }
 
   *{box-sizing:border-box;}
@@ -45,6 +46,9 @@
   h1{font-size:clamp(24px,3.6vw,31px);font-weight:600;margin:0 0 14px;
      text-wrap:balance;line-height:1.14;}
   .standfirst{margin:0;max-width:64ch;font-size:16.5px;color:var(--ink-2);}
+  .concept{display:inline-block;margin-left:8px;padding:3px 10px;border-radius:5px;
+           background:var(--warn-soft);color:var(--warn);font-size:10.5px;font-weight:700;
+           letter-spacing:0.08em;text-transform:uppercase;vertical-align:1px;}
 
   /* ---- the problem ---- */
   .problem{background:var(--panel);border:1px solid var(--line);border-radius:12px;
@@ -121,12 +125,14 @@
 <div class="page">
 
   <header class="mast">
-    <div class="eyebrow">Seerist &middot; Alert emails &middot; July 2026 &middot; Work in progress</div>
+    <div class="eyebrow">Seerist &middot; Alert emails &middot; July 2026 <span class="concept">Concept design</span></div>
     <h1 class="display">Redesigning the alert email</h1>
-    <p class="standfirst">For eight or more named accounts the email alert <em>is</em> Seerist, so the
-    inbox is the product. This is the redesign: how one alert reads, how it holds up across every event
-    type, and what it looks like at a real day's volume. Everything after the exploration is live
-    rendered output from the working template. Asset names in the previews are placeholders;
+    <p class="standfirst"><strong>This is a concept, not a build.</strong> Nothing here is scheduled or committed,
+    and it is shared to get reactions while it can still change cheaply.<br><br>
+    For eight or more named accounts the email alert <em>is</em> Seerist, so the inbox is the
+    product. This is the redesign: how one alert reads, how it holds up across every event type,
+    and what it looks like at a real day's volume. Everything after the exploration is live
+    rendered output from a working template. Asset names in the previews are placeholders;
     the headlines, sources, locations and distances are real.</p>
   </header>
 
@@ -200,8 +206,8 @@
   </div>
 
   <footer>
-    Scope is layout, hierarchy and consistency. Send frequency, volume and content curation are separate
-    workstreams. Full research and requirements live in
+    Concept design, July 2026. Scope is layout, hierarchy and consistency. Send frequency, volume and
+    content curation are separate workstreams. Full research and requirements live in
     <a href="https://seerist.atlassian.net/wiki/spaces/AAAS/pages/4807557124/Alerts+Redesign+July+2026" target="_blank" rel="noopener">Confluence</a>.
   </footer>
 
