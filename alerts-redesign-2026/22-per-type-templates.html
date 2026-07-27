@@ -30,7 +30,7 @@
 
 <div class="topbar">
   <h1>Seerist — Per-Type Templates</h1>
-  <div class="sub">Every type rendered by the exact same code, only the content changes — that's what guarantees consistency here, not 15 hand-tweaked copies. Country chips removed in favor of a plain location line. Every type gets the same "View full details" action.<br><br><strong>Updated to match 24-mixed-content-digest.html:</strong> Source is now a real link, the location line has a marker matching the digest cards, and the "View full details" button is sized down to match.<br><br><strong>Updated against Template Metadata Reference (Confluence):</strong> added the "Published" field everywhere the spec calls for it (was missing from every type); Breaking Event no longer shows an invented "Categories" field; Verified Event (Political) now shows Asset Types; Verified Event (Maritime) now shows Category + Subcategory and uses the spec's exact field labels (Vessel Name / Water Name / Intervention Types, not shortened); Planned Event's Category + Severity are now one combined field, not two, matching the spec's inline format; Evacuation Change's Country now renders as a large heading, distinct from the standard location line, matching the spec.<br><br><strong>Updated per the confirmed card eyebrow (25-card-eyebrow-brainstorm.html):</strong> date now sits next to the badge on one line, location moved to its own line directly below.<br><br><strong>Re-audited now that the Confluence connector is back:</strong> Social was missing Veracity + Severity Score against the spec's "identical to News" note — added. Pulse Score Change's Score/24 Hour Change/60 Day Range were crammed into body text — given their own sublabeled 3-stat block instead, matching the spec's structure. Confirmed (not gaps): Planned Event genuinely has no Published field per spec; Hotspot genuinely has no Published field per spec; Risk Rating Change's sparseness (no Published, no Risk categories shown) is exactly as documented. Not built: <strong>Election (Standalone)</strong> — the spec itself flags this as an orphaned type with no active doc_type constant in the codebase, "likely a deprecation candidate," so it's intentionally left out rather than built against a type that may not be live.</div>
+  <div class="sub">Every type is rendered by the exact same card. Only the content changes, which is what keeps them consistent rather than 15 hand-tweaked copies.<br><br>Fields and labels follow the <strong>Template Metadata Reference</strong> in Confluence. <strong>Election (Standalone)</strong> is not built: the spec flags it as an orphaned type with no active doc_type constant, likely a deprecation candidate.</div>
 </div>
 
 <div class="tabs" id="tabs"></div>
@@ -96,10 +96,12 @@
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
     <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;border-radius:8px;overflow:hidden;">
       <tr><td style="background:#fff3f3;border-bottom:1px solid #d32f2f;padding:10px 20px;font-family:'Segoe UI',Arial,sans-serif;font-size:12px;color:#7f1d1d;"><strong>⚠ External Email</strong></td></tr>
-      <tr><td style="background:#0F172A;padding:16px 24px;">
+      <tr><td style="border-top:6px solid #10B981;padding:14px 24px 0 24px;">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-          <td style="font-family:'Archivo',Arial,sans-serif;font-size:14px;font-weight:bold;color:#ffffff;">SEERIST</td>
-          <td align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#9CA3AF;max-width:360px;">${d.alertName}</td>
+          <td style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#333333;vertical-align:middle;" width="70%">${d.alertName}</td>
+          <td align="right" style="vertical-align:middle;" width="30%">
+            <img src="https://seerist.com/brand/seerist-mark.png" alt="Seerist" width="44" height="33" style="height:33px;width:44px;display:block;margin-left:auto;border:0;" />
+          </td>
         </tr></table>
       </td></tr>
       <!-- EYEBROW — date, category, then the badge, matching the real templates
