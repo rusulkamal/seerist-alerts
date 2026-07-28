@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--
+  REAL-TEMPLATE-COMPATIBLE REDESIGN
+  ==================================
+  This is a restyle of the actual production template you shared, built to
+  work with it as-is: same field names (content.*), same Handlebars helpers,
+  nothing invented. Two things changed on purpose:
+
+  1. Layout: the original header used float/position:absolute with no
+     table structure. Outlook desktop (Word engine) doesn't reliably support
+     either, so the two-column header could stack or overlap there. This
+     version uses a table row for the header instead — the standard
+     email-safe pattern — and moves the outer 10px padding off <body> (which
+     Outlook/Gmail often strip) and onto a table cell instead.
+
+  2. Correction from earlier in this project: SendGrid's Handlebars natively
+     supports equals / notEquals / greaterThan / lessThan / and / or / length
+     as real built-in helpers (confirmed via SendGrid's own docs) — not just
+     if/each/unless as previously assumed. So the eyebrow's category/type
+     logic below is expressed directly in the template, not precomputed.
+
+  EYEBROW (our confirmed direction: date, category as plain text, content
+  type as the one colored tag) is built from real fields:
+    - date  -> content.occurredAt (via formatDate)
+    - category-ish text -> content.topics (already a real field, shown the
+      same way the original template shows it)
+    - the colored tag -> content.type
+
+  One optional addition, clearly marked below: to give the type tag a
+  per-type color (Breaking = red, Analysis = green, etc.) without a long
+  chain of "equals" blocks in the template, the cleanest approach is to
+  have the backend pass three ready-made fields — content.badgeBg,
+  content.badgeColor, content.badgeLabel — the same convention already used
+  in 22-per-type-templates.html. An alternative that needs zero backend
+  change (a chain of equals-on-content.type blocks, one per type) is
+  included in a comment as a fallback, since SendGrid does support it,
+  it's just more to maintain as types grow.
+-->
+<html data-editor-version="2" class="sg-campaigns" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <style>
+    @media screen {
+      @font-face { font-family: 'ArchivoLt'; src: url('https://app.seerist.com/fonts/Archivo-Light.ttf'); }
+      @font-face { font-family: 'ArchivoRg'; src: url('https://app.seerist.com/fonts/Archivo-Regular.ttf'); }
+      @font-face { font-family: 'Inter'; src: url('https://fonts.googleapis.com/css2?family=Inter'); }
+    }
+    body, table, td { font-family: 'Inter', Arial, sans-serif; }
+    body { margin: 0; padding: 0; background: #ffffff; color: #333333; font-size: 15px; line-height: 1.5; }
+    /* padding lives on table cells below, not on <body> — Outlook/Gmail both
+       have a history of stripping body-level padding */
+  </style>
+</head>
+<body style="margin:0;padding:0;">
+
+  <!-- Outer wrapper table — gives us a stable 600px content width across
+       clients instead of letting bare divs stretch full-width on desktop -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;">
+  <tr><td align="center">
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;">
+
+    <!-- HEADER — table row instead of float/position:absolute, same content -->
+    <tr><td style="border-top:6px solid #10B981;padding:14px 10px 0 10px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+        <td data-testid="header-title" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#333333;vertical-align:middle;" width="70%">
+          FIFA World Cup 2026: Security Threats &amp; Disruptions
+        </td>
+        <td align="right" style="vertical-align:middle;" width="30%">
+          <!-- Seerist mark, official asset from seerist.com/brand. The previous
+               SendGrid CDN copy was the mark squeezed into a 76x76 square, and the
+               template then forced it to 38x38, rendering it ~26% too narrow. The
+               real mark is 360x267 (1.348:1), so width and height are now set to
+               that ratio. Kept as PNG on purpose: Outlook and Gmail do not render
+               SVG, so the .svg lockups on the brand page are not usable here. -->
+          <img
+            src="https://seerist.com/brand/seerist-mark.png"
+            alt="Seerist" width="44" height="33" style="height:33px;width:44px;display:block;margin-left:auto;border:0;"
+          />
+        </td>
+      </tr></table>
+    </td></tr>
+
+    <!-- subscription line. Bottom padding sits here rather than on the next
+         row so the gap survives Outlook, which drops margins between table
+         rows but honours cell padding. -->
+    <tr><td style="padding:14px 10px 22px 10px;">
+      <div data-testid="subscription-message" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6B7280;">
+        You are receiving this email because you subscribed to instant updates for <em>FIFA World Cup 2026: Security Threats &amp; Disruptions</em>.
+      </div>
+    </td></tr>
+
+    <!-- CARD BODY -->
+    <tr><td style="padding:18px 10px 0 10px;" data-testid="alert-content">
+
+      <!-- EYEBROW — date, topics (plain text, our "category" slot), the
+           content-type tag. Country/region is NOT in this row — it's its
+           own line directly below (next block), matching the confirmed
+           card pattern: date+badge on one line, location right under it. -->
+      <!-- EYEBROW, two columns.
+             Left  : date, then time when the backend supplies one, then category.
+             Right : content type, then severity when it has been assessed.
+           Built as a table row rather than floats so Outlook keeps the two
+           halves side by side instead of stacking them.
+
+           occurredTime is optional and separate from occurredAt on purpose:
+           formatDate can only render a date, and forcing a time format onto a
+           date-only item would print a false 00:00. Backend sends it (e.g.
+           "14:31 UTC") only when the item genuinely has a time. -->
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" data-testid="content-dateline">
+      <tr>
+        <td style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#6B7280;vertical-align:middle;">
+          <span>Jul 20, 2026</span>
+          
+          <span style="color:#CBD5E1;">&middot;</span> <span data-testid="eyebrow-category" style="color:#5B6472;font-weight:bold;">Crime, Violence / Robbery / Assault, Public Safety</span>
+                  </td>
+        <td align="right" style="vertical-align:middle;white-space:nowrap;padding-left:10px;">
+          <span style="display:inline-block;font-size:9.5px;font-weight:bold;letter-spacing:0.4px;padding:3px 9px;border-radius:10px;font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;vertical-align:middle;background:#FFEAEB;color:#BA1A1F;">Breaking</span>
+            
+            
+            
+        </td>
+      </tr>
+      </table>
+
+      <!-- MAIN LOCATION, above the headline. Country only, or region when no
+           country resolved. Several countries render as equals, no bolding of
+           one over another. -->
+      <div data-testid="main-location" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;color:#334155;margin-top:8px;">United States</div>
+
+      <div data-testid="content-title" style="padding:7px 0 0 0;">
+        <a href="https://app.seerist.com/content/nyc-explosion" style="color:#0F172A;text-decoration:none;font-size:15px;line-height:1.45;font-weight:bold;font-family:'Archivo',Arial,sans-serif;">
+          Explosion outside federal building in New York City
+        </a>
+      </div>
+
+
+        <div data-testid="content-summary" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#5B6472;line-height:1.6;margin-top:6px;">According to local media reports from approximately 10:00 (local time), an incendiary device caused an explosion outside 26 Federal Plaza in New York City. No casualties or damage were reported. A man, reportedly pulling a cart carrying long guns, fireworks, and other items, threatened pedestrians and set a fire before being taken into custody. A security perimeter was established in the area, and a bomb squad was deployed.</div>
+
+      <!-- STATUS LINE REMOVED. It printed "Status: Breaking" / "Status: Verified"
+           directly under the summary, restating the coloured type badge already
+           sitting in the eyebrow two lines above. content.status is still read by
+           the template — it drives the "Potential Severity" label swap on Planned
+           Events in the metadata line below — it just no longer renders as its own
+           line. Note for the spec: the Template Metadata Reference does document a
+           "Status:" property on Breaking Event and on the asset variant of Verified
+           Event, so this is a deliberate design deviation, not an omission. -->
+
+      <!-- stability score — this was already a table in the real template, so
+           it needed no structural fix, only restyling -->
+
+      <!-- LOCATION, on its own row so it never has to be picked out of a run
+           of other metadata. Weighting: when there is a hierarchy (a city inside
+           a country) the smallest unit reads bold and the wider ones muted. When
+           the values are peers (several countries) they all read the same, since
+           bolding one would imply a ranking that does not exist. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;
+        <span style="color:#334155;font-weight:bold;">New York, Newark, Jersey City</span><span style="color:#6B7280;">, New York County, Kings County, United States</span>
+        </div>
+
+      <!-- METADATA. Location is no longer in this line, so it does not start
+           with a field that always renders. Each field therefore checks whether
+           anything earlier rendered, using nested "or" subexpressions.
+
+           READ BEFORE SHIPPING: "or" appears nowhere in the 12 production
+           templates and nothing there nests subexpressions deeper than one
+           level. This renders correctly in a standard Handlebars engine, but is
+           unverified against SendGrid at this depth. The zero-risk alternative is
+           to have the backend join every present field into one ready-made
+           content.metaLine string and print that instead.
+
+           Labels are verbatim from the Template Metadata Reference
+           (Confluence page 4807589892). -->
+      <div style="margin-top:8px;font-family:Arial,Helvetica,sans-serif;font-size:11.5px;line-height:1.8;">
+        
+        
+        <span data-testid="content-risk-types"><span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Risk:</b></span> <span style="color:#334155;font-weight:normal;">Security, Operational, Reputational</span></span>
+        <span data-testid="content-event-categories"> <span style="color:#CBD5E1;">&middot;</span> <span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Categories:</b></span> <span style="color:#334155;font-weight:normal;">Crime, Terrorism</span></span>
+        <span data-testid="content-event-subcategories"> <span style="color:#CBD5E1;">&middot;</span> <span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Subcategories:</b></span> <span style="color:#334155;font-weight:normal;">Explosive Device, Public Disturbance</span></span>
+        
+        
+        
+        
+        
+        <span data-testid="content-tags"> <span style="color:#CBD5E1;">&middot;</span> <span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Tags:</b></span> <span style="color:#334155;font-weight:normal;">Federal Building, Downtown, High Priority</span></span>
+        
+        
+        <span data-testid="content-sources"> <span style="color:#CBD5E1;">&middot;</span> <span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Source:</b></span> <span style="color:#334155;font-weight:normal;"><a style="color:#00702B;text-decoration:none;font-weight:bold;" href="https://www.bloomberg.com">www.bloomberg.com</a>, <a style="color:#00702B;text-decoration:none;font-weight:bold;" href="https://www.nbcnewyork.com">www.nbcnewyork.com</a>, <a style="color:#00702B;text-decoration:none;font-weight:bold;" href="https://www.cbsnews.com">www.cbsnews.com</a> <span style="color:#6B7280;">+2 more</span></span></span>
+        <span data-testid="content-published"> <span style="color:#CBD5E1;">&middot;</span> <span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Published:</b></span> <span style="color:#334155;font-weight:normal;">Jul 20, 2026 14:31 UTC</span></span>
+      </div>
+
+      <!-- impacted assets — swapped CSS column-count (unsupported in Outlook)
+           for a plain table, which behaves the same everywhere -->
+      <table data-testid="nearby-assets" role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:12px;background:#F8FAFC;border-radius:6px;">
+      <tr><td style="padding:12px 14px;">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:6px;">Nearby Assets (6 total)</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <tr><td style="padding:5px 0;border-bottom:1px solid #EEF1F5;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
+            Asset E <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span>
+          </td></tr>
+          <tr><td style="padding:5px 0;border-bottom:1px solid #EEF1F5;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
+            Asset B <span style="color:#6B7280;">&middot; 1.0 km (0.6 mi)</span>
+          </td></tr>
+          <tr><td style="padding:5px 0;border-bottom:1px solid #EEF1F5;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
+            Asset F <span style="color:#6B7280;">&middot; 1.1 km (0.7 mi)</span>
+          </td></tr>
+          <tr><td style="padding:5px 0;border-bottom:1px solid #EEF1F5;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
+            Asset C <span style="color:#6B7280;">&middot; 1.1 km (0.7 mi)</span>
+          </td></tr>
+          <tr><td style="padding:5px 0;border-bottom:1px solid #EEF1F5;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
+            Asset A <span style="color:#6B7280;">&middot; 1.2 km (0.7 mi)</span>
+          </td></tr>
+          <tr><td style="padding:5px 0;border-bottom:1px solid #EEF1F5;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
+            Asset D <span style="color:#6B7280;">&middot; 2.1 km (1.3 mi)</span>
+          </td></tr>
+        </table>
+      </td></tr>
+      </table>
+
+      <!-- CTA — the real template didn't have one (only the headline was a
+           link); added to match the "View full details" pattern used
+           everywhere else in this project, reusing the real contentUrl field -->
+      <div style="margin-top:14px;padding-bottom:16px;">
+        <a href="https://app.seerist.com/content/nyc-explosion" style="display:inline-block;background:#0F172A;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;padding:8px 16px;border-radius:5px;text-decoration:none;">View full details &rarr;</a>
+      </div>
+
+    </td></tr>
+
+    <!-- FOOTER — already table-cell padding in the real template, no
+         structural change needed, restyled to match -->
+    <tr><td data-testid="footer" style="text-align:center;padding:20px 20px;border-top:1px solid #E2E8F0;margin-top:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6B7280;">
+      <div style="margin-bottom:10px;">
+        <span data-testid="copyright">&copy;2026 Seerist, Inc.</span>
+        <span style="padding:0 10px;">|</span>
+        <a data-testid="manage-alerts-link" href="https://app.seerist.com/alerts" style="color:#00702B;text-decoration:none;">Manage Alerts</a>
+      </div>
+      Need help? <a href="mailto:support@seerist.com" style="color:#00702B;text-decoration:none;">Contact Us</a>
+    </td></tr>
+
+  </table>
+  </td></tr>
+  </table>
+
+</body>
+</html>
