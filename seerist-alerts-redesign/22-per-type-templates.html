@@ -118,7 +118,13 @@
         ? '<span style="color:#334155;font-weight:bold;">' + locParts.slice(0,-1).join(', ')
           + '</span><span style="color:#6B7280;">, ' + d.country + '</span>'
         : '<span style="color:#334155;font-weight:bold;">' + locParts.join(', ') + '</span>');
+    // One location row, below the description. mainLocRow is intentionally
+    // empty: the country now lives in this single row rather than on its own
+    // line above the headline.
     const mainLocRow = '';
+    const locDetailRow = locDetail
+      ? `<tr><td style="padding:9px 24px 0 24px;font-family:Arial,Helvetica,sans-serif;font-size:11px;" data-testid="location-line">${locDetail}</td></tr>`
+      : '';
     // first metadata row that names a category, in label priority order
     const catRow = (d.metadata || []).find(m => m.label === 'Categories')
       || (d.metadata || []).find(m => m.label === 'Category');
