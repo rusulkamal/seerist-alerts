@@ -158,21 +158,6 @@
       </tr>
       </table>
 
-      <!-- LOCATION, always a single line.
-           Order is smallest to largest: city, county, country, region. The
-           smallest unit present reads dark, the wider ones stay muted as
-           context, and nothing is reordered.
-
-           ONE LINE is enforced by the backend, not by CSS: it caps how many
-           values it sends and puts the remainder in locationsHiddenCount, which
-           prints as "+N more". A cap of about four values keeps the row on one
-           line at 600px. nowrap is deliberately avoided, since in Outlook it
-           would widen the whole table rather than clip this row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:8px;">
-        <span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:10.5px;">&#128205;</span>&nbsp;
-        <span style="color:#334155;font-weight:bold;">New York</span><span style="color:#6B7280;">, United States</span>
-      </div>
-
       <div data-testid="content-title" style="padding:7px 0 0 0;">
         <a href="https://app.seerist.com/content/nyc-explosion" style="color:#0F172A;text-decoration:none;font-size:15px;line-height:1.45;font-weight:bold;font-family:'Archivo',Arial,sans-serif;">
           Explosion outside federal building in New York City
@@ -189,54 +174,29 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- METADATA — one flowing, middot-joined line. Field labels below are
-           taken verbatim from the Template Metadata Reference (Confluence
-           page 4807589892), not paraphrased:
-             Water Name, Vessel Name, Attack Types, Intervention Types,
-             Asset Types, Categories, Subcategories, Risk, Veracity,
-             Severity Score, Source, Published.
+      <!-- LOCATION, on its own row so it never has to be picked out of a run
+           of other metadata. Weighting: when there is a hierarchy (a city inside
+           a country) the smallest unit reads bold and the wider ones muted. When
+           the values are peers (several countries) they all read the same, since
+           bolding one would imply a ranking that does not exist. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;
+        <span style="color:#334155;font-weight:bold;">New York</span><span style="color:#6B7280;">, United States</span>
+        </div>
 
-           CHANGED in this pass (metadata audit against the spec):
-             - "Severity:" is now "Severity Score:" — the spec label for
-               Verified Event (Political), News/GDELT and Social. Files
-               22/23/24 were already corrected; this file had been missed.
-               Planned Event still reads "Potential Severity" per the spec's
-               own inline "Category - Severity Potential Severity" format.
-             - "Waters:" -> "Water Name:", "Vessel name:" -> "Vessel Name:",
-               "Asset types:" -> "Asset Types:" (spec casing).
-             - Attack Types ADDED — spec lists it on Verified Event
-               (Political); it was rendered nowhere in this template.
-             - Intervention Types ADDED — spec lists it on Verified Event
-               (Maritime); also missing.
-             - Veracity ADDED — spec lists it on News/GDELT, Social and
-               Twitter. Spec says "hidden if Unknown Quality": the backend
-               should simply omit the field in that case rather than sending
-               the string, so the separator logic below stays correct.
-             - "Countries:" REMOVED from this line. The unlabeled location
-               line above the headline already renders country for every
-               type, so this was the same value printed twice per item (three
-               times in the digest, under a country section heading) — the
-               exact redundancy called out in the Inbox audit. Removing it
-               also retires the known Analysis-plus-countries stray-middot
-               edge case, which existed only because of this field.
+      <!-- METADATA. Location is no longer in this line, so it does not start
+           with a field that always renders. Each field therefore checks whether
+           anything earlier rendered, using nested "or" subexpressions.
 
-           FIELD NAMES TO CONFIRM WITH ENGINEERING: attackTypes,
-           securityInterventionTypes and veracity are named to match the spec's
-           properties (attack_types, vessel_counter_measure_types /
-           intervention types, veracity). They were absent from the
-           production template, so the exact camelCase keys the builder
-           emits need confirming before send-test.
+           READ BEFORE SHIPPING: "or" appears nowhere in the 12 production
+           templates and nothing there nests subexpressions deeper than one
+           level. This renders correctly in a standard Handlebars engine, but is
+           unverified against SendGrid at this depth. The zero-risk alternative is
+           to have the backend join every present field into one ready-made
+           content.metaLine string and print that instead.
 
-           SEPARATOR RISK, unchanged and still real: each field checks
-           whether ANY earlier field rendered, using nested "or"
-           subexpressions, up to 13 levels deep on Published. That renders
-           correctly in a standard Handlebars engine but SendGrid's docs
-           only ever show one level of nesting. RECOMMENDED DEFAULT (upgraded
-           from "fallback" after this audit): have the backend join every
-           present field into one ready-made string and print it directly.
-           The field list grew in this pass, so the case for precomputing is
-           stronger, not weaker. -->
-      <div style="margin-top:10px;font-family:Arial,Helvetica,sans-serif;font-size:11.5px;line-height:1.8;">
+           Labels are verbatim from the Template Metadata Reference
+           (Confluence page 4807589892). -->
+      <div style="margin-top:8px;font-family:Arial,Helvetica,sans-serif;font-size:11.5px;line-height:1.8;">
         
         
         <span data-testid="content-risk-types"><span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Risk:</b></span> <span style="color:#334155;font-weight:normal;">Security, Operational</span></span>
@@ -318,21 +278,6 @@
       </tr>
       </table>
 
-      <!-- LOCATION, always a single line.
-           Order is smallest to largest: city, county, country, region. The
-           smallest unit present reads dark, the wider ones stay muted as
-           context, and nothing is reordered.
-
-           ONE LINE is enforced by the backend, not by CSS: it caps how many
-           values it sends and puts the remainder in locationsHiddenCount, which
-           prints as "+N more". A cap of about four values keeps the row on one
-           line at 600px. nowrap is deliberately avoided, since in Outlook it
-           would widen the whole table rather than clip this row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:8px;">
-        <span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:10.5px;">&#128205;</span>&nbsp;
-        <span style="color:#334155;font-weight:bold;">Sanaa</span><span style="color:#6B7280;">, Yemen</span>
-      </div>
-
       <div data-testid="content-title" style="padding:7px 0 0 0;">
         <a href="https://app.seerist.com/content/yemen-blockade" style="color:#0F172A;text-decoration:none;font-size:15px;line-height:1.45;font-weight:bold;font-family:'Archivo',Arial,sans-serif;">
           Houthi rebel movement announce naval blockade against Saudi Arabia
@@ -349,54 +294,29 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- METADATA — one flowing, middot-joined line. Field labels below are
-           taken verbatim from the Template Metadata Reference (Confluence
-           page 4807589892), not paraphrased:
-             Water Name, Vessel Name, Attack Types, Intervention Types,
-             Asset Types, Categories, Subcategories, Risk, Veracity,
-             Severity Score, Source, Published.
+      <!-- LOCATION, on its own row so it never has to be picked out of a run
+           of other metadata. Weighting: when there is a hierarchy (a city inside
+           a country) the smallest unit reads bold and the wider ones muted. When
+           the values are peers (several countries) they all read the same, since
+           bolding one would imply a ranking that does not exist. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;
+        <span style="color:#334155;font-weight:bold;">Sanaa</span><span style="color:#6B7280;">, Yemen</span>
+        </div>
 
-           CHANGED in this pass (metadata audit against the spec):
-             - "Severity:" is now "Severity Score:" — the spec label for
-               Verified Event (Political), News/GDELT and Social. Files
-               22/23/24 were already corrected; this file had been missed.
-               Planned Event still reads "Potential Severity" per the spec's
-               own inline "Category - Severity Potential Severity" format.
-             - "Waters:" -> "Water Name:", "Vessel name:" -> "Vessel Name:",
-               "Asset types:" -> "Asset Types:" (spec casing).
-             - Attack Types ADDED — spec lists it on Verified Event
-               (Political); it was rendered nowhere in this template.
-             - Intervention Types ADDED — spec lists it on Verified Event
-               (Maritime); also missing.
-             - Veracity ADDED — spec lists it on News/GDELT, Social and
-               Twitter. Spec says "hidden if Unknown Quality": the backend
-               should simply omit the field in that case rather than sending
-               the string, so the separator logic below stays correct.
-             - "Countries:" REMOVED from this line. The unlabeled location
-               line above the headline already renders country for every
-               type, so this was the same value printed twice per item (three
-               times in the digest, under a country section heading) — the
-               exact redundancy called out in the Inbox audit. Removing it
-               also retires the known Analysis-plus-countries stray-middot
-               edge case, which existed only because of this field.
+      <!-- METADATA. Location is no longer in this line, so it does not start
+           with a field that always renders. Each field therefore checks whether
+           anything earlier rendered, using nested "or" subexpressions.
 
-           FIELD NAMES TO CONFIRM WITH ENGINEERING: attackTypes,
-           securityInterventionTypes and veracity are named to match the spec's
-           properties (attack_types, vessel_counter_measure_types /
-           intervention types, veracity). They were absent from the
-           production template, so the exact camelCase keys the builder
-           emits need confirming before send-test.
+           READ BEFORE SHIPPING: "or" appears nowhere in the 12 production
+           templates and nothing there nests subexpressions deeper than one
+           level. This renders correctly in a standard Handlebars engine, but is
+           unverified against SendGrid at this depth. The zero-risk alternative is
+           to have the backend join every present field into one ready-made
+           content.metaLine string and print that instead.
 
-           SEPARATOR RISK, unchanged and still real: each field checks
-           whether ANY earlier field rendered, using nested "or"
-           subexpressions, up to 13 levels deep on Published. That renders
-           correctly in a standard Handlebars engine but SendGrid's docs
-           only ever show one level of nesting. RECOMMENDED DEFAULT (upgraded
-           from "fallback" after this audit): have the backend join every
-           present field into one ready-made string and print it directly.
-           The field list grew in this pass, so the case for precomputing is
-           stronger, not weaker. -->
-      <div style="margin-top:10px;font-family:Arial,Helvetica,sans-serif;font-size:11.5px;line-height:1.8;">
+           Labels are verbatim from the Template Metadata Reference
+           (Confluence page 4807589892). -->
+      <div style="margin-top:8px;font-family:Arial,Helvetica,sans-serif;font-size:11.5px;line-height:1.8;">
         
         
         <span data-testid="content-risk-types"><span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Risk:</b></span> <span style="color:#334155;font-weight:normal;">Security, Maritime</span></span>
@@ -465,21 +385,6 @@
       </tr>
       </table>
 
-      <!-- LOCATION, always a single line.
-           Order is smallest to largest: city, county, country, region. The
-           smallest unit present reads dark, the wider ones stay muted as
-           context, and nothing is reordered.
-
-           ONE LINE is enforced by the backend, not by CSS: it caps how many
-           values it sends and puts the remainder in locationsHiddenCount, which
-           prints as "+N more". A cap of about four values keeps the row on one
-           line at 600px. nowrap is deliberately avoided, since in Outlook it
-           would widen the whole table rather than clip this row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:8px;">
-        <span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-size:10.5px;">&#128205;</span>&nbsp;
-        <span style="color:#334155;font-weight:bold;">Congo (DRC)</span><span style="color:#6B7280;">, Africa</span>
-      </div>
-
       <div data-testid="content-title" style="padding:7px 0 0 0;">
         <a href="https://app.seerist.com/content/congo-ebola" style="color:#0F172A;text-decoration:none;font-size:15px;line-height:1.45;font-weight:bold;font-family:'Archivo',Arial,sans-serif;">
           Eastern Congo Ebola epidemic to continue to outpace previous outbreaks
@@ -512,54 +417,29 @@
       </tr>
       </table>
 
-      <!-- METADATA — one flowing, middot-joined line. Field labels below are
-           taken verbatim from the Template Metadata Reference (Confluence
-           page 4807589892), not paraphrased:
-             Water Name, Vessel Name, Attack Types, Intervention Types,
-             Asset Types, Categories, Subcategories, Risk, Veracity,
-             Severity Score, Source, Published.
+      <!-- LOCATION, on its own row so it never has to be picked out of a run
+           of other metadata. Weighting: when there is a hierarchy (a city inside
+           a country) the smallest unit reads bold and the wider ones muted. When
+           the values are peers (several countries) they all read the same, since
+           bolding one would imply a ranking that does not exist. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;
+        <span style="color:#334155;font-weight:bold;">Congo (DRC)</span>
+        </div>
 
-           CHANGED in this pass (metadata audit against the spec):
-             - "Severity:" is now "Severity Score:" — the spec label for
-               Verified Event (Political), News/GDELT and Social. Files
-               22/23/24 were already corrected; this file had been missed.
-               Planned Event still reads "Potential Severity" per the spec's
-               own inline "Category - Severity Potential Severity" format.
-             - "Waters:" -> "Water Name:", "Vessel name:" -> "Vessel Name:",
-               "Asset types:" -> "Asset Types:" (spec casing).
-             - Attack Types ADDED — spec lists it on Verified Event
-               (Political); it was rendered nowhere in this template.
-             - Intervention Types ADDED — spec lists it on Verified Event
-               (Maritime); also missing.
-             - Veracity ADDED — spec lists it on News/GDELT, Social and
-               Twitter. Spec says "hidden if Unknown Quality": the backend
-               should simply omit the field in that case rather than sending
-               the string, so the separator logic below stays correct.
-             - "Countries:" REMOVED from this line. The unlabeled location
-               line above the headline already renders country for every
-               type, so this was the same value printed twice per item (three
-               times in the digest, under a country section heading) — the
-               exact redundancy called out in the Inbox audit. Removing it
-               also retires the known Analysis-plus-countries stray-middot
-               edge case, which existed only because of this field.
+      <!-- METADATA. Location is no longer in this line, so it does not start
+           with a field that always renders. Each field therefore checks whether
+           anything earlier rendered, using nested "or" subexpressions.
 
-           FIELD NAMES TO CONFIRM WITH ENGINEERING: attackTypes,
-           securityInterventionTypes and veracity are named to match the spec's
-           properties (attack_types, vessel_counter_measure_types /
-           intervention types, veracity). They were absent from the
-           production template, so the exact camelCase keys the builder
-           emits need confirming before send-test.
+           READ BEFORE SHIPPING: "or" appears nowhere in the 12 production
+           templates and nothing there nests subexpressions deeper than one
+           level. This renders correctly in a standard Handlebars engine, but is
+           unverified against SendGrid at this depth. The zero-risk alternative is
+           to have the backend join every present field into one ready-made
+           content.metaLine string and print that instead.
 
-           SEPARATOR RISK, unchanged and still real: each field checks
-           whether ANY earlier field rendered, using nested "or"
-           subexpressions, up to 13 levels deep on Published. That renders
-           correctly in a standard Handlebars engine but SendGrid's docs
-           only ever show one level of nesting. RECOMMENDED DEFAULT (upgraded
-           from "fallback" after this audit): have the backend join every
-           present field into one ready-made string and print it directly.
-           The field list grew in this pass, so the case for precomputing is
-           stronger, not weaker. -->
-      <div style="margin-top:10px;font-family:Arial,Helvetica,sans-serif;font-size:11.5px;line-height:1.8;">
+           Labels are verbatim from the Template Metadata Reference
+           (Confluence page 4807589892). -->
+      <div style="margin-top:8px;font-family:Arial,Helvetica,sans-serif;font-size:11.5px;line-height:1.8;">
         
         
         <span data-testid="content-risk-types"><span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Risk:</b></span> <span style="color:#334155;font-weight:normal;">Political, Operational</span></span>
