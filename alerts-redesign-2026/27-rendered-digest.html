@@ -177,7 +177,15 @@
       <!-- LOCATION, one row with the whole hierarchy: city, county, country,
            region. Deliberately a single line rather than a separate country row
            above the headline, so there is one place to look. Smallest unit reads
-           bold, wider ones muted; several values at the same level read alike. -->
+           bold, wider ones muted; several values at the same level read alike.
+
+           CAP: the backend sends at most 6 values, and stops earlier if the
+           joined string would pass about 100 characters, because the real limit
+           is width rather than count. Six ordinary country names sit on one line;
+           six long ones ("Palestinian Territories", "Bosnia and Herzegovina")
+           reach 107 characters and wrap, which the character guard catches. The
+           remainder comes through as locationsHiddenCount and prints as
+           "+N more". -->
       <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">New York</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
@@ -291,7 +299,15 @@
       <!-- LOCATION, one row with the whole hierarchy: city, county, country,
            region. Deliberately a single line rather than a separate country row
            above the headline, so there is one place to look. Smallest unit reads
-           bold, wider ones muted; several values at the same level read alike. -->
+           bold, wider ones muted; several values at the same level read alike.
+
+           CAP: the backend sends at most 6 values, and stops earlier if the
+           joined string would pass about 100 characters, because the real limit
+           is width rather than count. Six ordinary country names sit on one line;
+           six long ones ("Palestinian Territories", "Bosnia and Herzegovina")
+           reach 107 characters and wrap, which the character guard catches. The
+           remainder comes through as locationsHiddenCount and prints as
+           "+N more". -->
       <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Sanaa</span><span style="color:#6B7280;">, Yemen</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
@@ -414,7 +430,15 @@
       <!-- LOCATION, one row with the whole hierarchy: city, county, country,
            region. Deliberately a single line rather than a separate country row
            above the headline, so there is one place to look. Smallest unit reads
-           bold, wider ones muted; several values at the same level read alike. -->
+           bold, wider ones muted; several values at the same level read alike.
+
+           CAP: the backend sends at most 6 values, and stops earlier if the
+           joined string would pass about 100 characters, because the real limit
+           is width rather than count. Six ordinary country names sit on one line;
+           six long ones ("Palestinian Territories", "Bosnia and Herzegovina")
+           reach 107 characters and wrap, which the character guard catches. The
+           remainder comes through as locationsHiddenCount and prints as
+           "+N more". -->
       <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Congo (DRC)</span><span style="color:#6B7280;">, Africa</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
