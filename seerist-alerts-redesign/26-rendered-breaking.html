@@ -123,11 +123,6 @@
       </tr>
       </table>
 
-      <!-- MAIN LOCATION, above the headline. Country only, or region when no
-           country resolved. Several countries render as equals, no bolding of
-           one over another. -->
-      <div data-testid="main-location" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;color:#334155;margin-top:8px;">United States</div>
-
       <div data-testid="content-title" style="padding:7px 0 0 0;">
         <a href="https://app.seerist.com/content/nyc-explosion" style="color:#0F172A;text-decoration:none;font-size:15px;line-height:1.45;font-weight:bold;font-family:'Archivo',Arial,sans-serif;">
           Explosion outside federal building in New York City
@@ -149,14 +144,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, on its own row so it never has to be picked out of a run
-           of other metadata. Weighting: when there is a hierarchy (a city inside
-           a country) the smallest unit reads bold and the wider ones muted. When
-           the values are peers (several countries) they all read the same, since
-           bolding one would imply a ranking that does not exist. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;
-        <span style="color:#334155;font-weight:bold;">New York, Newark, Jersey City</span><span style="color:#6B7280;">, New York County, Kings County, United States</span>
-        </div>
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">New York, Newark, Jersey City</span><span style="color:#6B7280;">, New York County, Kings County, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -189,30 +181,27 @@
         <span data-testid="content-published"> <span style="color:#CBD5E1;">&middot;</span> <span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Published:</b></span> <span style="color:#334155;font-weight:normal;">Jul 20, 2026 14:31 UTC</span></span>
       </div>
 
-      <!-- impacted assets — swapped CSS column-count (unsupported in Outlook)
-           for a plain table, which behaves the same everywhere -->
+      <!-- NEARBY ASSETS, two columns to save vertical space. Built as a real
+           table with two cells per row rather than CSS column-count, which
+           Outlook ignores. The backend supplies nearbyAssetRows as an array of
+           rows, each holding up to two assets, because Handlebars cannot chunk a
+           list into pairs on its own. Six shown, remainder behind the link. -->
       <table data-testid="nearby-assets" role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:12px;background:#F8FAFC;border-radius:6px;">
       <tr><td style="padding:12px 14px;">
-        <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:6px;">Nearby Assets (6 total)</div>
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (6 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-          <tr><td style="padding:5px 0;border-bottom:1px solid #EEF1F5;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
-            Asset E <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span>
-          </td></tr>
-          <tr><td style="padding:5px 0;border-bottom:1px solid #EEF1F5;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
-            Asset B <span style="color:#6B7280;">&middot; 1.0 km (0.6 mi)</span>
-          </td></tr>
-          <tr><td style="padding:5px 0;border-bottom:1px solid #EEF1F5;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
-            Asset F <span style="color:#6B7280;">&middot; 1.1 km (0.7 mi)</span>
-          </td></tr>
-          <tr><td style="padding:5px 0;border-bottom:1px solid #EEF1F5;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
-            Asset C <span style="color:#6B7280;">&middot; 1.1 km (0.7 mi)</span>
-          </td></tr>
-          <tr><td style="padding:5px 0;border-bottom:1px solid #EEF1F5;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
-            Asset A <span style="color:#6B7280;">&middot; 1.2 km (0.7 mi)</span>
-          </td></tr>
-          <tr><td style="padding:5px 0;border-bottom:1px solid #EEF1F5;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
-            Asset D <span style="color:#6B7280;">&middot; 2.1 km (1.3 mi)</span>
-          </td></tr>
+          <tr>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset E <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset B <span style="color:#6B7280;">&middot; 1.0 km (0.6 mi)</span></td>
+          </tr>
+          <tr>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset F <span style="color:#6B7280;">&middot; 1.1 km (0.7 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset C <span style="color:#6B7280;">&middot; 1.1 km (0.7 mi)</span></td>
+          </tr>
+          <tr>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset A <span style="color:#6B7280;">&middot; 1.2 km (0.7 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset D <span style="color:#6B7280;">&middot; 2.1 km (1.3 mi)</span></td>
+          </tr>
         </table>
       </td></tr>
       </table>
@@ -221,7 +210,7 @@
            link); added to match the "View full details" pattern used
            everywhere else in this project, reusing the real contentUrl field -->
       <div style="margin-top:14px;padding-bottom:16px;">
-        <a href="https://app.seerist.com/content/nyc-explosion" style="display:inline-block;background:#0F172A;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;padding:8px 16px;border-radius:5px;text-decoration:none;">View full details &rarr;</a>
+        <a href="https://app.seerist.com/content/nyc-explosion" style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#00702B;text-decoration:none;">View details &rarr;</a>
       </div>
 
     </td></tr>

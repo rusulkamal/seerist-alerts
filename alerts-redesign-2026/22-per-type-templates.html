@@ -72,9 +72,22 @@
 
     let assetsBlock = '';
     if (d.assets) {
-      let rows = d.assets.items.map(a =>
-        `<tr><td style="padding:5px 0;border-bottom:1px solid #F1F5F9;">${a.name}</td><td align="right" style="padding:5px 0;border-bottom:1px solid #F1F5F9;color:#6B7280;">${a.distance}</td></tr>`
-      ).join('');
+      // Two columns with a bullet each, matching 26/27. A single asset stays on
+      // one row, since two columns for one item reads oddly.
+      const BUL = '<span style="color:#6B7280;">&bull;</span>&nbsp;';
+      const cellL = 'padding:4px 10px 4px 0;font-size:12px;color:#334155;vertical-align:top;';
+      const cellR = 'padding:4px 0 4px 10px;font-size:12px;color:#334155;vertical-align:top;';
+      const asText = a => BUL + a.name + ' <span style="color:#6B7280;">&middot; ' + a.distance + '</span>';
+      const items = d.assets.items;
+      let rows = '';
+      if (items.length === 1) {
+        rows = `<tr><td style="${cellL}">${asText(items[0])}</td></tr>`;
+      } else {
+        for (let i = 0; i < items.length; i += 2) {
+          rows += `<tr><td width="50%" style="${cellL}">${asText(items[i])}</td>`
+                + `<td width="50%" style="${cellR}">${items[i+1] ? asText(items[i+1]) : '&nbsp;'}</td></tr>`;
+        }
+      }
       assetsBlock = `
       <tr><td style="padding:0 24px 16px 24px;">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F8FAFC;border-radius:6px;"><tr><td style="padding:14px 16px;">
@@ -98,15 +111,14 @@
     const PIN = '<span style="font-family:\'Apple Color Emoji\',\'Segoe UI Emoji\',\'Noto Color Emoji\',sans-serif;">&#128205;</span>&nbsp;';
     // Only show the detail row when it adds something the country row does not.
     // If the only thing known IS the country, one row is enough.
-    const locFiner = d.country ? locParts.filter(x => x !== d.country) : locParts;
-    const locDetail = (!locFiner.length || (!d.country && locParts.length === 1 && !locPeers)) ? '' :
-      PIN + '<span style="color:#334155;font-weight:bold;">' + locFiner.join(', ') + '</span>';
-    const mainLocRow = d.largeHeadingCountry
-      ? `<tr><td style="padding:12px 24px 0 24px;"><span style="font-family:'Archivo',Arial,sans-serif;font-size:17px;font-weight:bold;color:#0F172A;">${d.largeHeadingCountry}</span></td></tr>`
-      : (locCountry ? `<tr><td style="padding:10px 24px 0 24px;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;color:#334155;" data-testid="main-location">${locCountry}</td></tr>` : '');
-    const locDetailRow = locDetail
-      ? `<tr><td style="padding:9px 24px 0 24px;font-family:Arial,Helvetica,sans-serif;font-size:11px;" data-testid="location-line">${locDetail}</td></tr>`
-      : '';
+    // One location row carrying the whole string, rather than a separate
+    // country line above the headline. Smallest unit bold, wider ones muted.
+    const locDetail = !locParts.length ? '' : PIN +
+      (locParts.length > 1 && d.country && locParts[locParts.length-1] === d.country
+        ? '<span style="color:#334155;font-weight:bold;">' + locParts.slice(0,-1).join(', ')
+          + '</span><span style="color:#6B7280;">, ' + d.country + '</span>'
+        : '<span style="color:#334155;font-weight:bold;">' + locParts.join(', ') + '</span>');
+    const mainLocRow = '';
     // first metadata row that names a category, in label priority order
     const catRow = (d.metadata || []).find(m => m.label === 'Categories')
       || (d.metadata || []).find(m => m.label === 'Category');

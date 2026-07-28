@@ -172,13 +172,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -221,16 +219,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (40 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/Fact-checking%20Trump&#x27;s%20electi" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 34 more assets &rarr;</a></div>
@@ -292,12 +290,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -340,7 +337,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -402,12 +399,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -450,7 +446,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -512,12 +508,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -560,7 +555,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -639,12 +634,11 @@
       </tr>
       </table>
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -687,7 +681,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -749,13 +743,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -798,16 +790,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (40 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/Donald%20Trump%20Targets%20U.S.%20El" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 34 more assets &rarr;</a></div>
@@ -869,13 +861,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -918,16 +908,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (40 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/Donald%20Trump%20Repeats%20Claims%20" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 34 more assets &rarr;</a></div>
@@ -989,13 +979,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -1038,16 +1026,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (40 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/Trump%20Claims%20Election%20Vulner" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 34 more assets &rarr;</a></div>
@@ -1109,12 +1097,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -1157,7 +1144,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -1219,13 +1206,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -1268,16 +1253,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (40 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/But%20why%20is%20%40POTUS%20avoiding%20t" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 34 more assets &rarr;</a></div>
@@ -1339,13 +1324,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -1388,16 +1371,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (40 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/%40GuntherEagleman%20But%20why%20is%20" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 34 more assets &rarr;</a></div>
@@ -1460,12 +1443,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -1508,7 +1490,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -1571,12 +1553,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -1619,11 +1600,11 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (3 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">BWI <span style="color:#6B7280;">&middot; 21.2 km (13.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">America <span style="color:#6B7280;">&middot; 23.9 km (14.9 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;BWI <span style="color:#6B7280;">&middot; 21.2 km (13.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;America <span style="color:#6B7280;">&middot; 23.9 km (14.9 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">CAP <span style="color:#6B7280;">&middot; 26.4 km (16.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;CAP <span style="color:#6B7280;">&middot; 26.4 km (16.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -1686,13 +1667,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -1735,16 +1714,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (40 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset G <span style="color:#6B7280;">&middot; 0.1 km (0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset H <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset G <span style="color:#6B7280;">&middot; 0.1 km (0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset H <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Parade End <span style="color:#6B7280;">&middot; 0.4 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Parade End <span style="color:#6B7280;">&middot; 0.4 km (0.3 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset F <span style="color:#6B7280;">&middot; 0.4 km (0.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.7 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset F <span style="color:#6B7280;">&middot; 0.4 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.7 km (0.4 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/Rubio%E2%80%99s%20international%20%E2%80%98antif" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 34 more assets &rarr;</a></div>
@@ -1807,12 +1786,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -1855,7 +1833,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -1918,13 +1896,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -1967,16 +1943,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (40 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/Trump%20Threatens%20to%20Revoke%20Ne" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 34 more assets &rarr;</a></div>
@@ -2038,13 +2014,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Philadelphia</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Philadelphia</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -2087,16 +2061,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (7 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset E <span style="color:#6B7280;">&middot; &lt; 0.1 km (&lt; 0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset E Placeholder <span style="color:#6B7280;">&middot; 0.1 km (0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset E <span style="color:#6B7280;">&middot; &lt; 0.1 km (&lt; 0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset E Placeholder <span style="color:#6B7280;">&middot; 0.1 km (0.1 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset D (P) <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">USCIS Philadelphia Field Office <span style="color:#6B7280;">&middot; 0.8 km (0.5 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset D (P) <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;USCIS Philadelphia Field Office <span style="color:#6B7280;">&middot; 0.8 km (0.5 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Philadelphia, Pennsylvania - 1101 <span style="color:#6B7280;">&middot; 1.7 km (1.0 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Lincoln Financial Field <span style="color:#6B7280;">&middot; 5.7 km (3.6 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Philadelphia, Pennsylvania - 1101 <span style="color:#6B7280;">&middot; 1.7 km (1.0 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Lincoln Financial Field <span style="color:#6B7280;">&middot; 5.7 km (3.6 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/The%20President&#x27;s%20House%20Site%20i" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 1 more assets &rarr;</a></div>
@@ -2158,12 +2132,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -2206,7 +2179,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -2269,12 +2242,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -2317,7 +2289,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -2379,12 +2351,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -2427,7 +2398,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -2489,13 +2460,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -2538,16 +2507,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (35 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">U.S. House of Representatives <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Russell Senate Office Building <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;U.S. House of Representatives <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Russell Senate Office Building <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Hart Senate Office Building <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Canada Embassy - US <span style="color:#6B7280;">&middot; 0.9 km (0.6 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Hart Senate Office Building <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Canada Embassy - US <span style="color:#6B7280;">&middot; 0.9 km (0.6 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">FBI DC Office <span style="color:#6B7280;">&middot; 1.1 km (0.7 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">LM Home <span style="color:#6B7280;">&middot; 1.2 km (0.7 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;FBI DC Office <span style="color:#6B7280;">&middot; 1.1 km (0.7 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;LM Home <span style="color:#6B7280;">&middot; 1.2 km (0.7 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/&#x27;We%20are%20all%20victims%20of%20polit" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 29 more assets &rarr;</a></div>
@@ -2609,12 +2578,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -2657,7 +2625,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -2719,13 +2687,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -2768,16 +2734,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (40 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/Here%E2%80%99s%20where%20the%20smart%20money" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 34 more assets &rarr;</a></div>
@@ -2840,13 +2806,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">New York</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">New York</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -2889,16 +2853,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (25 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">NYC <span style="color:#6B7280;">&middot; 0.2 km (0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset B <span style="color:#6B7280;">&middot; 0.8 km (0.5 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;NYC <span style="color:#6B7280;">&middot; 0.2 km (0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset B <span style="color:#6B7280;">&middot; 0.8 km (0.5 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset N <span style="color:#6B7280;">&middot; 0.9 km (0.6 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset C <span style="color:#6B7280;">&middot; 1.3 km (0.8 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset N <span style="color:#6B7280;">&middot; 0.9 km (0.6 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset C <span style="color:#6B7280;">&middot; 1.3 km (0.8 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset A <span style="color:#6B7280;">&middot; 1.3 km (0.8 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset I <span style="color:#6B7280;">&middot; 2.0 km (1.3 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset A <span style="color:#6B7280;">&middot; 1.3 km (0.8 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset I <span style="color:#6B7280;">&middot; 2.0 km (1.3 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/Sanchez%20and%20Trump%20Set%20to%20Mee" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 19 more assets &rarr;</a></div>
@@ -2960,12 +2924,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -3008,7 +2971,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -3070,12 +3033,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -3118,7 +3080,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -3180,13 +3142,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -3229,16 +3189,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (40 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset H <span style="color:#6B7280;">&middot; 0.1 km (&lt; 0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset F <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset G <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.6 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Parade End <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/Trump%20aide%20accused%20of%20using%20" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 34 more assets &rarr;</a></div>
@@ -3300,12 +3260,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -3348,7 +3307,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -3410,13 +3369,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -3459,16 +3416,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (40 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset G <span style="color:#6B7280;">&middot; 0.1 km (0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset H <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset G <span style="color:#6B7280;">&middot; 0.1 km (0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset H <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Parade End <span style="color:#6B7280;">&middot; 0.4 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset O <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Parade End <span style="color:#6B7280;">&middot; 0.4 km (0.3 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset F <span style="color:#6B7280;">&middot; 0.4 km (0.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.7 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset F <span style="color:#6B7280;">&middot; 0.4 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;World Bank HQ (DC) <span style="color:#6B7280;">&middot; 0.7 km (0.4 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/Former%20US%20Envoy%20Warns%20Kosovo" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 34 more assets &rarr;</a></div>
@@ -3530,13 +3487,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Washington, D.C.</span><span style="color:#6B7280;">, United States</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -3579,16 +3534,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (32 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">United States Capitol <span style="color:#6B7280;">&middot; 2.3 km (1.4 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Parade Start <span style="color:#6B7280;">&middot; 2.4 km (1.5 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;United States Capitol <span style="color:#6B7280;">&middot; 2.3 km (1.4 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Parade Start <span style="color:#6B7280;">&middot; 2.4 km (1.5 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Parade End <span style="color:#6B7280;">&middot; 3.0 km (1.9 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset G <span style="color:#6B7280;">&middot; 3.0 km (1.9 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Parade End <span style="color:#6B7280;">&middot; 3.0 km (1.9 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset G <span style="color:#6B7280;">&middot; 3.0 km (1.9 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset O <span style="color:#6B7280;">&middot; 3.4 km (2.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Arlington County Government <span style="color:#6B7280;">&middot; 3.4 km (2.1 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset O <span style="color:#6B7280;">&middot; 3.4 km (2.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Arlington County Government <span style="color:#6B7280;">&middot; 3.4 km (2.1 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/Reports%20Suggest%20U.S.%20Militar" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 26 more assets &rarr;</a></div>
@@ -3651,12 +3606,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United States</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -3699,7 +3653,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;100 mile test <span style="color:#6B7280;">&middot; 105.3 km (65.4 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -3769,13 +3723,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Moscow</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Moscow</span><span style="color:#6B7280;">, Russia</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -3818,12 +3770,12 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (4 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">U.S. Embassy Moscow, Russia <span style="color:#6B7280;">&middot; 0.5 km (0.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Expiry Test 1 <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;U.S. Embassy Moscow, Russia <span style="color:#6B7280;">&middot; 0.5 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Expiry Test 1 <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">ANZ Sanctions interest area ( asset ) <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Luxembourg Embassy Moscow D1 <span style="color:#6B7280;">&middot; 1.6 km (1.0 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;ANZ Sanctions interest area ( asset ) <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Luxembourg Embassy Moscow D1 <span style="color:#6B7280;">&middot; 1.6 km (1.0 mi)</span></td>
           </tr>
         </table>
       </td></tr>
@@ -3884,13 +3836,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Moscow</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Moscow</span><span style="color:#6B7280;">, Russia</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -3933,12 +3883,12 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (4 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">U.S. Embassy Moscow, Russia <span style="color:#6B7280;">&middot; 0.5 km (0.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Expiry Test 1 <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;U.S. Embassy Moscow, Russia <span style="color:#6B7280;">&middot; 0.5 km (0.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Expiry Test 1 <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">ANZ Sanctions interest area ( asset ) <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Luxembourg Embassy Moscow D1 <span style="color:#6B7280;">&middot; 1.6 km (1.0 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;ANZ Sanctions interest area ( asset ) <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Luxembourg Embassy Moscow D1 <span style="color:#6B7280;">&middot; 1.6 km (1.0 mi)</span></td>
           </tr>
         </table>
       </td></tr>
@@ -4007,13 +3957,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Beijing</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Beijing</span><span style="color:#6B7280;">, China</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -4056,12 +4004,12 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (4 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset J <span style="color:#6B7280;">&middot; 0.9 km (0.6 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset K <span style="color:#6B7280;">&middot; 0.9 km (0.6 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset J <span style="color:#6B7280;">&middot; 0.9 km (0.6 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset K <span style="color:#6B7280;">&middot; 0.9 km (0.6 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset L <span style="color:#6B7280;">&middot; 1.9 km (1.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Asset M <span style="color:#6B7280;">&middot; 5.9 km (3.7 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset L <span style="color:#6B7280;">&middot; 1.9 km (1.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset M <span style="color:#6B7280;">&middot; 5.9 km (3.7 mi)</span></td>
           </tr>
         </table>
       </td></tr>
@@ -4131,13 +4079,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Bogota</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Bogota</span><span style="color:#6B7280;">, Colombia</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -4180,16 +4126,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (6 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Bogota Hotel <span style="color:#6B7280;">&middot; 0.1 km (0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Hilton Bogota Corferias <span style="color:#6B7280;">&middot; 2.3 km (1.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Bogota Hotel <span style="color:#6B7280;">&middot; 0.1 km (0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Hilton Bogota Corferias <span style="color:#6B7280;">&middot; 2.3 km (1.4 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">US Embassy - Bogotá, Colombia <span style="color:#6B7280;">&middot; 3.4 km (2.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Twilio Bogota <span style="color:#6B7280;">&middot; 5.6 km (3.5 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;US Embassy - Bogotá, Colombia <span style="color:#6B7280;">&middot; 3.4 km (2.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Twilio Bogota <span style="color:#6B7280;">&middot; 5.6 km (3.5 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Temporary Asset 1 <span style="color:#6B7280;">&middot; 6.0 km (3.7 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Bogota&#x27; Colombia <span style="color:#6B7280;">&middot; 9.3 km (5.8 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Temporary Asset 1 <span style="color:#6B7280;">&middot; 6.0 km (3.7 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Bogota&#x27; Colombia <span style="color:#6B7280;">&middot; 9.3 km (5.8 mi)</span></td>
           </tr>
         </table>
       </td></tr>
@@ -4259,13 +4205,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Berlin</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Berlin</span><span style="color:#6B7280;">, Germany</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -4308,16 +4252,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (7 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">U.S. Embassy Berlin, Germany <span style="color:#6B7280;">&middot; 0.7 km (0.4 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">US Embassy in Berlin <span style="color:#6B7280;">&middot; 2.5 km (1.6 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;U.S. Embassy Berlin, Germany <span style="color:#6B7280;">&middot; 0.7 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;US Embassy in Berlin <span style="color:#6B7280;">&middot; 2.5 km (1.6 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Uber Arena <span style="color:#6B7280;">&middot; 2.8 km (1.7 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Berlin HB <span style="color:#6B7280;">&middot; 3.0 km (1.9 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Uber Arena <span style="color:#6B7280;">&middot; 2.8 km (1.7 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Berlin HB <span style="color:#6B7280;">&middot; 3.0 km (1.9 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Office Berlin <span style="color:#6B7280;">&middot; 3.5 km (2.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">ITV GERMANY <span style="color:#6B7280;">&middot; 4.2 km (2.6 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Office Berlin <span style="color:#6B7280;">&middot; 3.5 km (2.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;ITV GERMANY <span style="color:#6B7280;">&middot; 4.2 km (2.6 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/Berlin%20Mayor%20Kai%20Wegner%20Step" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 1 more assets &rarr;</a></div>
@@ -4387,13 +4331,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Port-au-Prince</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Port-au-Prince</span><span style="color:#6B7280;">, Haiti</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -4436,12 +4378,12 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (4 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">hotel haiti port au prince <span style="color:#6B7280;">&middot; 5.1 km (3.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Haiti International Airport <span style="color:#6B7280;">&middot; 6.9 km (4.3 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;hotel haiti port au prince <span style="color:#6B7280;">&middot; 5.1 km (3.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Haiti International Airport <span style="color:#6B7280;">&middot; 6.9 km (4.3 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Aeroport International Toussaint Louverture <span style="color:#6B7280;">&middot; 7.4 km (4.6 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Haiti - Port au Prince <span style="color:#6B7280;">&middot; 8.2 km (5.1 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Aeroport International Toussaint Louverture <span style="color:#6B7280;">&middot; 7.4 km (4.6 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Haiti - Port au Prince <span style="color:#6B7280;">&middot; 8.2 km (5.1 mi)</span></td>
           </tr>
         </table>
       </td></tr>
@@ -4511,13 +4453,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Bangalore</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Bangalore</span><span style="color:#6B7280;">, India</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -4560,8 +4500,8 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (2 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Bangalore Asset <span style="color:#6B7280;">&middot; 2.0 km (1.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Palo Alto - India <span style="color:#6B7280;">&middot; 7.2 km (4.5 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Bangalore Asset <span style="color:#6B7280;">&middot; 2.0 km (1.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Palo Alto - India <span style="color:#6B7280;">&middot; 7.2 km (4.5 mi)</span></td>
           </tr>
         </table>
       </td></tr>
@@ -4631,13 +4571,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Jerusalem</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Jerusalem</span><span style="color:#6B7280;">, Israel</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -4680,8 +4618,8 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (2 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">U.S. Embassy Jerusalem, Israel <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">US Embassy - Israel <span style="color:#6B7280;">&middot; 2.5 km (1.6 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;U.S. Embassy Jerusalem, Israel <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;US Embassy - Israel <span style="color:#6B7280;">&middot; 2.5 km (1.6 mi)</span></td>
           </tr>
         </table>
       </td></tr>
@@ -4751,12 +4689,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Kenya</span><span style="color:#6B7280;"></span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -4799,7 +4736,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">USCIS Nairobi <span style="color:#6B7280;">&middot; 123.2 km (76.6 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;USCIS Nairobi <span style="color:#6B7280;">&middot; 123.2 km (76.6 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -4870,13 +4807,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Tripoli</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Tripoli</span><span style="color:#6B7280;">, Libya</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -4919,15 +4854,15 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (5 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Port of Tripoli <span style="color:#6B7280;">&middot; &lt; 0.1 km (&lt; 0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Corinthia Hotel Tripoli <span style="color:#6B7280;">&middot; 1.9 km (1.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Port of Tripoli <span style="color:#6B7280;">&middot; &lt; 0.1 km (&lt; 0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Corinthia Hotel Tripoli <span style="color:#6B7280;">&middot; 1.9 km (1.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Tripoli <span style="color:#6B7280;">&middot; 1.9 km (1.2 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Venue- Libya Energy summit <span style="color:#6B7280;">&middot; 2.8 km (1.8 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Tripoli <span style="color:#6B7280;">&middot; 1.9 km (1.2 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Venue- Libya Energy summit <span style="color:#6B7280;">&middot; 2.8 km (1.8 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Mitiga International, Tripoli Libya <span style="color:#6B7280;">&middot; 8.3 km (5.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Mitiga International, Tripoli Libya <span style="color:#6B7280;">&middot; 8.3 km (5.2 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -4998,13 +4933,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Gaza</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Gaza</span><span style="color:#6B7280;">, Palestinian Territories</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -5047,7 +4980,7 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (1 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Palestine <span style="color:#6B7280;">&middot; 3.3 km (2.1 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Palestine <span style="color:#6B7280;">&middot; 3.3 km (2.1 mi)</span></td>
             <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"></td>
           </tr>
         </table>
@@ -5117,13 +5050,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Belgrade</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Belgrade</span><span style="color:#6B7280;">, Serbia</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -5166,8 +5097,8 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (2 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">U.S. Embassy Belgrade, Serbia <span style="color:#6B7280;">&middot; 3.7 km (2.3 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">JetBrains Serbia <span style="color:#6B7280;">&middot; 4.6 km (2.8 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;U.S. Embassy Belgrade, Serbia <span style="color:#6B7280;">&middot; 3.7 km (2.3 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;JetBrains Serbia <span style="color:#6B7280;">&middot; 4.6 km (2.8 mi)</span></td>
           </tr>
         </table>
       </td></tr>
@@ -5236,13 +5167,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">New Taipei, Taipei, Keelung</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">New Taipei, Taipei, Keelung</span><span style="color:#6B7280;">, Taiwan (China)</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -5285,8 +5214,8 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (2 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">American Institute in Taiwan - Taipei, Taiwan <span style="color:#6B7280;">&middot; 4.5 km (2.8 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">DEA-Taiwan <span style="color:#6B7280;">&middot; 6.7 km (4.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;American Institute in Taiwan - Taipei, Taiwan <span style="color:#6B7280;">&middot; 4.5 km (2.8 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;DEA-Taiwan <span style="color:#6B7280;">&middot; 6.7 km (4.2 mi)</span></td>
           </tr>
         </table>
       </td></tr>
@@ -5355,13 +5284,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">London</span><span style="color:#6B7280;"></span></div>
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">London</span><span style="color:#6B7280;">, United Kingdom</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -5404,16 +5331,16 @@
         <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (24 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">U.S. Embassy London, United Kingdom <span style="color:#6B7280;">&middot; 0.2 km (0.1 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Covent Garden <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;U.S. Embassy London, United Kingdom <span style="color:#6B7280;">&middot; 0.2 km (0.1 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Covent Garden <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">10 Downing Street <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">Downing Street Example <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;10 Downing Street <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Downing Street Example <span style="color:#6B7280;">&middot; 0.6 km (0.4 mi)</span></td>
           </tr>
           <tr>
-            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">London Hotel <span style="color:#6B7280;">&middot; 0.7 km (0.4 mi)</span></td>
-            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;">London Eye <span style="color:#6B7280;">&middot; 0.7 km (0.5 mi)</span></td>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;London Hotel <span style="color:#6B7280;">&middot; 0.7 km (0.4 mi)</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;London Eye <span style="color:#6B7280;">&middot; 0.7 km (0.5 mi)</span></td>
           </tr>
         </table>
         <div style="margin-top:8px;"><a href="https://app.seerist.com/content/%40TRobinsonNewEra%20%40Keir_Starm" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 18 more assets &rarr;</a></div>

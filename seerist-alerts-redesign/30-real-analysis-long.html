@@ -122,11 +122,6 @@
       </tr>
       </table>
 
-      <!-- MAIN LOCATION, above the headline. Country only, or region when no
-           country resolved. Several countries render as equals, no bolding of
-           one over another. -->
-      <div data-testid="main-location" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;color:#334155;margin-top:8px;">Argentina</div>
-
       <div data-testid="content-title" style="padding:7px 0 0 0;">
         <a href="https://app.seerist.com/content/arg-labour" style="color:#0F172A;text-decoration:none;font-size:15px;line-height:1.45;font-weight:bold;font-family:'Archivo',Arial,sans-serif;">
           Union divisions to contain labour disruption risk into 2027
@@ -148,12 +143,11 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, its own row, and only when it adds something the country
-           row above does not. City and county only: a region is broader than a
-           country so it belongs on top, and repeating the country here was the
-           redundancy flagged in the Inbox audit. The whole row is inside the
-           conditional, so a country-only item renders no empty row. -->
-      
+      <!-- LOCATION, one row with the whole hierarchy: city, county, country,
+           region. Deliberately a single line rather than a separate country row
+           above the headline, so there is one place to look. Smallest unit reads
+           bold, wider ones muted; several values at the same level read alike. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Argentina</span><span style="color:#6B7280;">, Americas</span></div>
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
