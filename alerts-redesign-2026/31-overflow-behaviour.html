@@ -1,0 +1,77 @@
+<title>Overflow behaviour</title>
+<style>
+ :root{color-scheme:light dark;--g:#F6F8F7;--p:#fff;--p2:#F0F4F2;--i:#0F172A;--i2:#33443E;--m:#6B7A75;--l:#DDE4E1;--a:#00702B}
+ @media (prefers-color-scheme:dark){:root{--g:#0A1210;--p:#101A17;--p2:#16211E;--i:#E9F0ED;--i2:#C2D0CB;--m:#8A9B95;--l:#22302C;--a:#3CD177}}
+ :root[data-theme="dark"]{--g:#0A1210;--p:#101A17;--p2:#16211E;--i:#E9F0ED;--i2:#C2D0CB;--m:#8A9B95;--l:#22302C;--a:#3CD177}
+ :root[data-theme="light"]{--g:#F6F8F7;--p:#fff;--p2:#F0F4F2;--i:#0F172A;--i2:#33443E;--m:#6B7A75;--l:#DDE4E1;--a:#00702B}
+ *{box-sizing:border-box}body{margin:0;background:var(--g);color:var(--i);line-height:1.6;
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+ .page{max-width:820px;margin:0 auto;padding:44px 24px 80px}
+ h1{font-family:"Avenir Next","Segoe UI",system-ui;letter-spacing:-0.02em;font-size:clamp(23px,3.4vw,29px);font-weight:600;margin:0 0 10px}
+ .lede{margin:0 0 26px;max-width:70ch;font-size:15.5px;color:var(--i2)}
+ .c{background:var(--p);border:1px solid var(--l);border-radius:11px;padding:15px 18px;margin-bottom:11px}
+ .t{font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--m)}
+ .n{font-size:12.5px;color:var(--m);margin:2px 0 10px}
+ .note{background:var(--p);border:1px solid var(--l);border-left:3px solid var(--a);
+  border-radius:11px;padding:16px 19px;margin-top:22px;font-size:14.5px;color:var(--i2)}
+ .note strong{color:var(--i)}.note p{margin:0 0 9px}.note p:last-child{margin:0}
+</style>
+<div class="page">
+<h1>Overflow behaviour, field by field</h1>
+<p class="lede">Each row is the real single-alert template rendered with only that field changed,
+shown once within its cap and once over it. The cap always lives in the backend; the template just
+prints whatever remainder it is handed.</p>
+<div class="c"><div class="t">Location, within the cap</div><div class="n">four values or fewer, nothing held back</div><div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Philadelphia</span><span style="color:#6B7280;">, United States</span></div></div>
+<div class="c"><div class="t">Location, over the cap</div><div class="n">nine countries: three sent, six reported</div><div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">United Kingdom, Canada, Vietnam</span><span style="color:#6B7280;"></span><span style="color:#6B7280;">&nbsp;+6 more</span></div></div>
+<div class="c"><div class="t">Location, hierarchy over the cap</div><div class="n">overflow works at any level of the hierarchy</div><div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Brooklyn</span><span style="color:#6B7280;">, Kings County, United States</span><span style="color:#6B7280;">&nbsp;+2 more</span></div></div>
+<div class="c"><div class="t">Sources, within the cap</div><div class="n">two sources, no overflow</div><span data-testid="content-sources"><span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Source:</b></span> <span style="color:#334155;font-weight:normal;"><a style="color:#00702B;text-decoration:none;font-weight:bold;" href="#">bloomberg.com</a>, <a style="color:#00702B;text-decoration:none;font-weight:bold;" href="#">reuters.com</a></span></span></div>
+<div class="c"><div class="t">Sources, over the cap</div><div class="n">ten sources: three shown, seven reported</div><span data-testid="content-sources"><span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Source:</b></span> <span style="color:#334155;font-weight:normal;"><a style="color:#00702B;text-decoration:none;font-weight:bold;" href="#">bloomberg.com</a>, <a style="color:#00702B;text-decoration:none;font-weight:bold;" href="#">reuters.com</a>, <a style="color:#00702B;text-decoration:none;font-weight:bold;" href="#">apnews.com</a> <span style="color:#6B7280;">+7 more</span></span></div>
+<div class="c"><div class="t">Assets, within the cap</div><div class="n">four assets, two columns, nothing held back</div><table data-testid="nearby-assets" role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:12px;background:#F8FAFC;border-radius:6px;">
+      <tr><td style="padding:12px 14px;">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (4 total)</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset A <span style="color:#6B7280;">&middot; 0.3 km</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset B <span style="color:#6B7280;">&middot; 0.7 km</span></td>
+          </tr>
+          <tr>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset C <span style="color:#6B7280;">&middot; 1.1 km</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset D <span style="color:#6B7280;">&middot; 1.5 km</span></td>
+          </tr>
+        </table>
+      </td></tr>
+      </table></div>
+<div class="c"><div class="t">Assets, over the cap</div><div class="n">twenty-five total: six shown, the rest behind the link</div><table data-testid="nearby-assets" role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:12px;background:#F8FAFC;border-radius:6px;">
+      <tr><td style="padding:12px 14px;">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (25 total)</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset A <span style="color:#6B7280;">&middot; 0.3 km</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset B <span style="color:#6B7280;">&middot; 0.7 km</span></td>
+          </tr>
+          <tr>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset C <span style="color:#6B7280;">&middot; 1.1 km</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset D <span style="color:#6B7280;">&middot; 1.5 km</span></td>
+          </tr>
+          <tr>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset E <span style="color:#6B7280;">&middot; 1.9 km</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset F <span style="color:#6B7280;">&middot; 2.3 km</span></td>
+          </tr>
+        </table>
+        <div style="margin-top:8px;"><a href="#" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#00702B;text-decoration:none;font-weight:bold;">+ 19 more assets &rarr;</a></div>
+      </td></tr>
+      </table></div>
+<div class="c"><div class="t">Risk, long list, no cap</div><div class="n">real value from the inbox. No cap applied, so it renders in full</div><span data-testid="content-risk-types"><span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Risk:</b></span> <span style="color:#334155;font-weight:normal;">Security, Operational, Maritime, Maritime: War, Political, Political: Stability</span></span></div>
+<div class="c"><div class="t">Tags, long list, no cap</div><div class="n">seven tags, all rendered</div><span data-testid="content-tags"><span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Tags:</b></span> <span style="color:#334155;font-weight:normal;">Federal Building, Downtown, High Priority, Infrastructure, Transport, Energy, Port</span></span></div>
+<div class="note">
+<p><strong>Where each cap comes from.</strong> Location is capped at ten values or about a hundred
+characters, whichever hits first, and reports the rest in <code>locationsHiddenCount</code>. Sources
+show three and report <code>sourcesHiddenCount</code>. Assets show six in two columns and report
+<code>nearbyAssetsHiddenCount</code>, which becomes a link rather than plain text because the rest
+are worth clicking through for.</p>
+<p><strong>Risk and Tags have no cap.</strong> They render in full however long they get. The Risk
+example above is a real value from your inbox, and it shows the problem: parents are listed alongside
+their own children, so six values carry three values worth of information. Worth capping, or worth
+fixing upstream.</p>
+</div>
+</div>
