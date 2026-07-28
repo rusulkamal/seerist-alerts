@@ -25,8 +25,8 @@
         {
           "name": "United States", "count": 5,
           "items": [
-            { "type": "Breaking", "badgeLabel": "Breaking", "badgeBg": "#FFEAEB",
-              "badgeColor": "#BA1A1F", "occurredAt": "...", "topics": [...],
+            { "type": "Breaking", "badgeLabel": "Breaking", "badgeBg": "#FEE2E2",
+              "badgeColor": "#B91C1C", "occurredAt": "...", "topics": [...],
               "cities": [...], "counties": [...], "countries": [...], "regions": [...],
               "contentUrl": "...", "title": "...", "provider": "...", "body": "...",
               "summary": "...", "riskTypes": [...], "eventCategories": [...],
@@ -174,14 +174,13 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, on its own row so it never has to be picked out of a run
-           of other metadata. Weighting: when there is a hierarchy (a city inside
-           a country) the smallest unit reads bold and the wider ones muted. When
-           the values are peers (several countries) they all read the same, since
-           bolding one would imply a ranking that does not exist. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;
-        <span style="color:#334155;font-weight:bold;">New York</span><span style="color:#6B7280;">, United States</span>
-        </div>
+      <!-- LOCATION, its own row, and only when it adds something the country
+           row above does not. City and county only: a region is broader than a
+           country so it belongs on top, and repeating the country here was the
+           redundancy flagged in the Inbox audit. The whole row is inside the
+           conditional, so a country-only item renders no empty row. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">New York</span><span style="color:#6B7280;"></span></div>
+      
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -214,18 +213,15 @@
         <span data-testid="content-published"> <span style="color:#CBD5E1;">&middot;</span> <span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Published:</b></span> <span style="color:#334155;font-weight:normal;">Jul 20, 2026 14:31 UTC</span></span>
       </div>
 
-      <!-- impacted assets — swapped CSS column-count (unsupported in Outlook)
-           for a plain table, which behaves the same everywhere -->
+      <!-- NEARBY ASSETS, two columns to save vertical space. Built as a real
+           table with two cells per row rather than CSS column-count, which
+           Outlook ignores. The backend supplies nearbyAssetRows as an array of
+           rows, each holding up to two assets, because Handlebars cannot chunk a
+           list into pairs on its own. Six shown, remainder behind the link. -->
       <table data-testid="nearby-assets" role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:12px;background:#F8FAFC;border-radius:6px;">
       <tr><td style="padding:12px 14px;">
-        <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:6px;">Nearby Assets (2 total)</div>
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (2 total)</div>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-          <tr><td style="padding:5px 0;border-bottom:1px solid #EEF1F5;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
-            Asset A <span style="color:#6B7280;">&middot; 0.3 km (0.2 mi)</span>
-          </td></tr>
-          <tr><td style="padding:5px 0;border-bottom:1px solid #EEF1F5;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;">
-            Asset B <span style="color:#6B7280;">&middot; 1.1 km (0.7 mi)</span>
-          </td></tr>
         </table>
       </td></tr>
       </table>
@@ -294,14 +290,13 @@
       <!-- stability score — this was already a table in the real template, so
            it needed no structural fix, only restyling -->
 
-      <!-- LOCATION, on its own row so it never has to be picked out of a run
-           of other metadata. Weighting: when there is a hierarchy (a city inside
-           a country) the smallest unit reads bold and the wider ones muted. When
-           the values are peers (several countries) they all read the same, since
-           bolding one would imply a ranking that does not exist. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;
-        <span style="color:#334155;font-weight:bold;">Sanaa</span><span style="color:#6B7280;">, Yemen</span>
-        </div>
+      <!-- LOCATION, its own row, and only when it adds something the country
+           row above does not. City and county only: a region is broader than a
+           country so it belongs on top, and repeating the country here was the
+           redundancy flagged in the Inbox audit. The whole row is inside the
+           conditional, so a country-only item renders no empty row. -->
+      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">Sanaa</span><span style="color:#6B7280;"></span></div>
+      
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -334,8 +329,11 @@
         <span data-testid="content-published"> <span style="color:#CBD5E1;">&middot;</span> <span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Published:</b></span> <span style="color:#334155;font-weight:normal;">Jul 20, 2026 13:45 UTC</span></span>
       </div>
 
-      <!-- impacted assets — swapped CSS column-count (unsupported in Outlook)
-           for a plain table, which behaves the same everywhere -->
+      <!-- NEARBY ASSETS, two columns to save vertical space. Built as a real
+           table with two cells per row rather than CSS column-count, which
+           Outlook ignores. The backend supplies nearbyAssetRows as an array of
+           rows, each holding up to two assets, because Handlebars cannot chunk a
+           list into pairs on its own. Six shown, remainder behind the link. -->
 
       <!-- Per-item action is a quiet text link, not a button. See the
            digest-level CTA near the top of the email. -->
@@ -417,14 +415,12 @@
       </tr>
       </table>
 
-      <!-- LOCATION, on its own row so it never has to be picked out of a run
-           of other metadata. Weighting: when there is a hierarchy (a city inside
-           a country) the smallest unit reads bold and the wider ones muted. When
-           the values are peers (several countries) they all read the same, since
-           bolding one would imply a ranking that does not exist. -->
-      <div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;
-        <span style="color:#334155;font-weight:bold;">Congo (DRC)</span>
-        </div>
+      <!-- LOCATION, its own row, and only when it adds something the country
+           row above does not. City and county only: a region is broader than a
+           country so it belongs on top, and repeating the country here was the
+           redundancy flagged in the Inbox audit. The whole row is inside the
+           conditional, so a country-only item renders no empty row. -->
+      
 
       <!-- METADATA. Location is no longer in this line, so it does not start
            with a field that always renders. Each field therefore checks whether
@@ -457,8 +453,11 @@
         <span data-testid="content-published"> <span style="color:#CBD5E1;">&middot;</span> <span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Published:</b></span> <span style="color:#334155;font-weight:normal;">Jul 20, 2026 14:02 UTC</span></span>
       </div>
 
-      <!-- impacted assets — swapped CSS column-count (unsupported in Outlook)
-           for a plain table, which behaves the same everywhere -->
+      <!-- NEARBY ASSETS, two columns to save vertical space. Built as a real
+           table with two cells per row rather than CSS column-count, which
+           Outlook ignores. The backend supplies nearbyAssetRows as an array of
+           rows, each holding up to two assets, because Handlebars cannot chunk a
+           list into pairs on its own. Six shown, remainder behind the link. -->
 
       <!-- Per-item action is a quiet text link, not a button. See the
            digest-level CTA near the top of the email. -->
