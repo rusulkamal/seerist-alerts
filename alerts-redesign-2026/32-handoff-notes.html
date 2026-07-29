@@ -1,0 +1,239 @@
+<title>Alert Email Redesign — Handoff Notes</title>
+<style>
+  :root{color-scheme:light dark;
+    --g:#F6F8F7;--p:#fff;--p2:#F0F4F2;--i:#0F172A;--i2:#33443E;--m:#6B7A75;
+    --l:#DDE4E1;--ls:#C3CFCA;--a:#00702B;--w:#B45309;--ws:#FBEEDC;--r:#B3261E;--rs:#FBE7E8;--code:#EEF3F1}
+  @media (prefers-color-scheme:dark){:root{
+    --g:#0A1210;--p:#101A17;--p2:#16211E;--i:#E9F0ED;--i2:#C2D0CB;--m:#8A9B95;
+    --l:#22302C;--ls:#31423D;--a:#3CD177;--w:#E9A23B;--ws:#2A2013;--r:#F1707A;--rs:#2B1517;--code:#16211E}}
+  :root[data-theme="dark"]{--g:#0A1210;--p:#101A17;--p2:#16211E;--i:#E9F0ED;--i2:#C2D0CB;
+    --m:#8A9B95;--l:#22302C;--ls:#31423D;--a:#3CD177;--w:#E9A23B;--ws:#2A2013;--r:#F1707A;--rs:#2B1517;--code:#16211E}
+  :root[data-theme="light"]{--g:#F6F8F7;--p:#fff;--p2:#F0F4F2;--i:#0F172A;--i2:#33443E;
+    --m:#6B7A75;--l:#DDE4E1;--ls:#C3CFCA;--a:#00702B;--w:#B45309;--ws:#FBEEDC;--r:#B3261E;--rs:#FBE7E8;--code:#EEF3F1}
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--g);color:var(--i);line-height:1.62;
+       font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+  .page{max-width:940px;margin:0 auto;padding:44px 24px 88px}
+  .display{font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;letter-spacing:-0.02em}
+
+  header.mast{border-bottom:1px solid var(--ls);padding-bottom:26px;margin-bottom:14px}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--a);margin-bottom:11px}
+  .tag{display:inline-block;margin-left:8px;padding:3px 9px;border-radius:5px;background:var(--ws);
+       color:var(--w);font-size:10.5px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;vertical-align:1px}
+  h1{font-size:clamp(25px,3.8vw,32px);font-weight:600;margin:0 0 12px;text-wrap:balance;line-height:1.15}
+  .lede{margin:0;max-width:68ch;font-size:16px;color:var(--i2)}
+
+  h2{font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;letter-spacing:-0.01em;
+     font-size:19px;font-weight:600;margin:38px 0 4px}
+  .sub{font-size:14px;color:var(--m);margin:0 0 14px;max-width:70ch}
+  p{margin:0 0 12px;font-size:14.5px;color:var(--i2);max-width:74ch}
+
+  .tw{overflow-x:auto;border:1px solid var(--l);border-radius:11px;background:var(--p)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+  th{text-align:left;padding:11px 14px;font-size:11px;letter-spacing:0.07em;text-transform:uppercase;
+     color:var(--m);font-weight:700;background:var(--p2);border-bottom:1px solid var(--ls);vertical-align:top}
+  td{padding:10px 14px;border-top:1px solid var(--l);vertical-align:top;color:var(--i2)}
+  tbody tr:first-child td{border-top:0}
+  td.k{color:var(--i);white-space:nowrap}
+  code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:0.87em;background:var(--code);
+       border:1px solid var(--l);padding:1px 5px;border-radius:4px;white-space:nowrap}
+  .sw{display:inline-block;width:11px;height:11px;border-radius:3px;border:1px solid rgba(0,0,0,.12);
+      vertical-align:-1px;margin-right:6px}
+
+  .chip{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.4px;padding:3px 9px;
+        border-radius:10px;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;white-space:nowrap}
+
+  ol.f{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--i2)}
+  ol.f b{color:var(--i)}
+  ul.p{margin:0 0 12px;padding-left:19px;font-size:14.5px;color:var(--i2);display:flex;flex-direction:column;gap:6px}
+
+  .box{border:1px solid var(--l);border-radius:11px;background:var(--p);overflow:hidden}
+  .item{display:grid;grid-template-columns:auto minmax(0,1fr);gap:13px;padding:14px 18px;border-top:1px solid var(--l)}
+  .item:first-child{border-top:0}
+  .bar{width:3px;border-radius:2px;background:var(--r)}
+  .bar.amber{background:var(--w)}
+  .item h3{margin:0 0 2px;font-size:14.5px;font-weight:600;color:var(--i)}
+  .item p{margin:0;font-size:13.5px;color:var(--m);max-width:none}
+
+  .links{border:1px solid var(--l);border-radius:11px;overflow:hidden;background:var(--p)}
+  a.rd{display:block;padding:14px 18px;border-top:1px solid var(--l);text-decoration:none;color:inherit}
+  a.rd:first-child{border-top:0}
+  a.rd:hover{background:var(--p2)}
+  a.rd strong{display:block;font-size:15px;font-weight:600;margin-bottom:2px;color:var(--i)}
+  a.rd span{font-size:13.5px;color:var(--m)}
+  footer{border-top:1px solid var(--l);margin-top:40px;padding-top:20px;font-size:13px;color:var(--m)}
+  footer a{color:var(--a)}
+</style>
+
+<div class="page">
+
+  <header class="mast">
+    <div class="eyebrow">Seerist &middot; Alert emails &middot; July 2026 <span class="tag">Concept design</span></div>
+    <h1 class="display">Handoff notes</h1>
+    <p class="lede">What the redesign changes, what it needs from the data, and what is still open.
+    Written for whoever builds it. Nothing here is scheduled; treat it as the design brief rather
+    than a ticket.</p>
+  </header>
+
+  <h2 class="display">Read this first</h2>
+  <p class="sub">Three things that change how you should read everything below.</p>
+  <div class="box">
+    <div class="item"><div class="bar"></div><div>
+      <h3>This covers 2 of your 12 live templates</h3>
+      <p>The production set splits into two generations with incompatible data shapes. The
+      <code>content.*</code> pair (single and batch) is what this redesign replaces. The other ten are
+      flat and snake_case (<code>num_nearby_assets</code>, <code>common_src</code>) and share no field
+      names with it. "The alerts redesign" sounds broader than what exists.</p>
+    </div></div>
+    <div class="item"><div class="bar amber"></div><div>
+      <h3>Grouping, capping and banding all happen server-side</h3>
+      <p>The template stays substitution and loops. It cannot group by country, chunk a list into
+      pairs, band a severity score, or compare two dates. Anything of that kind is listed in the data
+      contract below.</p>
+    </div></div>
+    <div class="item"><div class="bar amber"></div><div>
+      <h3>The previews are real rendered output</h3>
+      <p>Every example on this site comes from running the actual template through a Handlebars engine
+      with SendGrid's helper set, using real content from the inbox. Asset names are replaced with
+      placeholders because the site is public; everything else is real.</p>
+    </div></div>
+  </div>
+
+  <h2 class="display">What changed, and why</h2>
+  <p class="sub">Grouped by the problem each one solves.</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:23%">Change</th><th>Reason</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Header</td><td>Green 6px rule, alert name left, Seerist mark right at 44&times;33. The old dark bar with a typeset wordmark is gone. Alert type is out of the header entirely, since there are no alert types any more except Pulse.</td></tr>
+      <tr><td class="k">Eyebrow, two columns</td><td>Left: date, then time when there is one, then category. Right: content type, then severity when it has been assessed. Built as a table row, because Outlook does not reliably support <code>float</code> or <code>position:absolute</code>.</td></tr>
+      <tr><td class="k">Headline first</td><td>Headline sits directly above the description with everything else below it, in descending order of how often anyone needs it. Location and topic were previously buried.</td></tr>
+      <tr><td class="k">One location row</td><td>Pin, then the full hierarchy on a single line below the description. Smallest unit reads bold, wider ones muted, and values at the same level all read alike. Replaces a separate country line, which repeated the country twice per item.</td></tr>
+      <tr><td class="k">Metadata line</td><td>One flowing middot-joined line. Labels muted and bold, values darker, because the value is the information and the label is scaffolding. Every value carries a label.</td></tr>
+      <tr><td class="k">Nearby assets</td><td>Two columns with bullets, six shown, remainder behind a link. Renamed from "Impacted Assets" to match the field names. Built as a table, not CSS <code>column-count</code>, which Outlook ignores.</td></tr>
+      <tr><td class="k">Actions</td><td>One quiet green text link per item. A digest also gets a single filled button near the top, and another in the preview-cap notice. No per-item buttons.</td></tr>
+      <tr><td class="k">Digest structure</td><td>Jump list, then a section per country with a heavy dark divider. Every anchor carries <code>clicktracking="off"</code>, without which SendGrid rewrites the href and the jump silently stops working.</td></tr>
+      <tr><td class="k">Status row removed</td><td>It printed "Status: Breaking" under a BREAKING chip. The spec does document a Status property, so this is a deliberate deviation rather than an omission.</td></tr>
+      <tr><td class="k">Contrast</td><td>Links moved from <code>#00AB41</code> to <code>#00702B</code> and muted text from <code>#94A3B8</code> to <code>#6B7280</code>. The old values measured 3.04:1 and 2.56:1, both below WCAG AA for small text.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="display">Type and colour</h2>
+  <p class="sub">Severity colours are sampled from the Content/Discover Figma rather than approximated. Every pairing clears WCAG AA at the size it is used.</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:26%">Token</th><th style="width:26%">Value</th><th>Applies to</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Section heading</td><td><code>17px</code> bold</td><td>Country heading in a digest. Outranks the items inside it.</td></tr>
+      <tr><td class="k">Headline</td><td><code>15px</code> bold</td><td>Was 19px, which made items louder than their own section.</td></tr>
+      <tr><td class="k">Body</td><td><code>13px</code></td><td>Description and analysis paragraphs</td></tr>
+      <tr><td class="k">Metadata</td><td><code>11.5px</code></td><td>Label <code>#6B7280</code> bold, value <code>#334155</code></td></tr>
+      <tr><td class="k">Location</td><td><code>11px</code></td><td>Smallest unit <code>#334155</code> bold, wider <code>#6B7280</code></td></tr>
+      <tr><td class="k">Chips</td><td><code>9.5px</code> bold caps</td><td>Type and severity</td></tr>
+      <tr><td class="k">High Severity</td><td><span class="chip" style="background:#FEE2E2;color:#B91C1C">High Severity</span></td><td><code>#B91C1C</code> on <code>#FEE2E2</code> &middot; 5.30:1</td></tr>
+      <tr><td class="k">Medium Severity</td><td><span class="chip" style="background:#FFEDD5;color:#C2410C">Medium Severity</span></td><td><code>#C2410C</code> on <code>#FFEDD5</code> &middot; 4.52:1</td></tr>
+      <tr><td class="k">Low Severity</td><td><span class="chip" style="background:#F1F5F9;color:#475569">Low Severity</span></td><td><code>#475569</code> on <code>#F1F5F9</code> &middot; 6.92:1</td></tr>
+      <tr><td class="k">Breaking</td><td><span class="chip" style="background:#FEE2E2;color:#B91C1C">Breaking</span></td><td>The only red type chip</td></tr>
+      <tr><td class="k">Verified</td><td><span class="chip" style="background:#E9F5FF;color:#1F569F">Verified</span></td><td>The only blue one. Includes Maritime.</td></tr>
+      <tr><td class="k">Threshold family</td><td><span class="chip" style="background:#FEF3C7;color:#92400E">Risk Rating</span></td><td>Evacuation Change, Pulse Score Change, Risk Rating Change. A true yellow, deliberately not the orange Medium Severity uses, so the two scales stay tellable apart.</td></tr>
+      <tr><td class="k">Analyst content</td><td><span class="chip" style="background:#E5FFEF;color:#00702B">Analysis</span></td><td>Analysis Briefing, Regional Outlook, Cyber Report</td></tr>
+      <tr><td class="k">Everything else</td><td><span class="chip" style="background:#F1F5F9;color:#475569">News</span></td><td>Planned Event, Hotspot, News, Social</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="display">What the backend needs to supply</h2>
+  <p class="sub">Everything else uses fields the builder already emits. These are the exceptions, and the ones marked "confirm" are genuine questions rather than instructions.</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:27%">Field</th><th style="width:13%">Kind</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td class="k"><code>severityBand</code></td><td>New</td><td>Exactly <code>High</code>, <code>Medium</code> or <code>Low</code>. Drives the coloured severity chip. Banding must be server-side because raw values are mixed formats (<code>7/10</code>, <code>Moderate</code>). The raw value still prints as <code>Severity Score:</code>.</td></tr>
+      <tr><td class="k"><code>occurredTime</code></td><td>New</td><td>Time only, e.g. <code>14:31 UTC</code>, sent only when the item genuinely has one. Kept separate from <code>occurredAt</code> because <code>formatDate</code> renders dates only, and forcing a time format onto a date-only item prints a false <code>00:00</code>.</td></tr>
+      <tr><td class="k"><code>locationsHiddenCount</code></td><td>New</td><td>Keeps the location row on one line. Send at most <strong>6</strong> location values, and stop earlier if the joined string would pass about <strong>100 characters</strong>. Both guards are needed: six ordinary country names fit, six long ones reach 107 characters and wrap. Remainder prints as <code>+N more</code>.</td></tr>
+      <tr><td class="k"><code>nearbyAssetRows</code><br><code>nearbyAssetsHiddenCount</code></td><td>New</td><td>Assets pre-paired into rows of two, six shown. Handlebars cannot chunk a list into pairs. A single asset should be sent as one row, since two columns for one item reads oddly.</td></tr>
+      <tr><td class="k"><code>badgeLabel</code> <code>badgeBg</code> <code>badgeColor</code></td><td>New</td><td>Precomputed type chip, so the template stays a variable swap. A zero-backend-change fallback using <code>equals</code> is included commented out.</td></tr>
+      <tr><td class="k"><code>sourcesHiddenCount</code></td><td>Exists</td><td>Three sources shown, remainder counted.</td></tr>
+      <tr><td class="k"><code>countries[]</code> with <code>items[]</code></td><td>Exists</td><td>Digest items must arrive pre-grouped by country, each group carrying its own count.</td></tr>
+      <tr><td class="k"><code>totalCount</code> / <code>shownCount</code></td><td>Exists</td><td><code>totalCount</code> is what the alert matched, not what the email renders. Above 50 the header switches to "shows N of M" and the preview-cap notice appears.</td></tr>
+      <tr><td class="k"><code>attackTypes</code></td><td>Confirm</td><td>Real field, but in <em>saved-search</em> it is a <strong>string</strong> while this template iterates it as an array like every other multi-value field. If a string arrives, the label renders with no values.</td></tr>
+      <tr><td class="k"><code>securityInterventionTypes</code></td><td>Confirm</td><td>Same question. Name taken verbatim from <em>saved-search</em>.</td></tr>
+      <tr><td class="k"><code>veracity</code></td><td>Confirm</td><td>Spec hides it when "Unknown Quality". Production does that in the template; simpler to omit the field entirely in that case.</td></tr>
+      <tr><td class="k"><code>endsAt</code></td><td>Naming</td><td>Appends an end date for Planned Events. Generation B already calls this <code>endDate</code>, which is the better name to keep. Same-day suppression must be a backend rule.</td></tr>
+      <tr><td class="k"><code>metaLine</code></td><td>Suggestion</td><td>Optional. See the technical risk below.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="display">One technical risk</h2>
+  <p>Most metadata fields are optional, so each one has to work out whether it needs a middot in front
+  of it or is the first thing on the line. The template answers that with nested <code>or</code>
+  subexpressions, up to thirteen deep on the last field.</p>
+  <p><strong><code>or</code> appears nowhere in your twelve production templates, and nothing in that
+  codebase nests subexpressions deeper than one level.</strong> It renders correctly in a standard
+  Handlebars engine, but SendGrid runs its own and this is well past anything your setup has been
+  proven to do. If it fails you would see middots in the wrong places, or that line disappearing.</p>
+  <p>The fix is small and it is a backend job: join the present metadata fields into one ready-made
+  <code>content.metaLine</code> string and print that. The template then never asks the question.</p>
+
+  <h2 class="display">Still open</h2>
+  <p class="sub">None of these block starting on the two templates.</p>
+  <div class="box">
+    <div class="item"><div class="bar"></div><div>
+      <h3>Sub-grouping inside long country sections</h3>
+      <p>A Must-have. With 31 US items the section is one unbroken run. Grouping should be by
+      <strong>content type</strong>, not category. Needs items pre-grouped by type within each country.</p>
+    </div></div>
+    <div class="item"><div class="bar"></div><div>
+      <h3>Cross-delivery-path consistency</h3>
+      <p>The Must-have that an alert type looks identical whether it arrives via Alerts or via Search
+      is not addressed. Realistically it depends on whether Generation B migrates onto this shape.</p>
+    </div></div>
+    <div class="item"><div class="bar amber"></div><div>
+      <h3>Unsubscribe link</h3>
+      <p>A Should-have, and absent from all twelve production templates too, so it is new build either
+      way. Spec calls for it to require login and route to the alerts table with the Edit modal open.</p>
+    </div></div>
+    <div class="item"><div class="bar amber"></div><div>
+      <h3>Risk lists parents alongside their own children</h3>
+      <p>Real values from the inbox: <code>Security, Operational, Maritime, Maritime: War</code> and
+      <code>Operational, Security, Political, Operational: Labour, Security: Civil Unrest, Political:
+      Stability</code>. Six values carrying three values of information. Seen on three separate alerts,
+      so it looks systematic. Better fixed upstream than capped in the template.</p>
+    </div></div>
+    <div class="item"><div class="bar amber"></div><div>
+      <h3>Severity barely exists in the data</h3>
+      <p>Across 45 real items, severity is present on 6 and categories on 16. The severity chip is
+      good design serving very little data on today's feed. Worth confirming whether that reflects the
+      pipeline or just these samples.</p>
+    </div></div>
+    <div class="item"><div class="bar amber"></div><div>
+      <h3>Two production bugs found while reading the templates</h3>
+      <p>Ten of the twelve load the logo over plain <code>http</code>, which corporate gateways block
+      and Gmail proxies. And in a real received alert the logo slot is <strong>empty</strong>, no
+      <code>&lt;img&gt;</code> at all. Separately, <code>{{#if country}}</code> wraps the whole heading
+      block in Hotspot and Risk Rating, so a city-only hotspot or a water-only maritime rating renders
+      no heading whatsoever.</p>
+    </div></div>
+    <div class="item"><div class="bar amber"></div><div>
+      <h3>Curation is out of scope, and it shows</h3>
+      <p>The Inbox audit's sharpest finding was a fatal shooting rendered with the same weight as a
+      tweet about a commemorative coin. Severity scoring was deferred, so that survives. This redesign
+      makes the email legible, not curated.</p>
+    </div></div>
+  </div>
+
+  <h2 class="display">Where to look</h2>
+  <div class="links">
+    <a class="rd" href="index.html"><strong>The design, in order</strong><span>Exploration, the template, all 14 event types, digests, and the subject line rule.</span></a>
+    <a class="rd" href="26-rendered-breaking.html"><strong>Single alert</strong><span>Real Breaking Event data, end to end.</span></a>
+    <a class="rd" href="27-rendered-digest-full.html"><strong>Digest at full scale</strong><span>45 real items across 14 countries. Shows the sub-grouping gap.</span></a>
+    <a class="rd" href="30-real-analysis-long.html"><strong>Long Analysis brief</strong><span>A real brief in full: bullets, subheadings, citations, and the repeated Risk values.</span></a>
+    <a class="rd" href="31-overflow-behaviour.html"><strong>Overflow behaviour</strong><span>Every capped field shown inside and over its cap.</span></a>
+    <a class="rd" href="22-per-type-templates.html"><strong>All 14 alert types</strong><span>Every type drawn by the same card.</span></a>
+    <a class="rd" href="https://seerist.atlassian.net/wiki/spaces/AAAS/pages/4807557124/Alerts+Redesign+July+2026" target="_blank" rel="noopener"><strong>Requirements and research</strong><span>Problem statement, Inbox audit, Proposed Solution, Template Metadata Reference. Confluence.</span></a>
+  </div>
+
+  <footer>
+    Concept design, July 2026. Scope is layout, hierarchy and consistency. Send frequency, volume and
+    content curation are separate workstreams. Field labels follow the Template Metadata Reference
+    (Confluence page 4807589892).
+  </footer>
+
+</div>
