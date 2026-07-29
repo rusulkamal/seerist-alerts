@@ -1,4 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
 <title>Alert Email Redesign — Handoff Notes</title>
+<style>*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
 <style>
   :root{color-scheme:light dark;
     --g:#F6F8F7;--p:#fff;--p2:#F0F4F2;--i:#0F172A;--i2:#33443E;--m:#6B7A75;
@@ -100,35 +109,48 @@
     </div></div>
   </div>
 
-  <h2 class="display">What changed, and why</h2>
-  <p class="sub">Grouped by the problem each one solves.</p>
+  <h2 class="display">What's different from the email people get today</h2>
+  <p class="sub">Read against the two live <code>content.*</code> templates. Most of these are not taste
+  calls: they are things the current template asks for and Outlook does not do, so what ships and what
+  lands in the inbox are already two different emails.</p>
   <div class="tw"><table>
-    <thead><tr><th style="width:23%">Change</th><th>Reason</th></tr></thead>
+    <thead><tr><th style="width:22%">&nbsp;</th><th style="width:39%">In the inbox today</th><th>In the redesign</th></tr></thead>
     <tbody>
-      <tr><td class="k">Header</td><td>Green 6px rule, alert name left, Seerist mark right at 44&times;33. The old dark bar with a typeset wordmark is gone. Alert type is out of the header entirely, since there are no alert types any more except Pulse.</td></tr>
-      <tr><td class="k">Eyebrow, two columns</td><td>Left: date, then time when there is one, then category. Right: content type, then severity when it has been assessed. Built as a table row, because Outlook does not reliably support <code>float</code> or <code>position:absolute</code>.</td></tr>
-      <tr><td class="k">Headline first</td><td>Headline sits directly above the description with everything else below it, in descending order of how often anyone needs it. Location and topic were previously buried.</td></tr>
-      <tr><td class="k">One location row</td><td>Pin, then the full hierarchy on a single line below the description. Smallest unit reads bold, wider ones muted, and values at the same level all read alike. Replaces a separate country line, which repeated the country twice per item.</td></tr>
-      <tr><td class="k">Metadata line</td><td>One flowing middot-joined line. Labels muted and bold, values darker, because the value is the information and the label is scaffolding. Every value carries a label.</td></tr>
-      <tr><td class="k">Nearby assets</td><td>Two columns with bullets, six shown, remainder behind a link. Renamed from "Impacted Assets" to match the field names. Built as a table, not CSS <code>column-count</code>, which Outlook ignores.</td></tr>
-      <tr><td class="k">Actions</td><td>One quiet green text link per item. A digest also gets a single filled button near the top, and another in the preview-cap notice. No per-item buttons.</td></tr>
-      <tr><td class="k">Digest structure</td><td>Jump list, then a section per country with a heavy dark divider. Every anchor carries <code>clicktracking="off"</code>, without which SendGrid rewrites the href and the jump silently stops working.</td></tr>
-      <tr><td class="k">Status row removed</td><td>It printed "Status: Breaking" under a BREAKING chip. The spec does document a Status property, so this is a deliberate deviation rather than an omission.</td></tr>
-      <tr><td class="k">Contrast</td><td>Links moved from <code>#00AB41</code> to <code>#00702B</code> and muted text from <code>#94A3B8</code> to <code>#6B7280</code>. The old values measured 3.04:1 and 2.56:1, both below WCAG AA for small text.</td></tr>
+      <tr><td class="k">Fonts</td><td>Archivo is loaded with <code>@font-face</code> from <code>app.seerist.com</code>, and Inter's <code>src</code> points at a Google Fonts <em>stylesheet</em> URL rather than a font file. Outlook ignores <code>@font-face</code> outright, and 41 declarations name a custom font with nothing after it, so those fall through to the client default, a serif on Outlook.</td><td>One Arial / Helvetica stack throughout. Less characterful than Archivo, but it is what people already see, and now it is what we designed against.</td></tr>
+      <tr><td class="k">The headline</td><td>A link in body-text grey with a dotted underline, four steps below the country heading above it. It reads like a caption, and the whole line is clickable without looking clickable.</td><td>Bold, near-black, no underline, clearly the loudest thing in the item. Clicking through moves to its own "View this alert" line so the affordance is visible.</td></tr>
+      <tr><td class="k">Country and city</td><td><code>Countries: Saudi Arabia</code> prints directly beneath a <code>Saudi Arabia</code> section heading, then <code>Cities:</code> comes as a third separate line. Three lines, two of them saying the same thing.</td><td>One pin row carrying the whole hierarchy, smallest unit first. The country appears once per item.</td></tr>
+      <tr><td class="k">Nearby assets</td><td><code>Impacted Assets</code> is a <code>&lt;ul&gt;</code> styled <code>column-count: 2</code>. Outlook ignores it, so twenty-five assets render as a twenty-five-line single column that pushes everything else off the screen.</td><td>Real table cells, so two columns everywhere. Six shown, the rest behind a link. Renamed to match the field names.</td></tr>
+      <tr><td class="k">Header layout</td><td>The name floats left and the logo floats right inside a fixed <code>height: 54px</code>. Outlook's <code>float</code> support is unreliable and a fixed height clips whatever overflows it.</td><td>A table row. Two cells, no floats, no fixed height.</td></tr>
+      <tr><td class="k">The logo</td><td>A 76&times;76 crop scaled to <code>height: 38px</code>, so a mark that is 360&times;267 gets squashed into a square. Ten of the twelve templates fetch it over plain <code>http</code>, which gateways block. In a real received alert the slot is <strong>empty</strong>.</td><td>Its real proportions, over <code>https</code>.</td></tr>
+      <tr><td class="k">Outer spacing</td><td>Set as <code>padding: 10px</code> and <code>margin: 10px</code> on <code>&lt;body&gt;</code>. Outlook strips both, so the content sits flush against the window edge.</td><td>Padding on a wrapper table cell, which survives.</td></tr>
+      <tr><td class="k">Small text contrast</td><td>Metadata is <code>#878787</code>, which measures <strong>3.59:1</strong>. Source links are <code>#10B981</code>, which measures <strong>2.54:1</strong>. WCAG AA wants 4.5:1 for text this size, so both fail, and the metadata is the part people squint at.</td><td><code>#6B7280</code> at <strong>4.83:1</strong> and <code>#00702B</code> at <strong>6.26:1</strong>. Same roles, both pass.</td></tr>
+      <tr><td class="k">Ranking</td><td>An item headline and the country heading above it sit four steps apart, so a digest reads as one flat run of equally loud things with no way in.</td><td>Section heading, then headline, then description, then metadata, each clearly quieter than the one above. The jump list gives a way in.</td></tr>
+      <tr><td class="k">Status row</td><td><code>Status: Breaking</code> prints directly under a BREAKING chip.</td><td>Gone. The spec does document a Status property, so this is a deliberate deviation, not an omission.</td></tr>
     </tbody>
   </table></div>
 
-  <h2 class="display">Type and colour</h2>
-  <p class="sub">Severity colours are sampled from the Content/Discover Figma rather than approximated. Every pairing clears WCAG AA at the size it is used.</p>
+  <h2 class="display">Decisions inside the new layout</h2>
+  <p class="sub">The choices that are not a response to something already broken. These are the arguable
+  ones, so the reasoning is here to be argued with.</p>
   <div class="tw"><table>
-    <thead><tr><th style="width:26%">Token</th><th style="width:26%">Value</th><th>Applies to</th></tr></thead>
+    <thead><tr><th style="width:23%">Decision</th><th>Reasoning</th></tr></thead>
     <tbody>
-      <tr><td class="k">Section heading</td><td><code>17px</code> bold</td><td>Country heading in a digest. Outranks the items inside it.</td></tr>
-      <tr><td class="k">Headline</td><td><code>15px</code> bold</td><td>Was 19px, which made items louder than their own section.</td></tr>
-      <tr><td class="k">Body</td><td><code>13px</code></td><td>Description and analysis paragraphs</td></tr>
-      <tr><td class="k">Metadata</td><td><code>11.5px</code></td><td>Label <code>#6B7280</code> bold, value <code>#334155</code></td></tr>
-      <tr><td class="k">Location</td><td><code>11px</code></td><td>Smallest unit <code>#334155</code> bold, wider <code>#6B7280</code></td></tr>
-      <tr><td class="k">Chips</td><td><code>9.5px</code> bold caps</td><td>Type and severity</td></tr>
+      <tr><td class="k">Order within an item</td><td>Headline, then description, then location, then metadata, in descending order of how often anyone needs it. Location and topic used to sit above the headline, which put the least specific thing first.</td></tr>
+      <tr><td class="k">Eyebrow, two columns</td><td>Left: date, then time when there is one, then category. Right: content type, then severity when it has been assessed. A table row rather than <code>float</code>, for the reason in the table above.</td></tr>
+      <tr><td class="k">One location row</td><td>Pin, then the full hierarchy on a single line. The smallest unit reads bold, wider ones muted, and values at the same level all read alike, so the shape of the line tells you how precise the location is.</td></tr>
+      <tr><td class="k">Metadata as one line</td><td>Middot-joined rather than one row per field. Labels muted and bold, values darker, because the value is the information and the label is scaffolding. Every value carries a label, since an unlabelled value on this feed is unreadable.</td></tr>
+      <tr><td class="k">Alert type out of the header</td><td>The header printed <code>{{name}} - {{formattedDocType}}</code>. Now it is the alert's own name only, as the user named it. Type belongs on the item, since a digest mixes types.</td></tr>
+      <tr><td class="k">Links, not buttons, per item</td><td>One quiet green text link per item. A digest gets a single filled button near the top and another in the preview-cap notice. Fifty buttons is fifty things competing.</td></tr>
+      <tr><td class="k">Digest structure</td><td>Jump list, then a section per country with a heavy dark divider. Every anchor carries <code>clicktracking="off"</code>, without which SendGrid rewrites the href and the jump silently stops working.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="display">Chips</h2>
+  <p class="sub">Colour follows the platform rather than the email: verified red, unverified blue, severity
+  on the three-step scale from Content/Discover. Every pairing clears WCAG AA at chip size.</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:26%">Applies to</th><th style="width:26%">Chip</th><th>Colour</th></tr></thead>
+    <tbody>
       <tr><td class="k">High Severity</td><td><span class="chip" style="background:#FEE2E2;color:#B91C1C">High Severity</span></td><td><code>#B91C1C</code> on <code>#FEE2E2</code> &middot; 5.30:1</td></tr>
       <tr><td class="k">Medium Severity</td><td><span class="chip" style="background:#FFEDD5;color:#C2410C">Medium Severity</span></td><td><code>#C2410C</code> on <code>#FFEDD5</code> &middot; 4.52:1</td></tr>
       <tr><td class="k">Low Severity</td><td><span class="chip" style="background:#F1F5F9;color:#475569">Low Severity</span></td><td><code>#475569</code> on <code>#F1F5F9</code> &middot; 6.92:1</td></tr>
@@ -237,3 +259,6 @@
   </footer>
 
 </div>
+
+</body>
+</html>
