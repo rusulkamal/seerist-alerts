@@ -65,6 +65,20 @@
   .item h3{margin:0 0 2px;font-size:14.5px;font-weight:600;color:var(--i)}
   .item p{margin:0;font-size:13.5px;color:var(--m);max-width:none}
 
+  /* Component gallery. Each element is the real markup lifted out of the
+     rendered template, sitting on a white ground so it reads the way it does
+     in an inbox rather than restyled to match this page. */
+  .gal{display:flex;flex-direction:column;gap:11px}
+  .cmp{display:grid;grid-template-columns:minmax(0,1fr);gap:0;border:1px solid var(--l);
+       border-radius:11px;background:var(--p);overflow:hidden}
+  @media (min-width:760px){.cmp{grid-template-columns:230px minmax(0,1fr)}}
+  .cmp .why{padding:15px 17px;border-bottom:1px solid var(--l)}
+  @media (min-width:760px){.cmp .why{border-bottom:0;border-right:1px solid var(--l)}}
+  .cmp .why h3{margin:0 0 3px;font-size:14px;font-weight:600;color:var(--i)}
+  .cmp .why p{margin:0;font-size:12.5px;color:var(--m);max-width:none}
+  .cmp .live{padding:17px;background:#ffffff;overflow-x:auto;color-scheme:light}
+  .cmp .live *{color-scheme:light}
+
   .links{border:1px solid var(--l);border-radius:11px;overflow:hidden;background:var(--p)}
   a.rd{display:block;padding:14px 18px;border-top:1px solid var(--l);text-decoration:none;color:inherit}
   a.rd:first-child{border-top:0}
@@ -109,41 +123,113 @@
     </div></div>
   </div>
 
-  <h2 class="display">What's different from the email people get today</h2>
-  <p class="sub">Read against the two live <code>content.*</code> templates. Most of these are not taste
-  calls: they are things the current template asks for and Outlook does not do, so what ships and what
-  lands in the inbox are already two different emails.</p>
-  <div class="tw"><table>
-    <thead><tr><th style="width:22%">&nbsp;</th><th style="width:39%">In the inbox today</th><th>In the redesign</th></tr></thead>
-    <tbody>
-      <tr><td class="k">Fonts</td><td>Archivo is loaded with <code>@font-face</code> from <code>app.seerist.com</code>, and Inter's <code>src</code> points at a Google Fonts <em>stylesheet</em> URL rather than a font file. Outlook ignores <code>@font-face</code> outright, and 41 declarations name a custom font with nothing after it, so those fall through to the client default, a serif on Outlook.</td><td>One Arial / Helvetica stack throughout. Less characterful than Archivo, but it is what people already see, and now it is what we designed against.</td></tr>
-      <tr><td class="k">The headline</td><td>A link in body-text grey with a dotted underline, four steps below the country heading above it. It reads like a caption, and the whole line is clickable without looking clickable.</td><td>Bold, near-black, no underline, clearly the loudest thing in the item. Clicking through moves to its own "View this alert" line so the affordance is visible.</td></tr>
-      <tr><td class="k">Country and city</td><td><code>Countries: Saudi Arabia</code> prints directly beneath a <code>Saudi Arabia</code> section heading, then <code>Cities:</code> comes as a third separate line. Three lines, two of them saying the same thing.</td><td>One pin row carrying the whole hierarchy, smallest unit first. The country appears once per item.</td></tr>
-      <tr><td class="k">Nearby assets</td><td><code>Impacted Assets</code> is a <code>&lt;ul&gt;</code> styled <code>column-count: 2</code>. Outlook ignores it, so twenty-five assets render as a twenty-five-line single column that pushes everything else off the screen.</td><td>Real table cells, so two columns everywhere. Six shown, the rest behind a link. Renamed to match the field names.</td></tr>
-      <tr><td class="k">Header layout</td><td>The name floats left and the logo floats right inside a fixed <code>height: 54px</code>. Outlook's <code>float</code> support is unreliable and a fixed height clips whatever overflows it.</td><td>A table row. Two cells, no floats, no fixed height.</td></tr>
-      <tr><td class="k">The logo</td><td>A 76&times;76 crop scaled to <code>height: 38px</code>, so a mark that is 360&times;267 gets squashed into a square. Ten of the twelve templates fetch it over plain <code>http</code>, which gateways block. In a real received alert the slot is <strong>empty</strong>.</td><td>Its real proportions, over <code>https</code>.</td></tr>
-      <tr><td class="k">Outer spacing</td><td>Set as <code>padding: 10px</code> and <code>margin: 10px</code> on <code>&lt;body&gt;</code>. Outlook strips both, so the content sits flush against the window edge.</td><td>Padding on a wrapper table cell, which survives.</td></tr>
-      <tr><td class="k">Small text contrast</td><td>Metadata is <code>#878787</code>, which measures <strong>3.59:1</strong>. Source links are <code>#10B981</code>, which measures <strong>2.54:1</strong>. WCAG AA wants 4.5:1 for text this size, so both fail, and the metadata is the part people squint at.</td><td><code>#6B7280</code> at <strong>4.83:1</strong> and <code>#00702B</code> at <strong>6.26:1</strong>. Same roles, both pass.</td></tr>
-      <tr><td class="k">Ranking</td><td>An item headline and the country heading above it sit four steps apart, so a digest reads as one flat run of equally loud things with no way in.</td><td>Section heading, then headline, then description, then metadata, each clearly quieter than the one above. The jump list gives a way in.</td></tr>
-      <tr><td class="k">Status row</td><td><code>Status: Breaking</code> prints directly under a BREAKING chip.</td><td>Gone. The spec does document a Status property, so this is a deliberate deviation, not an omission.</td></tr>
-    </tbody>
-  </table></div>
+  <h2 class="display">The pieces</h2>
+  <p class="sub">Each one below is the real markup from the rendered template, not a redrawing.
+  Shown on white, the way it arrives.</p>
+  <div class="gal">
+    <div class="cmp">
+      <div class="why"><h3>The eyebrow</h3><p>Date, then time when there is one, then category on the left. Content type and severity on the right. Two table cells, so Outlook keeps them side by side.</p></div>
+      <div class="live"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" data-testid="content-dateline">
+      <tr>
+        <td style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#6B7280;vertical-align:middle;">
+          <span>Jul 20, 2026</span>
+          
+          <span style="color:#CBD5E1;">&middot;</span> <span data-testid="eyebrow-category" style="color:#5B6472;font-weight:bold;">Crime, Violence / Robbery / Assault, Public Safety</span>
+                  </td>
+        <td align="right" style="vertical-align:middle;white-space:nowrap;padding-left:10px;">
+          <span style="display:inline-block;font-size:9.5px;font-weight:bold;letter-spacing:0.4px;padding:3px 9px;border-radius:10px;font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;vertical-align:middle;background:#FFEAEB;color:#BA1A1F;">Breaking</span>
+            
+            
+            
+        </td>
+      </tr>
+      </table></div>
+    </div>
+    <div class="cmp">
+      <div class="why"><h3>Headline, then description</h3><p>The headline is the loudest thing in the item and no longer a dotted-underlined link. Everything under it is supporting detail.</p></div>
+      <div class="live"><div data-testid="content-title" style="padding:7px 0 0 0;">
+        <a href="https://app.seerist.com/content/nyc-explosion" style="color:#0F172A;text-decoration:none;font-size:15px;line-height:1.45;font-weight:bold;font-family:'Archivo',Arial,sans-serif;">
+          Explosion outside federal building in New York City
+        </a>
+      </div><div data-testid="content-summary" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#5B6472;line-height:1.6;margin-top:6px;">According to local media reports from approximately 10:00 (local time), an incendiary device caused an explosion outside 26 Federal Plaza in New York City. No casualties or damage were&hellip;</div></div>
+    </div>
+    <div class="cmp">
+      <div class="why"><h3>The location row</h3><p>One line, pin first, smallest unit bold and wider ones muted, so the shape of the line tells you how precise the location is. Six values, then <code>+N more</code>.</p></div>
+      <div class="live"><div data-testid="location-line" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;margin-top:9px;"><span style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;">&#128205;</span>&nbsp;<span style="color:#334155;font-weight:bold;">New York, Newark, Jersey City</span><span style="color:#6B7280;">, New York County, Kings County, United States</span></div></div>
+    </div>
+    <div class="cmp">
+      <div class="why"><h3>The metadata line</h3><p>One flowing line rather than a row per field. Labels muted and bold, values darker, because the value is the information and the label is scaffolding.</p></div>
+      <div class="live"><div style="margin-top:8px;font-family:Arial,Helvetica,sans-serif;font-size:11.5px;line-height:1.8;">
+        
+        
+        <span data-testid="content-risk-types"><span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Risk:</b></span> <span style="color:#334155;font-weight:normal;">Security, Operational, Reputational</span></span>
+        <span data-testid="content-event-categories"> <span style="color:#CBD5E1;">&middot;</span> <span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Categories:</b></span> <span style="color:#334155;font-weight:normal;">Crime, Terrorism</span></span>
+        <span data-testid="content-event-subcategories"> <span style="color:#CBD5E1;">&middot;</span> <span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Subcategories:</b></span> <span style="color:#334155;font-weight:normal;">Explosive Device, Public Disturbance</span></span>
+        
+        
+        
+        
+        
+        <span data-testid="content-tags"> <span style="color:#CBD5E1;">&middot;</span> <span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Tags:</b></span> <span style="color:#334155;font-weight:normal;">Federal Building, Downtown, High Priority</span></span>
+        
+        
+        <span data-testid="content-sources"> <span style="color:#CBD5E1;">&middot;</span> <span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Source:</b></span> <span style="color:#334155;font-weight:normal;"><a style="color:#00702B;text-decoration:none;font-weight:bold;" href="https://www.bloomberg.com">www.bloomberg.com</a>, <a style="color:#00702B;text-decoration:none;font-weight:bold;" href="https://www.nbcnewyork.com">www.nbcnewyork.com</a>, <a style="color:#00702B;text-decoration:none;font-weight:bold;" href="https://www.cbsnews.com">www.cbsnews.com</a> <span style="color:#6B7280;">+2 more</span></span></span>
+        <span data-testid="content-published"> <span style="color:#CBD5E1;">&middot;</span> <span style="white-space:nowrap;"><b style="font-weight:bold;color:#6B7280;">Published:</b></span> <span style="color:#334155;font-weight:normal;">Jul 20, 2026 14:31 UTC</span></span>
+      </div></div>
+    </div>
+    <div class="cmp">
+      <div class="why"><h3>Nearby assets</h3><p>Two columns with bullets, six shown, the rest behind a link. Real table cells, so it is two columns in every client.</p></div>
+      <div class="live"><table data-testid="nearby-assets" role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:12px;background:#F8FAFC;border-radius:6px;">
+      <tr><td style="padding:12px 14px;">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#0F172A;margin-bottom:8px;">Nearby Assets (4 total)</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset A <span style="color:#6B7280;">&middot; 0.3 km</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset B <span style="color:#6B7280;">&middot; 0.7 km</span></td>
+          </tr>
+          <tr>
+            <td width="50%" style="padding:4px 10px 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset C <span style="color:#6B7280;">&middot; 1.1 km</span></td>
+            <td width="50%" style="padding:4px 0 4px 10px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#334155;vertical-align:top;"><span style="color:#6B7280;">&bull;</span>&nbsp;Asset D <span style="color:#6B7280;">&middot; 1.5 km</span></td>
+          </tr>
+        </table>
+      </td></tr>
+      </table></div>
+    </div>
+    <div class="cmp">
+      <div class="why"><h3>The per-item link</h3><p>One quiet green text link per item. Fifty buttons in a digest is fifty things competing.</p></div>
+      <div class="live"><a href="https://app.seerist.com/content/Fact-checking%20Trump&#x27;s%20electi" style="font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-weight:bold;color:#00702B;text-decoration:none;">View details &rarr;</a></div>
+    </div>
+    <div class="cmp">
+      <div class="why"><h3>The button</h3><p>One filled button per email, not per item. It appears near the top of a digest and again in the preview-cap notice.</p></div>
+      <div class="live"><a href="https://app.seerist.com/alerts" style="display:inline-block;background:#0F172A;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;padding:9px 16px;border-radius:5px;text-decoration:none;">View in Seerist &rarr;</a></div>
+    </div>
+    <div class="cmp">
+      <div class="why"><h3>The country divider</h3><p>A heavy dark rule opens each country, with the heading and its count above the items. This is the strongest divider in the email.</p></div>
+      <div class="live"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="padding:20px 0 0 0;border-top:4px solid #0F172A;" data-testid="country-section">
+      <a id="country_0" name="country_0"></a>
+      <span style="font-family:'Archivo',Arial,sans-serif;font-size:17px;font-weight:bold;color:#0F172A;">United States</span>
+      <span style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6B7280;">&nbsp;(31)</span>
+    </td></tr></table></div>
+    </div>
+    <div class="cmp">
+      <div class="why"><h3>The jump list</h3><p>Sits above the first country so a long digest has a way in.</p></div>
+      <div class="live"><div data-testid="toc">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;color:#6B7280;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Jump to a country</div>
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:12.5px;line-height:1.9;">
+          <a data-testid="toc-link" clicktracking="off" href="#country_0" style="color:#334155;text-decoration:none;font-weight:normal;border-bottom:1px solid #CBD5E1;">United States <span style="color:#6B7280;font-weight:normal;">(31)</span></a>&nbsp;<span style="color:#CBD5E1;">&middot;</span>&nbsp;<a data-testid="toc-link" clicktracking="off" href="#country_1" style="color:#334155;text-decoration:none;font-weight:normal;border-bottom:1px solid #CBD5E1;">Russia <span style="color:#6B7280;font-weight:normal;">(2)</span></a>&nbsp;<span style="color:#CBD5E1;">&middot;</span>&nbsp;<a data-testid="toc-link" clicktracking="off" href="#country_2" style="color:#334155;text-decoration:none;font-weight:normal;border-bottom:1px solid #CBD5E1;">China <span style="color:#6B7280;font-weight:normal;">(1)</span></a>&nbsp;<span style="color:#CBD5E1;">&middot;</span>&nbsp;<a data-testid="toc-link" clicktracking="off" href="#country_3" style="color:#334155;text-decoration:none;font-weight:normal;border-bottom:1px solid #CBD5E1;">Colombia <span style="color:#6B7280;font-weight:normal;">(1)</span></a>&nbsp;<span style="color:#CBD5E1;">&middot;</span>&nbsp;<a data-testid="toc-link" clicktracking="off" href="#country_4" style="color:#334155;text-decoration:none;font-weight:normal;border-bottom:1px solid #CBD5E1;">Germany <span style="color:#6B7280;font-weight:normal;">(1)</span></a>&nbsp;<span style="color:#CBD5E1;">&middot;</span>&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;font-size:12.5px;color:#6B7280;">and nine more</span></div></div></div>
+    </div>
+  </div>
 
-  <h2 class="display">Decisions inside the new layout</h2>
-  <p class="sub">The choices that are not a response to something already broken. These are the arguable
-  ones, so the reasoning is here to be argued with.</p>
-  <div class="tw"><table>
-    <thead><tr><th style="width:23%">Decision</th><th>Reasoning</th></tr></thead>
-    <tbody>
-      <tr><td class="k">Order within an item</td><td>Headline, then description, then location, then metadata, in descending order of how often anyone needs it. Location and topic used to sit above the headline, which put the least specific thing first.</td></tr>
-      <tr><td class="k">Eyebrow, two columns</td><td>Left: date, then time when there is one, then category. Right: content type, then severity when it has been assessed. A table row rather than <code>float</code>, for the reason in the table above.</td></tr>
-      <tr><td class="k">One location row</td><td>Pin, then the full hierarchy on a single line. The smallest unit reads bold, wider ones muted, and values at the same level all read alike, so the shape of the line tells you how precise the location is.</td></tr>
-      <tr><td class="k">Metadata as one line</td><td>Middot-joined rather than one row per field. Labels muted and bold, values darker, because the value is the information and the label is scaffolding. Every value carries a label, since an unlabelled value on this feed is unreadable.</td></tr>
-      <tr><td class="k">Alert type out of the header</td><td>The header printed <code>{{name}} - {{formattedDocType}}</code>. Now it is the alert's own name only, as the user named it. Type belongs on the item, since a digest mixes types.</td></tr>
-      <tr><td class="k">Links, not buttons, per item</td><td>One quiet green text link per item. A digest gets a single filled button near the top and another in the preview-cap notice. Fifty buttons is fifty things competing.</td></tr>
-      <tr><td class="k">Digest structure</td><td>Jump list, then a section per country with a heavy dark divider. Every anchor carries <code>clicktracking="off"</code>, without which SendGrid rewrites the href and the jump silently stops working.</td></tr>
-    </tbody>
-  </table></div>
+  <h2 class="display">Behaviours worth knowing</h2>
+  <p class="sub">Short, and mostly invisible until one of them is missed.</p>
+  <ul class="p">
+    <li><strong>Everything is capped server-side.</strong> Six locations, three sources, six assets, fifty items. The template prints whatever remainder it is handed as <code>+N more</code>; it cannot count or truncate.</li>
+    <li><strong>Tables, not CSS layout.</strong> Two-column anything is table cells. The live template styles assets with <code>column-count: 2</code> and floats the header, and Outlook honours neither, so twenty-five assets arrive as one twenty-five-line column.</li>
+    <li><strong>Every jump anchor needs <code>clicktracking="off"</code>.</strong> Without it SendGrid rewrites the href and the jump list silently stops working.</li>
+    <li><strong>Small text now passes contrast.</strong> Metadata moves to <code>#6B7280</code> at 4.83:1 and links to <code>#00702B</code> at 6.26:1. The live values measure 3.59:1 and 2.54:1, both under the 4.5:1 that WCAG AA wants at this size.</li>
+    <li><strong>The country prints once.</strong> Today <code>Countries: Saudi Arabia</code> renders directly beneath a <code>Saudi Arabia</code> heading, with <code>Cities:</code> as a third line. Now it is one row.</li>
+    <li><strong>The status row is gone.</strong> It printed <code>Status: Breaking</code> under a BREAKING chip. The spec does document a Status property, so this is a deliberate deviation, not an omission.</li>
+  </ul>
 
   <h2 class="display">Chips</h2>
   <p class="sub">Colour follows the platform rather than the email: verified red, unverified blue, severity
